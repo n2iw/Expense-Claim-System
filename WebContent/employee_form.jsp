@@ -6,7 +6,7 @@
 		<meta name="viewpoint" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/styles.css">
-		<title>Expenses for "New York city"</title>
+		<title>Expenses for "New York city Change made"</title>
 	</head>
 	<body>
 		<div class="container">
