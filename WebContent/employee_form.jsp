@@ -20,13 +20,13 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Project Code: </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly true value="123">
+								<input type="text" class="form-control" readonly value="123">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2">Job Code: </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly true value="456">
+								<input type="text" class="form-control" readonly value="456">
 							</div>
 						</div>
 					</fieldset>
@@ -52,7 +52,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Uploaded Receipt Files: </label>
 							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_files.html">Show uploaded Files</a>
+								<a class="btn btn-default" href="show_files.jsp">Show uploaded Files</a>
 							</div>
 						</div>
 					</fieldset>
@@ -78,7 +78,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Uploaded Receipt Files: </label>
 							<div class="col-sm-10">
-								<a	class="btn btn-default" href="show_files.html">Show uploaded Files</a>
+								<a	class="btn btn-default" href="show_files.jsp">Show uploaded Files</a>
 							</div>
 						</div>
 					</fieldset>
@@ -104,7 +104,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Uploaded Receipt Files: </label>
 							<div class="col-sm-10">
-								<a	class="btn btn-default" href="show_files.html">Show uploaded Files</a>
+								<a	class="btn btn-default" href="show_files.jsp">Show uploaded Files</a>
 							</div>
 						</div>
 					</fieldset>
@@ -130,7 +130,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Uploaded Receipt Files: </label>
 							<div class="col-sm-10">
-								<a	class="btn btn-default" href="show_files.html">Show uploaded Files</a>
+								<a	class="btn btn-default" href="show_files.jsp">Show uploaded Files</a>
 							</div>
 						</div>
 					</fieldset>
@@ -141,7 +141,7 @@
 								<input class="btn btn-primary form-control" type="submit" value="Save">
 						</div>
 						<div class="col-sm-6">
-								<a href="submit.html" class="btn btn-danger form-control">Submit</a>
+								<a href="submit.jsp" class="btn btn-danger form-control">Submit</a>
 						</div>
 					</div>
 			</form>
