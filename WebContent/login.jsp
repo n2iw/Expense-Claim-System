@@ -14,7 +14,7 @@
 	  body {
         padding-top: 200px;
         padding-bottom: 40px;
-        background-image: url('images/bg3.jpg');
+        /*background-image: url('images/bg3.jpg');*/
       }
       
       .form-signin-heading{
