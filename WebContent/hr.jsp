@@ -1,8 +1,65 @@
-<% String title = "Claims List"; %>
+<% String title = "Claims"; %>
 <%@include file="WEB-INF/Header.jsp" %>
 
+<style>
+table {
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+td, th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
+}
+
+tr:nth-child(even) {
+	background-color: #dddddd;
+}
+
+/* From login.jsp */
+body {
+	padding-top: 200px;
+	padding-bottom: 40px;
+	/*background-image: url('images/bg3.jpg');*/
+}
+
+.form-signin-heading {
+	text-align: center;
+}
+
+.form-signin {
+	max-width: 300px;
+	padding: 19px 29px 0px;
+	margin: 0 auto 20px;
+	background-color: #eed;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .05);
+}
+
+.form-signin .form-signin-heading, .form-signin .checkbox {
+	margin-bottom: 10px;
+}
+
+.form-signin input[type="text"], .form-signin input[type="password"] {
+	font-size: 16px;
+	height: auto;
+	margin-bottom: 15px;
+	padding: 7px 9px;
+}
+}
+
+</style>
+
+
   <h1>Claims List:</h1>
-  <table>
+  <table >
   <tr>
     <th>S.N.</th>
     <th>Project Code</th>
@@ -55,6 +112,6 @@
   </tr>
  
  </table>
-  
+
 <%@include file="WEB-INF/Footer.jsp" %>
 
