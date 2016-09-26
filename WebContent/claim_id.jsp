@@ -46,10 +46,10 @@
 				</div>
 				 	<div class="form-group">
 						<div class="col-sm-6">
-								<input style=color:white;background-color:red; class="btn btn-primary form-control" type="submit" value="Disapprove">
+								<input class="btn btn-danger form-control" type="submit" value="Disapprove">
 						</div>
 						<div class="col-sm-6">
-								<input style=color:white;background-color:green; class="btn btn-danger form-control" type="submit" value = "Approve">
+								<input class="btn btn-success form-control" type="submit" value = "Approve">
 						</div>
 					</div>
 			</form>
