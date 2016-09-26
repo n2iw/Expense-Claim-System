@@ -6,6 +6,7 @@
 </div>
   
 <div class="container">
+<<<<<<< HEAD
 <div class="row">
 <div class="col-sm-12">
 <div class="table-responsive">
@@ -28,5 +29,27 @@
 </div>
   
 </div>
+=======
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="table-responsive">
+			<table class="table">
+			<thead>
+			<tr>
+				<th>Project</th>
+				<th>Trips</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr><td>Expense Claim System</td><td>Travel to New York City</td></tr>
+				<tr><td>Food Management</td><td>Travel to Albany City</td></tr>
+				<tr><td>Event  Management</td><td>Travel to New Jersey</td></tr>
+			</tbody>
+			</table>
+			</div>
+		</div>
+	</div>
+ </div>
+>>>>>>> origin/master
 
 <%@include file="WEB-INF/Footer.jsp" %>
