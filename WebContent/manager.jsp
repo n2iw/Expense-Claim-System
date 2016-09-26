@@ -17,9 +17,9 @@
 </tr>
 </thead>
 <tbody>
-<tr><td>Expense Claim System</td><td>Travel to New York City</td></tr>
-<tr><td>Food Management</td><td>Travel to Albany City</td></tr>
-<tr><td>Event  Management</td><td>Travel to New Jersey</td></tr>
+<tr><td><a>Expense Claim System</a></td><td>Travel to New York City</td></tr>
+<tr><td><a>Food Management</a></td><td>Travel to Albany City</td></tr>
+<tr><td><a>Event  Management</a></td><td>Travel to New Jersey</td></tr>
 </tbody>
 </table>
 <a href="addProject.jsp" class="btn btn-primary active" role="button">Add Project</a>
