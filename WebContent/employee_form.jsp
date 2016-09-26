@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewpoint" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/styles.css">
-		<title>Expenses for "New York city Change made"</title>
-	</head>
-	<body>
+<% String title = "Expenses for \"New York city\""; %>
+<%@include file="WEB-INF/Header.jsp" %>
+
 		<div class="container">
 			<div class="row">
 				<h1 class="col-sm-8 col-sm-offset-2">Expenses for "New York city"</h1>
@@ -146,8 +138,5 @@
 					</div>
 			</form>
 		</div>
-		<script src="js/jquery-3.1.0.min.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-		<script src="js/script.js"></script>
-	</body>
-</html>
+
+<%@include file="WEB-INF/Footer.jsp" %>
