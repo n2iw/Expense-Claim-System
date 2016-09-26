@@ -1,9 +1,9 @@
-<% String title = "Claim Details for Claim_Id";%>
+<% String title = "Expense Claims";%>
 <%@include file="WEB-INF/Header.jsp" %>
 
 		<div class="container">
 			<div class="row">
-				<h1 class="col-sm-8 col-sm-offset-2">Expenses for "Claim_Id"</h1>
+				<h1 class="col-sm-8 col-sm-offset-2"></h1>
 			</div>
 			<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
 				<div class="well">
@@ -39,7 +39,7 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Amount</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly value="200">
+								<input type="text" class="form-control" readonly value="134.56">
 							</div>
 						</div>		
 					</fieldset>
@@ -53,6 +53,17 @@
 						</div>
 					</div>
 			</form>
+			
+            </div>
+            
+            <div class="container">
+               <fieldset>
+						<legend>Receipt Attached Here</legend>           
+                <img src="receipt.jpg" class="img-thumbnail" alt="Food Receipt" width="304" height="236">
+                <img src="receipt2.jpg" class="img-thumbnail" alt="Food Receipt" width="304" height="236">
+                
+                </fieldset> 
+									
 		</div>
 
 <%@include file="WEB-INF/Footer.jsp" %>
