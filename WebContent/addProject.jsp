@@ -41,9 +41,10 @@
           </div>
           <br><br>
           <div class="col-sm-4 col-md-offset-7">
+          	<form 
               <div class="form-group">  
                   <br>
-                  <button type="button" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </div>
           </fieldset>
