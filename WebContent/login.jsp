@@ -6,10 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login here</title>
-<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="${pageContext.request.contextPath}/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-<script src="${pageContext.request.contextPath}/bootstrap/js/jQuery.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap/js/bootstrap.js"></script>
+<link href="${pageContext.request.contextPath}/css/bootstrap.min.css" rel="stylesheet">
+<script src="${pageContext.request.contextPath}/js/jQuery.js"></script>
+<script src="${pageContext.request.contextPath}/js/bootstrap.js"></script>
 <style type="text/css">
 	  body {
         padding-top: 200px;
