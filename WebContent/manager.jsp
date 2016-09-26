@@ -9,7 +9,7 @@
 <div class="row">
 <div class="col-sm-12">
 <div class="table-responsive">
-<table class="table">
+<table class="table table-bordered">
 <thead>
 <tr>
 <th>Project</th>
@@ -22,27 +22,11 @@
 <tr><td>Event  Management</td><td>Travel to New Jersey</td></tr>
 </tbody>
 </table>
+<a href="addProject.jsp" class="btn btn-primary active" role="button">Add Project</a>
 </div>
 </div>
 </div>
-  <div class="row">
-    <div class="col-sm-4">  
-    <h3>Projects</h3>
-      <p>Expense Claim System</p>
-      <p>Food Management</p>
-      <p>Event  Management</p>
-    <br>
-    <a href="addProject.jsp" class="btn btn-primary active" role="button">Add Project</a>
-   
-      
-    </div>
-    <div class="col-sm-8">
-      <h3>Trip in plan</h3>
-      <p>Travel to New York City</p>
-      <p>Travel to Albany City</p>
-      <p>Travel to New Jersey</p>
-    </div>
-  </div>
+  
 </div>
 
 <%@include file="WEB-INF/Footer.jsp" %>
