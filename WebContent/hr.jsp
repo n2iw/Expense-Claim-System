@@ -34,6 +34,8 @@ tr:nth-child(even) {
     <th>PM Name</th>
     <th>EMP Name</th>
     <th>Expense Amount(USD)</th>
+     <th>Claim ID</th>
+     
   </tr>
   <tr>
     <td>001</td>
@@ -41,6 +43,7 @@ tr:nth-child(even) {
     <td>Neil Dave</td>
     <td>Sushmita Shrestha</td>
      <td>200</td>
+     <td><a href="claim_id.jsp">PTC001</a></td>
     
   </tr>
   <tr>
@@ -49,6 +52,7 @@ tr:nth-child(even) {
     <td>Francisco Chang</td>
     <td>Samantha Rice</td>
      <td>675</td>
+     <td><a href="claim_id.jsp">PTC002</a> </td>
   </tr>
   <tr>
     <td>003</td>
@@ -56,6 +60,7 @@ tr:nth-child(even) {
     <td>Roland Mendel</td>
     <td>Chris Hughes</td>
      <td>700</td>
+     <td><a href="claim_id.jsp">PTC003</a> </td>
   </tr>
  <tr>
     <td>004</td>
@@ -63,6 +68,7 @@ tr:nth-child(even) {
     <td>Francis Chang</td>
     <td>Sam Clinton</td>
      <td>60</td>
+     <td><a href="claim_id.jsp">PTC004</a></td>
   </tr>
   <tr>
     <td>005</td>
@@ -70,6 +76,7 @@ tr:nth-child(even) {
     <td>Roland Chang</td>
     <td>Chris Fang</td>
      <td>80</td>
+     <td><a href="claim_id.jsp">PTC005</a></td>
   </tr>
  
  </table>
