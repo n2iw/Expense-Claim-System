@@ -1,3 +1,4 @@
+/*
 table {
 	font-family: arial, sans-serif;
 	border-collapse: collapse;
@@ -14,11 +15,9 @@ tr:nth-child(even) {
 	background-color: #dddddd;
 }
 
-/* From login.jsp */
-body {
+From login.jsp body {
 	padding-top: 200px;
 	padding-bottom: 40px;
-	/*background-image: url('images/bg3.jpg');*/
 }
 
 #form-signin-heading {
@@ -49,3 +48,4 @@ body {
 	margin-bottom: 15px;
 	padding: 7px 9px;
 }
+*/
