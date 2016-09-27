@@ -14,6 +14,18 @@
 <title><%= title %></title>
 </head>
 <body>
-<header id="header">
+<div>
+
+<header class="" id="header">
   <p id="header-title" class="text-center">Expense Claim System</p>
 </header>
+</div>
+
+<nav class="navbar navbar-default">
+  <div class="container">
+  
+  <a href="employee.jsp" class="btn navbar-btn navbar-right">My Expenses</a>
+  <a href="manager.jsp" class="btn navbar-btn navbar-right">Manager Page</a>
+  <a href="hr.jsp" class="btn navbar-btn navbar-right">HR Page</a>
+  </div>
+</nav>
