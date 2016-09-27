@@ -14,3 +14,6 @@
 <title><%= title %></title>
 </head>
 <body>
+<header id="header">
+  <p id="header-title" class="text-center">Expense Claim System</p>
+</header>
