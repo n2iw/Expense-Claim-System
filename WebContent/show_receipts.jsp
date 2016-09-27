@@ -7,7 +7,9 @@
   </div>
   <form class="form-horizontal" action="#" method="post">
     <div class="form-group">
-      <img class="col-sm-2" src="receipt.jpg">
+      <div class="col-sm-2">
+        <img class="img-thumbnail" src="receipt.jpg" width="200px" height="200px">
+      </div>
       <label class="control-label col-sm-2">receipt.jgp</label>
       <div class="col-sm-2">
         <input class="form-control btn btn-danger" type="submit" value="Delete">
@@ -18,7 +20,9 @@
 
   <form class="form-horizontal" action="#" method="post">
     <div class="form-group">
-      <img class="col-sm-2" src="receipt2.jpg">
+      <div class="col-sm-2">
+        <img class="img-thumbnail" src="receipt2.jpg">
+      </div>
       <label class="control-label col-sm-2">receipt2.jpg</label>
       <div class="col-sm-2">
         <input class="form-control btn btn-danger" type="submit" value="Delete">
