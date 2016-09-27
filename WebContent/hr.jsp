@@ -1,16 +1,24 @@
-<% String title = "Claims Lists"; %>
+<% String title = "Claim List"; %>
 <%@include file="WEB-INF/Header.jsp" %>
 
 
 <div class="container">
-
+            			
 			<div class="row">
-				<h1>Claims List</h1>
-				<p>The list of expense claims are below:</p>
+				<h1 class="col-sm-8 col-sm-offset-2"></h1>
 			</div>
+			<form class="form-horizontal">
+				<div class="well well-sm">
+					<fieldset>
+						<Legend>Claim List</Legend>
+					</fieldset>
+				</div>
+             </form>			
 			<div class ="table-responsive">
-			<div class ="table table-border">
-			  <table class="table table-hover">
+					
+			   <table class="table table-hover ">
+			  
+						
                 <thead>
                 <tr class = active>
                      <th>S.N.</th>
@@ -78,9 +86,11 @@
      
  				</tr>
  				</tbody>
+ 				
 		   </table>
+		   
 		   </div>
-		   </div>
+		  
 </div>
 
 
