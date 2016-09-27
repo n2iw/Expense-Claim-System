@@ -1,6 +1,6 @@
 
 <%
-	String title = "Expenses for \"New York city\"";
+	String title = "Expenses for \"Travel to New York city\"";
 %>
 <%@include file="WEB-INF/Header.jsp"%>
 
@@ -8,8 +8,7 @@
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
 			<div class="row">
-				<h4 class="col-sm-8 center-block">Expenses for "New York
-					city"</h4>
+				<h4 class="col-sm-8 center-block">Expenses for "Travel to New York city"</h4>
 			</div>
 			<form class="form-horizontal" action="#" method="post"
 				enctype="multipart/form-data">
@@ -39,7 +38,7 @@
 							</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="food" name="food"
-									placeholder="$ Amount">
+									placeholder="$ Amount" value="100.00">
 							</div>
 						</div>
 
@@ -55,7 +54,8 @@
 							<label class="control-label col-sm-2">Uploaded Receipt
 								Files: </label>
 							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_files.jsp">Show
+                <p>receipt.jpg, receipt2.jpg</p>
+								<a class="btn btn-default" href="show_receipts.jsp">Show
 									uploaded Files</a>
 							</div>
 						</div>
@@ -86,7 +86,7 @@
 							<label class="control-label col-sm-2">Uploaded Receipt
 								Files: </label>
 							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_files.jsp">Show
+								<a class="btn btn-default" href="show_receipts.jsp">Show
 									uploaded Files</a>
 							</div>
 						</div>
@@ -116,7 +116,7 @@
 							<label class="control-label col-sm-2">Uploaded Receipt
 								Files: </label>
 							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_files.jsp">Show
+								<a class="btn btn-default" href="show_receipts.jsp">Show
 									uploaded Files</a>
 							</div>
 						</div>
@@ -147,7 +147,7 @@
 							<label class="control-label col-sm-2">Uploaded Receipt
 								Files: </label>
 							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_files.jsp">Show
+								<a class="btn btn-default" href="show_receipts.jsp">Show
 									uploaded Files</a>
 							</div>
 						</div>
@@ -160,7 +160,7 @@
 							value="Save">
 					</div>
 					<div class="col-sm-6">
-						<a href="submit.jsp" class="btn btn-danger form-control">Submit</a>
+						<a href="#" class="btn btn-danger form-control">Submit</a>
 					</div>
 				</div>
 			</form>
