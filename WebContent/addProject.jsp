@@ -1,38 +1,40 @@
-<% String title = "Expense Claim System"; %>
+<% String title = "Add Project"; %>
 <%@include file="WEB-INF/Header.jsp" %>
 
-<div class="jumbotron text-left">
-  <h2>Welcome Manager_Name</h2>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<div class="row">
+				<h4 class="col-sm-8 center-block">Welcome Mike</h4>
+			</div>
+			<form class="form-horizontal" action="/ExpenseClaimSystem/manager.jsp"
+				enctype="multipart/form-data">
+				<div class="well">
+					<fieldset>
+						<legend>Add Project</legend>
+						<div class="form-group">
+							<label class="control-label col-sm-2">Project Code: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2">Job Code: </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control">
+							</div>
+						</div>
+					</fieldset>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-6 col-sm-offset-6">
+						<input class="btn btn-primary form-control" type="submit"
+							value="Save">
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
 </div>
-
-<div class="well">
-          <fieldset>
-          <div class="col-md-8 col-md-offset-2">
-            <legend>Add Project</legend>
-            <br>
-            <div class="form-group">
-                <label class="control-label col-sm-3">Project Name: </label>
-                <div class="col-sm-6">
-                  <input type="text" class="form-control">
-                </div>
-            </div> 
-            <br><br>
-            <div class="form-group">
-              <label class="control-label col-sm-3">Project Code: </label>
-              <div class="col-sm-6">
-                <input type="text" class="form-control">
-              </div>
-            </div>
-          </div>
-          <br><br>
-          <div class="col-sm-4 col-md-offset-7">
-          	<form 
-              <div class="form-group">  
-                  <br>
-                  <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </div>
-          </fieldset>
-        </div>
 
 <%@include file="WEB-INF/Footer.jsp" %>

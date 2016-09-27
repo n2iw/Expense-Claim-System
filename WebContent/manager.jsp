@@ -1,32 +1,35 @@
-<% String title = "Expense Claim System"; %>
+<% String title = "Project Details"; %>
 <%@include file="WEB-INF/Header.jsp" %>
 
-<div class="jumbotron text-left">
-  <h2 align="center">Welcome Manager_Name</h2>
-</div>
-  
 <div class="container">
-<div class="row">
-<div class="col-sm-12">
-<div class="table-responsive">
-<table class="table table-bordered">
-<thead>
-<tr>
-<th>Project</th>
-<th>Trips</th>
-</tr>
-</thead>
-<tbody>
-<tr><td><a>Expense Claim System</a></td><td>Travel to New York City</td></tr>
-<tr><td><a>Food Management</a></td><td>Travel to Albany City</td></tr>
-<tr><td><a>Event  Management</a></td><td>Travel to New Jersey</td></tr>
-</tbody>
-</table>
-<a href="addProject.jsp" class="btn btn-primary active" role="button">Add Project</a>
-</div>
-</div>
-</div>
-  
-</div>
+	<div class="row"><p></p></div>
+		<div class="well">
+			<h4>Project Details</h4>
+		</div>
+
+		<div class="table-responsive">
+   			<table class="table table-hover table-striped table-condensed">
+			<thead>
+	  		<tr>
+	    		<th>Projects</th> <th>Trips</th>
+	  		</tr>
+			</thead>
+			<tbody>
+	    	<tr>
+	    		<td><a href="project_details.jsp">Expense Claim System</a></td><td>Travel to New York City</td>
+	    	</tr>
+	    	<tr>
+	    		<td><a href="project_details.jsp">Food Management</a></td><td>Travel to Albany City</td>
+	    	</tr>
+		    <tr>
+			    <td><a href="project_details.jsp">Event  Management</a></td><td>Travel to New Jersey</td>
+	    	</tr>
+			</tbody>
+			</table>
+		</div>
+		<div>
+			<a href="addProject.jsp" class="btn btn-primary active" role="button">Add Project</a>
+		</div>
+	</div>
 
 <%@include file="WEB-INF/Footer.jsp" %>
