@@ -7,7 +7,7 @@
 			<div class="row">
 				<h1 class="col-sm-8 col-sm-offset-2"></h1>
 			</div>
-			<form class="form-horizontal">
+			<form class="">
 				<div class="well well-sm">
 					<fieldset>
 						<Legend>Claim List</Legend>
@@ -24,10 +24,10 @@
                      <th>S.N.</th>
                      <th>Project Code</th>
                      <th>PM Name</th>
-                     <th>EMP Name</th>
+                     <th>Employee Name</th>
    					 <th>Expense Amount(USD)</th>
    					 <th>Claim ID</th>
-     
+   					   
  				</tr>
  				</thead>
  				<tbody>
@@ -37,7 +37,7 @@
                      <td>Neil Dave</td>
                      <td>Sushmita Shrestha</td>
    					 <td>200</td>
-   					 <td><a href="claim_id.jsp">PTC001</a></td>
+   					 <td><a href="show_claim.jsp">PTC001</a></td>
      			</tr>
  				<tr class = active>
                      <td>002</td>
@@ -45,7 +45,7 @@
                      <td>Francisco Chang</td>
                      <td>Samantha Rice</td>
    					 <td>675</td>
-   					 <td><a href="claim_id.jsp">PTC001</a></td>
+   					 <td><a href="show_claim.jsp">PTC002</a></td>
      
  				</tr>
  				<tr>
@@ -54,17 +54,16 @@
                      <td>Roland Mendel</td>
                      <td>Chris Hughes</td>
    					 <td>700</td>
-   					 <td><a href="claim_id.jsp">PTC001</a></td>
-     
+   					 <td><a href="show_claim.jsp">PTC003</a></td>     
  				</tr>
  				
  				<tr class =active>
                      <td>004</td>
                      <td>0C2</td>
-                     <td>Roland Mendel</td>
+                     <td>Tom Cruise</td>
                      <td>Chris Hughes</td>
    					 <td>700</td>
-   					 <td><a href="claim_id.jsp">PTC001</a></td>
+   					 <td><a href="show_claim.jsp">PTC004</a></td>
      
  				</tr>
  				<tr>
@@ -73,7 +72,7 @@
                      <td>Francis Chang</td>
                      <td>Sam Clinton</td>
    					 <td>60</td>
-   					 <td><a href="claim_id.jsp">PTC001</a></td>
+   					 <td><a href="show_claim.jsp">PTC005</a></td>
      
  				</tr>
  				<tr class = active>
@@ -82,7 +81,7 @@
                      <td>Roland Chang</td>
                      <td>Chris Fang</td>
    					 <td>80</td>
-   					 <td><a href="claim_id.jsp">PTC001</a></td>
+   					 <td><a href="show_claim.jsp">PTC006</a></td>
      
  				</tr>
  				</tbody>
