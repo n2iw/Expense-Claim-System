@@ -54,7 +54,7 @@
                      <td>Roland Mendel</td>
                      <td>Chris Hughes</td>
    					 <td>700</td>
-   					 <td><a href="hr.jsp">PTC001</a></td>
+   					 <td><a href="claim_id.jsp">PTC001</a></td>
      
  				</tr>
  				
@@ -64,7 +64,7 @@
                      <td>Roland Mendel</td>
                      <td>Chris Hughes</td>
    					 <td>700</td>
-   					 <td><a href="hr.jsp">PTC001</a></td>
+   					 <td><a href="claim_id.jsp">PTC001</a></td>
      
  				</tr>
  				<tr>
@@ -73,7 +73,7 @@
                      <td>Francis Chang</td>
                      <td>Sam Clinton</td>
    					 <td>60</td>
-   					 <td><a href="hr.jsp">PTC001</a></td>
+   					 <td><a href="claim_id.jsp">PTC001</a></td>
      
  				</tr>
  				<tr class = active>
@@ -82,13 +82,12 @@
                      <td>Roland Chang</td>
                      <td>Chris Fang</td>
    					 <td>80</td>
-   					 <td><a href="hr.jsp">PTC001</a></td>
+   					 <td><a href="claim_id.jsp">PTC001</a></td>
      
  				</tr>
  				</tbody>
  				
 		   </table>
-		   
 		   </div>
 		  
 </div>
