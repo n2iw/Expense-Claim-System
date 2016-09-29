@@ -8,7 +8,7 @@
 			<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
 				<div class="well">
 					<fieldset>
-						<legend>Expense Claim Details</legend>
+						<legend>Claim Report</legend>
 						<div class="form-group">
 							<label class="control-label col-sm-2">Employee Name </label>
 							<div class="col-sm-10">
@@ -16,6 +16,13 @@
 							</div>
 						</div>
 						
+						<div class="form-group">
+							<label class="control-label col-sm-2">Claim ID : </label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" readonly value="001">
+							</div>
+						</div>
+												
 						<div class="form-group">
 							<label class="control-label col-sm-2">Trip Name : </label>
 							<div class="col-sm-10">
@@ -30,40 +37,39 @@
 						</div>
 						
 						<div class="form-group">
-							<label class="control-label col-sm-2">Expenses Type</label>
+							<label class="control-label col-sm-2">Expense Type</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" readonly value="Food Expenses">
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label class="control-label col-sm-2">Amount(USD)</label>
+							<label class="control-label col-sm-2">Claim Amount(USD)</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" readonly value="134.56">
 							</div>
 						</div>		
+						
+						<div class="form-group">
+							<label class="control-label col-sm-2">Approved Amount(USD)</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" readonly value="134.56">
+								
+							</div>
+						</div>	
+						<div class="form-group">
+							<label class="control-label col-sm-2">Due Amount(USD)</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" readonly value="0.00">
+								
+							</div>
+						</div>	
+						
+						
+						
 					</fieldset>
 				</div>
-				 	<div class="form-group">
-						<div class="col-sm-6">
-								<input class="btn btn-danger form-control" type="submit" value="Disapprove">
-						</div>
-						<div class="col-sm-6">
-								<input class="btn btn-success form-control" type="submit" value = "Approve">
-						</div>
-					</div>
 			</form>
-			
-            </div>
-            
-            <div class="container">
-               <fieldset>
-						<legend>Receipt Attached Here</legend>           
-                <img src="receipt.jpg" class="img-thumbnail" alt="Food Receipt" width="304" height="236">
-                <img src="receipt2.jpg" class="img-thumbnail" alt="Food Receipt" width="304" height="236">
-                
-                </fieldset> 
-									
 		</div>
-
+  
 <%@include file="WEB-INF/Footer.jsp" %>
