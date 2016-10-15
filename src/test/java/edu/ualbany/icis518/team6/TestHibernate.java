@@ -19,11 +19,9 @@ public class TestHibernate {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
-		System.out.println("Before transaction");
 		session.beginTransaction();
 		session.save(user);
 		session.getTransaction().commit();
-		System.out.println("After transaction");
 		assert(true);
 	}
 }
