@@ -36,7 +36,8 @@
 <!--         <property name="hbm2ddl.auto">update</property>
  -->
  <!-- Names of the annotated entity class -->
-		<mapping class="edu.ualbany.icis518.team6.UserDetail"/>
+	    <mapping class="edu.ualbany.icis518.team6.UserDetail"/>
+		<mapping class="edu.ualbany.icis518.team6.User"/>
 		<mapping class="edu.ualbany.icis518.team6.Employee"/>
 		<mapping class="edu.ualbany.icis518.team6.Projects"/>
 		<mapping class="edu.ualbany.icis518.team6.EmployeeProject"/>
