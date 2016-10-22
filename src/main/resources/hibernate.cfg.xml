@@ -35,7 +35,9 @@
         <property name="hbm2ddl.auto">update</property>
 <!--         <property name="hbm2ddl.auto">update</property>
  -->
+ <!-- Names of the annotated entity class -->
 		<mapping class="edu.ualbany.icis518.team6.UserDetail"/>
+		<mapping class="edu.ualbany.icis518.team6.Employee"/>
 
     </session-factory>
 
