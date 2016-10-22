@@ -1,5 +1,5 @@
 <% String title = "Claim List"; %>
-<%@include file="../Header.jsp" %>
+<%@include file="Header.jsp" %>
 
 
 <div class="container">
@@ -92,4 +92,4 @@
 </div>
 
 
-<%@include file="../Footer.jsp" %>
+<%@include file="Footer.jsp" %>

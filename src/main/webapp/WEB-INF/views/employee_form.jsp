@@ -2,7 +2,7 @@
 <%
 	String title = "Expenses for \"Travel to New York city\"";
 %>
-<%@include file="WEB-INF/Header.jsp"%>
+<%@include file="Header.jsp"%>
 
 <div class="container">
 	<div class="row">
@@ -168,4 +168,4 @@
 	</div>
 </div>
 
-<%@include file="WEB-INF/Footer.jsp"%>
+<%@include file="Footer.jsp"%>

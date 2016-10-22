@@ -11,7 +11,7 @@
 
 
 <link rel="stylesheet" href="css/styles.css">
-<title><%= title %></title>
+<title>${ title }</title>
 </head>
 <body>
 <div>
