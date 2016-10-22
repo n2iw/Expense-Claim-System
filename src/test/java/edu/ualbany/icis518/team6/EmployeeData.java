@@ -3,29 +3,27 @@ package edu.ualbany.icis518.team6;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.junit.Test;
 
-public class TestHibernate {
+public class EmployeeData {
 
 	public static void main(String[] args) {
-	}
-	
-	@Test
-	public void testHibernate() {
-		UserDetail user = new UserDetail();
-		user.setUserID(533);
-		user.setUserName("James");
+	//Instantiate details of Employee class
+		Employee emp = new Employee(); 
+		emp.setEmployeeId(001);
+		emp.setFirstName("Samantha");
+		emp.setLastName("Ceasar");
+		emp.setPassword("###");
+		emp.setRole("Developer");
 		
-		user.setUserID(userID);
-		
-		
-		
+		//Use hibernate API
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		
+		//Manage transaction
 		session.beginTransaction();
-		session.save(user);
+		session.save(emp);
 		session.getTransaction().commit();
 		assert(true);
 	}
+
 }

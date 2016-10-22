@@ -32,10 +32,20 @@
         <property name="show_sql">true</property>
 
         <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">update</property>
+        <property name="hbm2ddl.auto">create</property>
 <!--         <property name="hbm2ddl.auto">update</property>
  -->
-		<mapping class="edu.ualbany.icis518.team6.UserDetail"/>
+ <!-- Names of the annotated entity class -->
+	    <mapping class="edu.ualbany.icis518.team6.UserDetail"/>
+		<mapping class="edu.ualbany.icis518.team6.User"/>
+		<mapping class="edu.ualbany.icis518.team6.Employee"/>
+		<mapping class="edu.ualbany.icis518.team6.Projects"/>
+		<mapping class="edu.ualbany.icis518.team6.EmployeeProject"/>
+		<mapping class="edu.ualbany.icis518.team6.Trips"/>
+		<mapping class="edu.ualbany.icis518.team6.EmployeeTrip"/>
+		<mapping class="edu.ualbany.icis518.team6.Expense"/>
+		<mapping class="edu.ualbany.icis518.team6.ExpenseType"/>
+		
 
     </session-factory>
 

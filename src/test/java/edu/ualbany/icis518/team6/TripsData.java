@@ -3,29 +3,29 @@ package edu.ualbany.icis518.team6;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.junit.Test;
 
-public class TestHibernate {
+public class TripsData {
 
 	public static void main(String[] args) {
-	}
-	
-	@Test
-	public void testHibernate() {
-		UserDetail user = new UserDetail();
-		user.setUserID(533);
-		user.setUserName("James");
 		
-		user.setUserID(userID);
-		
-		
-		
+		//Instantiate details of Trips class
+		Trips trp = new Trips();
+		trp.setTripId(701);
+		trp.setProjectId(51);
+		trp.setDescription("This is a trip to New York for ATM project");
+	    trp.setStartDate("2016-12-1");
+	    trp.setEndDate("2017-10-1");
+					
+		//Use hibernate API
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
-		
+				
+		//Manage transaction
 		session.beginTransaction();
-		session.save(user);
+		session.save(trp);
 		session.getTransaction().commit();
 		assert(true);
+			
 	}
+
 }
