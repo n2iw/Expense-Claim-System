@@ -38,6 +38,8 @@
  <!-- Names of the annotated entity class -->
 		<mapping class="edu.ualbany.icis518.team6.UserDetail"/>
 		<mapping class="edu.ualbany.icis518.team6.Employee"/>
+		<mapping class="edu.ualbany.icis518.team6.Projects"/>
+		
 
     </session-factory>
 
