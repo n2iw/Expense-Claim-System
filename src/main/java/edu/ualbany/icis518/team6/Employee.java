@@ -1,9 +1,12 @@
 package edu.ualbany.icis518.team6;
 
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+@Entity 
+@Table (name = "EMPLOYEE")
 public class Employee {
 	@Id
 	private int employeeId;

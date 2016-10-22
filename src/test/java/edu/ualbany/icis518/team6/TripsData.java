@@ -13,8 +13,8 @@ public class TripsData {
 		trp.setTripId(701);
 		trp.setProjectId(51);
 		trp.setDescription("This is a trip to New York for ATM project");
-	    trp.setStartDate("10-02-2016");
-	    trp.setEndDate("10-01-2017");
+	    trp.setStartDate("2016-12-1");
+	    trp.setEndDate("2017-10-1");
 					
 		//Use hibernate API
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
