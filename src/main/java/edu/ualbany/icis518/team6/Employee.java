@@ -5,21 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity 
+@Entity
 @Table (name = "EMPLOYEE")
 public class Employee {
-	@Id
-	private int employeeId;
+	@Id  @GeneratedValue
+	private long employeeId;
 	private String firstName;
 	private String lastName;
 	private String password;
 	private String role;
 	
 	//employeeID getters and setters
-	public int getEmployeeId() {
+	public long getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(int employeeId) {
+	public void setEmployeeId(long employeeId) {
 		this.employeeId = employeeId;
 	}
 	//firstName getters and setters

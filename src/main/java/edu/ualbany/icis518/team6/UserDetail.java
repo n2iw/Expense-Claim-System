@@ -1,11 +1,13 @@
 package edu.ualbany.icis518.team6;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class UserDetail {
-	@Id
+	@Id @GeneratedValue (strategy=GenerationType.IDENTITY)
 	private int userID;
 	private String userName;
 	public int getUserID() {
