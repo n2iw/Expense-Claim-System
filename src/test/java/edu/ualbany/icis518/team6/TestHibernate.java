@@ -15,11 +15,7 @@ public class TestHibernate {
 		UserDetail user = new UserDetail();
 		user.setUserID(533);
 		user.setUserName("James");
-		
-		user.setUserID(userID);
-		
-		
-		
+				
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		

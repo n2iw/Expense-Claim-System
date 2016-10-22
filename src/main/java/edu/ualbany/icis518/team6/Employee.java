@@ -1,7 +1,7 @@
 package edu.ualbany.icis518.team6;
 
-
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -14,7 +14,7 @@ public class Employee {
 	private String lastName;
 	private String password;
 	private String role;
-	
+		
 	//employeeID getters and setters
 	public long getEmployeeId() {
 		return employeeId;
