@@ -51,7 +51,7 @@ public class User {
 	}
 	public User(String userName, String password) {
 		super();
-		this.userId = userId;
+		//this.userId = userId;
 		this.userName = userName;
 		this.password = password;
 	}
