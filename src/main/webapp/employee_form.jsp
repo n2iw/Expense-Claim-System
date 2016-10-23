@@ -8,7 +8,8 @@
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
 			<div class="row">
-				<h4 class="col-sm-8 center-block">Expenses for "Travel to New York city"</h4>
+				<h4 class="col-sm-8 center-block">Expenses for "Travel to New
+					York city"</h4>
 			</div>
 			<form class="form-horizontal" action="#" method="post"
 				enctype="multipart/form-data">
@@ -54,7 +55,7 @@
 							<label class="control-label col-sm-2">Uploaded Receipt
 								Files: </label>
 							<div class="col-sm-10">
-                <p>receipt.jpg, receipt2.jpg</p>
+								<p>receipt.jpg, receipt2.jpg</p>
 								<a class="btn btn-default" href="show_receipts.jsp">Show
 									uploaded Files</a>
 							</div>

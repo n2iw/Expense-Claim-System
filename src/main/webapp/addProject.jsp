@@ -1,5 +1,6 @@
+
 <% String title = "Add Project"; %>
-<%@include file="WEB-INF/Header.jsp" %>
+<%@include file="WEB-INF/Header.jsp"%>
 
 <div class="container">
 	<div class="row">
@@ -7,7 +8,8 @@
 			<div class="row">
 				<h4 class="col-sm-8 center-block">Welcome Mike</h4>
 			</div>
-			<form class="form-horizontal" action="/ExpenseClaimSystem/manager.jsp"
+			<form class="form-horizontal"
+				action="/ExpenseClaimSystem/manager.jsp"
 				enctype="multipart/form-data">
 				<div class="well">
 					<fieldset>
@@ -37,4 +39,4 @@
 	</div>
 </div>
 
-<%@include file="WEB-INF/Footer.jsp" %>
+<%@include file="WEB-INF/Footer.jsp"%>

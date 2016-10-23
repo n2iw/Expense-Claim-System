@@ -16,7 +16,7 @@ public class TestHibernate {
 		user.setUserID(533);
 		user.setUserName("James");
 		
-		user.setUserID(userID);
+		//user.setUserID(userID);
 		
 		
 		
