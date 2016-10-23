@@ -12,7 +12,10 @@ public class EmployeeData {
 	//Instantiate details of Employee class
 
 		Employee emp = new Employee(); 
-		emp.add("wan", "jinlai", "nopassword", "Ks");
+		emp.add("waneeee", "jinlai", "nopassword", "HR");
+		emp.add("waneeee", "jinlai", "nopassword", "Manager");
+		emp.add("waneeee", "jinlai", "nopassword", "oridinary");
+		
 		/*emp= emp.getbyId(6);
 		emp.setPassword("12345678");
 		emp.update(emp);
