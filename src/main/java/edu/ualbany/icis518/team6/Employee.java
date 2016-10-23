@@ -1,20 +1,34 @@
 package edu.ualbany.icis518.team6;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 
 @Entity
 @Table (name = "EMPLOYEE")
 public class Employee {
-	@Id  @GeneratedValue
+	@Id  @GeneratedValue (strategy = GenerationType.AUTO)
 	private long employeeId;
 	private String firstName;
 	private String lastName;
 	private String password;
 	private String role;
-		
+	//Join projects table data
+	@ElementCollection
+	@JoinTable(name = "PROJECTS",
+		joinColumns=@JoinColumn(name = "EmployeeId"))
+	
+	private Collection<Projects> listofProjects = new ArrayList(Projects);
+	public Collection<Projects> getlistofProjects(){
+		return listofProjects;
+	}
 	//employeeID getters and setters
 	public long getEmployeeId() {
 		return employeeId;

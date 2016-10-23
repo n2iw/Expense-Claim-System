@@ -12,8 +12,11 @@ public class ExpenseData {
 				Expense exp = new Expense(); 
 				
 				exp.setExpenseId(5001);
+				
+				//Insert EmployeeId and TripId from other class
 				exp.setEmployeeId(001);
 				exp.setTripId(701);
+				
 				exp.setExpenseType("Food Expense");
 				exp.setExpenseAmount(81);
 				exp.setReceiptLink("Link/path of receipt");
@@ -28,7 +31,21 @@ public class ExpenseData {
 				session.beginTransaction();
 				session.save(exp);
 				session.getTransaction().commit();
-				assert(true);		
+				//assert(true);	
+				
+				session.close();
+				
+				//Retrieving objects using session.get
+				exp = null;
+				//new session object and start transaction
+				session = factory.openSession();
+				session.beginTransaction();
+				exp = (Expense)session.get(Expense.class,5001);
+				System.out.println("ExpenseAmount is" + exp.getExpenseAmount()); //optional
+				System.out.println("ReceiptLink is" + exp.getReceiptLink()); //optional
+				System.out.println("ExpenseStatus is" + exp.getExpenseStatus()); //optional
+				System.out.println("ExpenseEditFlag is" + exp.getExpenseEditFlag()); //optional
+							
 	}
 
 }

@@ -34,8 +34,9 @@ public class EmployeeData {
 		session = factory.openSession();
 		session.beginTransaction();
 		emp = (Employee)session.get(Employee.class,1);
-		System.out.println("Employee FirstName is" + emp.getFirstName());
-		
+		System.out.println("Employee FirstName is" + emp.getFirstName()); //optional
+		System.out.println("Employee LastName is" + emp.getLastName()); //optional
+		System.out.println("Employee Role is" + emp.getRole()); //optional
 		
 		
 	}

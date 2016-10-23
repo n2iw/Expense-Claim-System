@@ -2,8 +2,10 @@ package edu.ualbany.icis518.team6;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity
+@Entity 
+@Table (name = "PROJECTS")
 public class Projects {
 		
 	@Id

@@ -1,13 +1,18 @@
 package edu.ualbany.icis518.team6;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table (name = "EXPENSE")
 public class Expense {
-	@Id
-	private int employeeId;
+	@Id @GeneratedValue (strategy = GenerationType.SEQUENCE)
 	private int expenseId;
+	
+	private int employeeId;
 	private int tripId;
 	private String expenseType;
 	private int expenseAmount;
@@ -15,6 +20,15 @@ public class Expense {
 	private String expenseStatus;
 	private Boolean expenseEditFlag;
 
+	
+
+	//expenseID getters and setters
+	public int getExpenseId() {
+		return expenseId;
+	}
+	public void setExpenseId(int expenseId) {
+		this.expenseId = expenseId;
+	}
 	
 	//employeeID getters and setters
 	public int getEmployeeId() {
@@ -24,13 +38,6 @@ public class Expense {
 		this.employeeId = employeeId;
 	}
 	
-	//expenseID getters and setters
-	public int getExpenseId() {
-		return expenseId;
-	}
-	public void setExpenseId(int expenseId) {
-		this.expenseId = expenseId;
-	}
 	
 	//tripId getters and setters
 	public int getTripId() {
