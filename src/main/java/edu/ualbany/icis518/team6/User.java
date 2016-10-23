@@ -20,6 +20,7 @@ import org.hibernate.cfg.Configuration;
 @Table(name="user")
 public class User {
 	@Id	@GeneratedValue(strategy=GenerationType.IDENTITY)//  auto increment primary key
+	@Column(name = "userId")
 	private long userId;
 	@Column(nullable = false, unique = false) //let userName not unique &  not nullable
 	private String userName;
@@ -49,9 +50,8 @@ public class User {
 		this.userName = userName;
 		this.password = password;
 	}
-	public User(String userName, String password) {
+	public User(String userName, String password){
 		super();
-		//this.userId = userId;
 		this.userName = userName;
 		this.password = password;
 	}

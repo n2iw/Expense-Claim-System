@@ -18,7 +18,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.cfg.Configuration;
 
 @Entity
-@Table(name="user")
+@Table(name="user2")
 public class User2 {
 	@Id	@GeneratedValue(strategy=GenerationType.IDENTITY)//  auto increment primary key
 	private long userId;

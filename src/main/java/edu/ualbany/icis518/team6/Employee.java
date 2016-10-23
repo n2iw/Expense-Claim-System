@@ -21,14 +21,14 @@ public class Employee {
 	private String password;
 	private String role;
 	//Join projects table data
-	@ElementCollection
+	/*@ElementCollection
 	@JoinTable(name = "PROJECTS",
 		joinColumns=@JoinColumn(name = "EmployeeId"))
 	
 	private Collection<Projects> listofProjects = new ArrayList(Projects);
 	public Collection<Projects> getlistofProjects(){
 		return listofProjects;
-	}
+	}*/
 	//employeeID getters and setters
 	public long getEmployeeId() {
 		return employeeId;
