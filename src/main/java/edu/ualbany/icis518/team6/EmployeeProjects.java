@@ -16,7 +16,7 @@ import org.hibernate.cfg.Configuration;
 @Entity 
 @Table (name = "EmployeeProjects")
 public class EmployeeProjects {
-	@Id @GeneratedValue (strategy = GenerationType.AUTO)
+	@Id @GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name = "emplproId")
 	private int emplproId;	
 	@ManyToOne

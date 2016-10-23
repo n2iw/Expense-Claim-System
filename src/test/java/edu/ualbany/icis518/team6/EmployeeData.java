@@ -12,18 +12,18 @@ public class EmployeeData {
 	//Instantiate details of Employee class
 
 		Employee emp = new Employee(); 
-		emp.add("waneeee", "jinlai", "nopassword", "HR");
+/*		emp.add("waneeee", "jinlai", "nopassword", "HR");
 		emp.add("waneeee", "jinlai", "nopassword", "Manager");
-		emp.add("waneeee", "jinlai", "nopassword", "oridinary");
+		emp.add("waneeee", "jinlai", "nopassword", "oridinary");*/
 		
-		/*emp= emp.getbyId(6);
-		emp.setPassword("12345678");
-		emp.update(emp);
-		System.out.println(emp);*/
+/*		emp= emp.getbyId(3);
+		emp.setPassword("gailetest");
+		emp.save(emp);*/
+
 		
 		
 		 List<Employee> EmployeeList=emp.getAllEmployee();// create a List to get the return result
-		 Employee resEmployee=EmployeeList.get(0);// find the 1st element in the list
+		 Employee resEmployee=EmployeeList.get(0);// find the 2nd element in the list
 		 System.out.println(resEmployee);//printout the 1st userName
 		
 /*		//Retrieving objects using session.get

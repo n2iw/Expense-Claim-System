@@ -20,7 +20,7 @@ import org.hibernate.cfg.Configuration;
 @Entity
 @Table (name = "Employee")
 public class Employee {
-	@Id  @GeneratedValue (strategy = GenerationType.AUTO)
+	@Id  @GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name = "employeeId")
 	private int employeeId;
 	private String firstName;
@@ -30,9 +30,9 @@ public class Employee {
 	public int getEmployeeId() {
 		return employeeId;
 	}
-	public void setEmployeeId(int employeeId) {
+/*	public void setEmployeeId(int employeeId) {
 		this.employeeId = employeeId;
-	}
+	}*///you can't change the auto increment primary key
 	public String getFirstName() {
 		return firstName;
 	}
@@ -78,17 +78,35 @@ public class Employee {
 		session.close();
 		factory.close();
 	}
-	public void update(Employee emplin) {
+	/**
+	 * Update the Employee's information to the Database
+	 */
+	public void update() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		Employee empl = session.get(Employee.class, emplin.getEmployeeId());
+		Employee empl = session.get(Employee.class, this.getEmployeeId());
 		empl.setFirstName(firstName);
 		empl.setLastName(lastName);
 		empl.setPassword(password);
 		empl.setRole(role);
 		session.save(empl);
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+	}
+	/**
+	 * insert the employee Object into database
+	 * @param Employee 
+	 * */
+	public void save(Employee Employee ) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+		
+		session.save(Employee);
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
