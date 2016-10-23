@@ -1,11 +1,13 @@
 package edu.ualbany.icis518.team6;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity 
 @Table (name = "PROJECTS")
+@Embeddable //this can be used as embedded class into other class
 public class Projects {
 		
 	@Id
