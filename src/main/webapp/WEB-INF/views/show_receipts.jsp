@@ -1,5 +1,5 @@
 <% String title = "Receipts uploaded"; %>
-<%@include file="WEB-INF/Header.jsp" %>
+<%@include file="Header.jsp" %>
 
 <div class="container">
   <div class="row">
@@ -35,4 +35,4 @@
   <script src="js/script.js"></script>
 </div>
 
-<%@include file="WEB-INF/Footer.jsp" %>
+<%@include file="Footer.jsp" %>
