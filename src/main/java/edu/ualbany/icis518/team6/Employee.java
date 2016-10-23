@@ -2,13 +2,16 @@ package edu.ualbany.icis518.team6;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GenerationType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table (name = "EMPLOYEE")
 public class Employee {
-	@Id  @GeneratedValue
+	@Id  
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long employeeId;
 	private String firstName;
 	private String lastName;
