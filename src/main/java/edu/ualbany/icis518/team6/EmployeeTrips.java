@@ -23,7 +23,7 @@ public class EmployeeTrips {
 	@Column(name = "empltripId")
 	private int empltripId;	
 	@ManyToOne
-    @JoinColumn(name="project_id")
+    @JoinColumn(name="trip_id")
 	private Trips etrip;
     @ManyToOne
     @JoinColumn(name="empl_id")
@@ -48,49 +48,59 @@ public class EmployeeTrips {
 	public void setEmpl(Employee empl) {
 		Empl = empl;
 	}
+	
 	@Override
 	public String toString() {
-		return "EmployeeTrips [project=" + etrip + ", Empl=" + Empl + "]";
+		return "empltripId :  " +empltripId+ "  "+Empl + "" + etrip + "";
 	}
-	public void add(Employee emplin, Trips tripin) {
+/**
+ * 
+ * @param Trips A Trips Object
+ * @param Employee A Employee Object
+ */
+	public EmployeeTrips(Trips Trips, Employee Employee) {
+		super();
+		this.etrip = Trips;
+		this.Empl = Employee;
+	}
+	/**
+	 * 
+	 * @param Trips A Trips Object
+	 * @param Employee A Employee Object
+	 */
+	public EmployeeTrips() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	public void save() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		EmployeeTrips EP=new EmployeeTrips();
-		EP.setProject(tripin);
-		EP.setEmpl(emplin);
-
-
-		session.save(EP);
+		if(this.getEmpltripId()==0){
+			session.save(this);
+		}else{
+			session.update(this);
+		}
+		
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
-	public void update() {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		
-		session.update(this);
 
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}
-	public EmployeeTrips getbyId( int Id) {
+	public static EmployeeTrips getbyprimarykey( int empltripId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		EmployeeTrips empltrip = session.get(EmployeeTrips.class, Id);
+		EmployeeTrips empltrip = session.get(EmployeeTrips.class, empltripId);
 
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 		return empltrip;
 	}
-	public List<EmployeeTrips> getAllEmployeeTrips(){
+	public static List<EmployeeTrips> getAllEmployeeTrips(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();

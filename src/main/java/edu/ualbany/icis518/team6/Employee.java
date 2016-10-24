@@ -59,7 +59,7 @@ public class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
+		return "Employee [employeeId=" + this.employeeId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", role=" + role + "]";
 	}
 	/**
@@ -95,7 +95,7 @@ public Employee() {
 	 * @return a List of Employee. There are example code in EmployeeData.java
 	 * @author Jinlai
 	 */
-	public static List<Employee> findbyName(String firstname, String lastname){
+	public static List<Employee> getbyEmployeeName(String firstname, String lastname){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -121,7 +121,7 @@ public Employee() {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return EmployeeList;// return a List of the User object 
+	    return EmployeeList;
 	}
 	/**
 	 * 
@@ -129,7 +129,7 @@ public Employee() {
 	 * @return a List of Employee. There are example code in EmployeeData.java
 	 * @author Jinlai
 	 */
-	public static List<Employee> findbyRole(String role){
+	public static List<Employee> getbyEmployeeRole(String role){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -145,7 +145,7 @@ public Employee() {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return EmployeeList;// return a List of the User object 
+	    return EmployeeList;
 	}
 	
 	public void save() {
@@ -171,7 +171,7 @@ public Employee() {
 	 * @param employeeId int
 	 * @return an Employee Object
 	 */
-	public static Employee getbyId( int employeeId) {
+	public static Employee getbyEmployeeId( int employeeId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -193,6 +193,10 @@ public Employee() {
 	    session.close();
 		factory.close();
 	}
+	/**
+	 * 
+	 * @return a List of Employee.
+	 */
 	public static List<Employee> getAllEmployee(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
@@ -209,6 +213,7 @@ public Employee() {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return EmployeeList;// return a List of the User object 
+	    return EmployeeList;
 	}
-	}
+	
+}

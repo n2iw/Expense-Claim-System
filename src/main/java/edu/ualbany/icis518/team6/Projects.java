@@ -126,6 +126,10 @@ public class Projects {
 	    session.close();
 		factory.close();
 	}
+	/**
+	 * 
+	 * @return a List of Projects
+	 */
 	public static List<Projects> getAllProjects(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
@@ -142,7 +146,7 @@ public class Projects {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return ProjectsList;// return a List of the User object 
+	    return ProjectsList;
 	}
 	/**
 	 * 
@@ -150,7 +154,7 @@ public class Projects {
 	 * @return a List of Projects. There are example code in ProjectsData.java
 	 * @author Jinlai
 	 */
-	public static List<Projects> findbyProjectName(String projectName){
+	public static List<Projects> getbyProjectName(String projectName){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -167,7 +171,7 @@ public class Projects {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return ProjectsList;// return a List of the User object 
+	    return ProjectsList;
 	}
 /**
  * 
@@ -175,7 +179,7 @@ public class Projects {
  * @return a List of Projects. There are example code in ProjectsData.java
  * @author Jinlai
  */
-	public static List<Projects> findbyPM_Id(Employee projectManager){
+	public static List<Projects> getbyProjectManager(Employee projectManager){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -192,6 +196,6 @@ public class Projects {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return ProjectsList;// return a List of the User object 
+	    return ProjectsList;
 	}
 }

@@ -47,9 +47,10 @@ public class EmployeeProjects {
 	public void setEmpl(Employee empl) {
 		Empl = empl;
 	}
+
 	@Override
 	public String toString() {
-		return "EmployeeProjects [project=" + project + ", Empl=" + Empl + "]";
+		return "emplproId :  " +emplproId+ "  "+Empl + "" + project + "";
 	}
 	/**
 	 * 
@@ -84,7 +85,11 @@ public class EmployeeProjects {
 		session.close();
 		factory.close();
 	}
-
+/**
+ * the primary key of this EmployeeProjects table, no meaning
+ * @param emplproId int
+ * @return
+ */
 	public static EmployeeProjects getbyPrimaryId( int emplproId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
@@ -97,6 +102,57 @@ public class EmployeeProjects {
 		factory.close();
 		return emplpro;
 	}
+	/**
+	 * Find all the info by a EmployeeId
+	 * @param emplin An Employee Object
+	 * @return a List of EmployeeProjects
+	 * @author Jinlai
+	 */
+	public static List<EmployeeProjects> getbyEmployee(Employee emplin){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+	    String hql="from EmployeeProjects where empl_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, emplin.getEmployeeId());
+	    List<EmployeeProjects> EmployeeProjectsList=query.list();
+	    
+	    for(EmployeeProjects EmployeeProjects:EmployeeProjectsList){// if successfully get the Data, printout every result before return
+	    	System.out.println(EmployeeProjects);
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return EmployeeProjectsList;// return a List of the User object 
+	}
+	/**
+	 * Find all the info by a ProjectId
+	 * @param projin An Projects Object
+	 * @return a List of EmployeeProjects
+	 * @author Jinlai
+	 */
+	public static List<EmployeeProjects> getbyProject(Projects projin){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+	    String hql="from EmployeeProjects where project_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, projin.getProjectId());
+	    List<EmployeeProjects> EmployeeProjectsList=query.list();
+	    
+	    for(EmployeeProjects EmployeeProjects:EmployeeProjectsList){// if successfully get the Data, printout every result before return
+	    	System.out.println(EmployeeProjects);
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return EmployeeProjectsList;
+	}
+	
 	public static List<EmployeeProjects> getAllEmployeeProjects(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();

@@ -26,7 +26,7 @@ public class ProjectsData {
 //		session.getTransaction().commit();
 //		assert(true);
 		Employee emp = new Employee(); 
-		emp=emp.getbyId(2);
+		emp=emp.getbyEmployeeId(2);
 		Projects pnew=new Projects(emp, "Sys2", 4000);
 		pnew.save();
 

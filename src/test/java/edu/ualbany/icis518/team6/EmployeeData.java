@@ -18,6 +18,7 @@ public class EmployeeData {
 		Employee emp5 = new Employee("wan5","jinlai", "meiyou", "Developer");
 		
 		emp1.save();
+
 		emp1.setPassword("youlalalala");
 		emp1.save();
 		

@@ -12,16 +12,29 @@ public class EmployeeProjectData {
 	//Instantiate details of Employee class
 
 		
-		Employee empl= Employee.getbyId(1);
-		Projects proj=Projects.getbyProjectId(2);
+		Employee empl= Employee.getbyEmployeeId(1);
+		//System.out.println(empl);
+		Projects proj=Projects.getbyProjectId(1);
+		//System.out.println(proj);
 
-		EmployeeProjects EP=new EmployeeProjects(proj,empl);
+		EmployeeProjects EP= new EmployeeProjects();
 		
-		EP.save();
-		empl=Employee.getbyId(3);
-		EP.setEmpl(empl);
-		EP.save();
+
 		
+		//EP.save();
+
+		List<EmployeeProjects> eproList=EmployeeProjects.getbyProject(proj);
+		eproList.add(EmployeeProjects.getbyPrimaryId(2));
+		System.out.println("total: "+eproList.size()+" "+eproList.get(2));
+		//eproList.get(0);
+		//EmployeeProjects epuls=EmployeeProjects.getbyPrimaryId(2);
+		//System.out.println(epuls);
+		//System.out.println(eproList.get(1));
+/*		eproList.add(epuls);
+		System.out.println(eproList.size());
+		EmployeeProjects ecc=eproList.get(0);
+		System.out.println(ecc);*/
+		//eproList.
 		//EP.add(empl, pro);
 
 
