@@ -95,7 +95,7 @@ public Employee() {
 	 * @return a List of Employee. There are example code in EmployeeData.java
 	 * @author Jinlai
 	 */
-	public List<Employee> findbyName(String firstname, String lastname){
+	public static List<Employee> findbyName(String firstname, String lastname){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -129,7 +129,7 @@ public Employee() {
 	 * @return a List of Employee. There are example code in EmployeeData.java
 	 * @author Jinlai
 	 */
-	public List<Employee> findbyRole(String role){
+	public static List<Employee> findbyRole(String role){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -171,7 +171,7 @@ public Employee() {
 	 * @param employeeId int
 	 * @return an Employee Object
 	 */
-	public Employee getbyId( int employeeId) {
+	public static Employee getbyId( int employeeId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -193,7 +193,7 @@ public Employee() {
 	    session.close();
 		factory.close();
 	}
-	public List<Employee> getAllEmployee(){
+	public static List<Employee> getAllEmployee(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();

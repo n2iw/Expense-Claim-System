@@ -11,13 +11,16 @@ public class EmployeeProjectData {
 	public static void main(String[] args) {
 	//Instantiate details of Employee class
 
-		EmployeeProjects EP=new EmployeeProjects();
-/*		Employee empl=new Employee();
-		Projects pro=new Projects();
 		
-		empl=empl.getbyId(4);		
-		pro=pro.getbyProjectId(3);*/
+		Employee empl= Employee.getbyId(1);
+		Projects proj=Projects.getbyProjectId(2);
+
+		EmployeeProjects EP=new EmployeeProjects(proj,empl);
 		
+		EP.save();
+		empl=Employee.getbyId(3);
+		EP.setEmpl(empl);
+		EP.save();
 		
 		//EP.add(empl, pro);
 
@@ -25,9 +28,9 @@ public class EmployeeProjectData {
 
 		
 		
-		 List<EmployeeProjects> EmployeeProjectsList=EP.getAllEmployeeProjects();// create a List to get the return result
-		 EmployeeProjects resEmployeeProjects=EmployeeProjectsList.get(1);// find the 2nd element in the list
-		 System.out.println(resEmployeeProjects);//printout the 1st userName
+//		 List<EmployeeProjects> EmployeeProjectsList=EP.getAllEmployeeProjects();// create a List to get the return result
+//		 EmployeeProjects resEmployeeProjects=EmployeeProjectsList.get(1);// find the 2nd element in the list
+//		 System.out.println(resEmployeeProjects);//printout the 1st userName
 
 	
 /*		//Retrieving objects using session.get
