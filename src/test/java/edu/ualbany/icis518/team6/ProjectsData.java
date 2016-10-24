@@ -28,6 +28,9 @@ public class ProjectsData {
 //		Employee emp = new Employee(); 
 //		emp=emp.getbyId(3);
 		Projects pnew=new Projects();
+		pnew=pnew.getbyProjectId(1);
+		pnew.setBudget(4321);
+		pnew.update();
 		//pnew.add("System four", 100500, emp);		
 //		pnew=pnew.getbyProjectId(5);
 //		pnew.delete();*/

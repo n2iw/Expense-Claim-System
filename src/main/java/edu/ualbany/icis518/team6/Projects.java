@@ -85,12 +85,8 @@ public class Projects {
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		Projects pp=session.get(Projects.class, this.getProjectId());
-		pp.setpm_id(Empl);
-		pp.setProjectName(projectName);
-		pp.setBudget(budget);
+		session.update(this);
 
-		session.save(pp);
 		session.getTransaction().commit();
 		session.close();
 		factory.close();

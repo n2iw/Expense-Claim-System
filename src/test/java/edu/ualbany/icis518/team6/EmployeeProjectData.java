@@ -6,27 +6,30 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class EmployeeData {
+public class EmployeeProjectData {
 
 	public static void main(String[] args) {
 	//Instantiate details of Employee class
 
-		Employee emp = new Employee(); 
+		EmployeeProjects EP=new EmployeeProjects();
+/*		Employee empl=new Employee();
+		Projects pro=new Projects();
+		
+		empl=empl.getbyId(4);		
+		pro=pro.getbyProjectId(3);*/
+		
+		
+		//EP.add(empl, pro);
 
-/*		emp.add("waneeee", "jinlai", "nopassword", "HR");
-		emp.add("waneeee", "jinlai", "nopassword", "Manager");
-		emp.add("waneeee", "jinlai", "nopassword", "oridinary");*/
-		
-/*		emp= emp.getbyId(3);
-		emp.setPassword("gailetest");
-		emp.save(emp);*/
+
 
 		
 		
-		 List<Employee> EmployeeList=emp.getAllEmployee();// create a List to get the return result
-		 Employee resEmployee=EmployeeList.get(0);// find the 2nd element in the list
-		 System.out.println(resEmployee);//printout the 1st userName
-		
+		 List<EmployeeProjects> EmployeeProjectsList=EP.getAllEmployeeProjects();// create a List to get the return result
+		 EmployeeProjects resEmployeeProjects=EmployeeProjectsList.get(1);// find the 2nd element in the list
+		 System.out.println(resEmployeeProjects);//printout the 1st userName
+
+	
 /*		//Retrieving objects using session.get
 		emp = null;
 		//new session object and start transaction

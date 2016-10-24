@@ -41,8 +41,8 @@
 		<!-- <mapping class="edu.ualbany.icis518.team6.User2"/> -->
 		<mapping class="edu.ualbany.icis518.team6.Employee"/>
 		<mapping class="edu.ualbany.icis518.team6.Projects"/>
-		<!-- <mapping class="edu.ualbany.icis518.team6.EmployeeProjects"/> -->
-<!-- 		<mapping class="edu.ualbany.icis518.team6.Trips"/> -->
+		<mapping class="edu.ualbany.icis518.team6.EmployeeProjects"/>
+		<mapping class="edu.ualbany.icis518.team6.Trips"/>
 
 		
 

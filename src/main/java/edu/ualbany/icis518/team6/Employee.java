@@ -86,12 +86,8 @@ public class Employee {
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		Employee empl = session.get(Employee.class, this.getEmployeeId());
-		empl.setFirstName(firstName);
-		empl.setLastName(lastName);
-		empl.setPassword(password);
-		empl.setRole(role);
-		session.save(empl);
+		session.update(this);
+		
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
