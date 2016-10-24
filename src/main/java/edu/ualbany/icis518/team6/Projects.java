@@ -49,10 +49,10 @@ public class Projects {
 	public void setProjectName(String projectName) {
 		this.projectName = projectName;
 	}
-	public Employee getEmpl() {
+	public Employee getProjectManager() {
 		return Empl;
 	}
-	public void setpm_id(Employee empl) {
+	public void setProjectManager(Employee empl) {
 		Empl = empl;
 	}
 
@@ -62,17 +62,29 @@ public class Projects {
 		return "Projects [projectId=" + projectId + ", budget=" + budget + ", Empl=" + Empl + ", projectName="
 				+ projectName + "]";
 	}
+	/**
+	 * 
+	 * @param budget int
+	 * @param empl An Employee
+	 * @param projectName String
+	 */
+	public Projects(int budget, Employee empl, String projectName) {
+		super();
+		this.budget = budget;
+		this.Empl = empl;
+		this.projectName = projectName;
+	}
 	public void add( String projectName, int budget, Employee emplin) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		Projects pp=new Projects();
-		pp.setProjectName(projectName);
-		pp.setBudget(budget);
-		pp.setpm_id(emplin);
+//		Projects pp=new Projects();
+//		pp.setProjectName(projectName);
+//		pp.setBudget(budget);
+//		pp.setpm_id(emplin);
 
-		session.save(pp);
+		//session.save(pp);
 		session.getTransaction().commit();
 		session.close();
 		factory.close();

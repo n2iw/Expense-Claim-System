@@ -63,6 +63,31 @@ public class Employee {
 				+ ", password=" + password + ", role=" + role + "]";
 	}
 	/**
+	 * 
+	 * @param firstName String
+	 * @param lastName String
+	 * @param password String
+	 * @param role String
+	 */	
+public Employee() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+/**
+ * 
+ * @param firstName String
+ * @param lastName String
+ * @param password String
+ * @param role String
+ */
+	public Employee(String firstName, String lastName, String password, String role) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.role = role;
+	}
+	/**
 	 * e.g. (fisrtname, "%") (firstname, lastname)
 	 * 
 	 * @param firstname if you don't need this condition, input "%"
@@ -123,51 +148,24 @@ public class Employee {
 	    return EmployeeList;// return a List of the User object 
 	}
 	
-	public void add( String firstName, String lastName, String password, String role) {
+	public void save() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		Employee empl = new Employee();
-		empl.setFirstName(firstName);
-		empl.setLastName(lastName);
-		empl.setPassword(password);
-		empl.setRole(role);
+		
+		if(this.getEmployeeId()==0){
+			session.save(this);
+		}else{
+			session.update(this);
+		}
+		
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+	}
 
-		session.save(empl);
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}
-	/**
-	 * Update the Employee's information to the Database
-	 */
-	public void update() {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		
-		session.update(this);
-		
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}
-	/**
-	 * insert the employee Object into database
-	 * @param Employee 
-	 * */
-	public void save(Employee Employee ) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		
-		
-		session.save(Employee);
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}
+
 	/**
 	 * the employeeId is the primary key
 	 * @param employeeId int

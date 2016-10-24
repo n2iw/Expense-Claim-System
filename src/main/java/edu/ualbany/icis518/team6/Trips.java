@@ -82,10 +82,10 @@ public Projects getProj() {
 	    return Date.format(datein);
 
 	}
-	public Clob getDescription() {
+	public Clob getDescriptionInClob() {
 		return description;
 	}
-	public String getDescriptionToString() throws SQLException, IOException {
+	public String getDescription() throws SQLException, IOException {
 	    
 			String reString;      
 	        Reader is = this.description.getCharacterStream(); 
@@ -100,9 +100,9 @@ public Projects getProj() {
 	        return reString; 
 
 	}
-	public void setDescription(Clob content) {
-		this.description = content;
-	}
+//	public void setDescription(Clob content) {
+//		this.description = content;
+//	}
 
 	public void setDescription(String content) {
 		try {
@@ -151,7 +151,7 @@ public Projects getProj() {
 		st=this.DateToString(this.getStartDate());
 		ed=this.DateToString(this.getEndDate());
 		try {
-			des=this.getDescriptionToString();
+			des=this.getDescription();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -164,30 +164,30 @@ public Projects getProj() {
 					+ ed + ", proj=" + proj + "]";
 
 	}
-	public void add( Clob description, Date startDate, Date endDate, Projects proin) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		
-		Trips trip=new Trips();
-		trip.setDescription(description);
-		trip.setStartDate(startDate);
-		trip.setEndDate(endDate);
-		trip.setProj(proin);
-
-		session.save(trip);
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}
+//	public void add( Clob description, Date startDate, Date endDate, Projects proin) {
+//		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+//		Session session = factory.openSession();
+//		session.beginTransaction();
+//		
+//		Trips trip=new Trips();
+//		trip.setDescription(description);
+//		trip.setStartDate(startDate);
+//		trip.setEndDate(endDate);
+//		trip.setProj(proin);
+//
+//		session.save(trip);
+//		session.getTransaction().commit();
+//		session.close();
+//		factory.close();
+//	}
 	public void add( String description, Date startDate, Date endDate, Projects proin) throws SerialException, SQLException {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
 		Trips trip=new Trips();
-		Clob content=new javax.sql.rowset.serial.SerialClob(description.toCharArray()); 
-		trip.setDescription(content);
+//		Clob content=new javax.sql.rowset.serial.SerialClob(description.toCharArray()); 
+		trip.setDescription(description);
 		trip.setStartDate(startDate);
 		trip.setEndDate(endDate);
 		trip.setProj(proin);

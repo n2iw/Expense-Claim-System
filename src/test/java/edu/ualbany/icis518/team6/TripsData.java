@@ -70,9 +70,10 @@ public class TripsData {
 		trip.add("New Tork", d);*/
 		
 		Trips trip=new Trips();
-		 List<Trips> TripsList=trip.getAllTrips();// create a List to get the return result
-		 Trips resTrips=TripsList.get(4);// find the 2nd element in the list
-		 System.out.println(resTrips);//printout the 1st userName
+
+//		 List<Trips> TripsList=trip.getAllTrips();// create a List to get the return result
+//		 Trips resTrips=TripsList.get(4);// find the 2nd element in the list
+//		 System.out.println(resTrips);//printout the 1st userName
 		
 		
 

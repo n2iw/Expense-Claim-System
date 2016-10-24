@@ -11,20 +11,34 @@ public class EmployeeData {
 	public static void main(String[] args) {
 	//Instantiate details of Employee class
 
-		Employee emp = new Employee(); 
+		Employee emp1 = new Employee("wan1","jinlai", "meiyou", "HR");
+		Employee emp2 = new Employee("wan2","jinlai", "meiyou", "Manager");
+		Employee emp3 = new Employee("wan3","jinlai", "meiyou", "Developer");
+		Employee emp4 = new Employee("wan4","jinlai", "meiyou", "Developer");
+		Employee emp5 = new Employee("wan5","jinlai", "meiyou", "Developer");
+		
+		emp1.save();
+		emp1.setPassword("youlalalala");
+		emp1.save();
+		
+		System.out.println(emp1.getEmployeeId());
+//		System.out.println(emp1.toString());
+//		emp1.setPassword("meiyou");
+//		emp1.save();
+//		emp1=emp1.getbyId(1);
+//		emp1.setRole("222");
+//		emp1.save();
+//		
 
-/*		emp.add("waneeee", "jinlai", "nopassword", "HR");
-		emp.add("waneeee", "jinlai", "nopassword", "Manager");
-		emp.add("waneeee", "jinlai", "nopassword", "oridinary");*/
 		
 /*		emp= emp.getbyId(3);
 		emp.setPassword("gailetest");
 		emp.save(emp);*/
 
 		
-		 List<Employee> EmployeeList=emp.findbyName("%", "jinlai");// create a List to get the return result
-		 Employee resEmployee=EmployeeList.get(1);// find the 2nd element in the list
-		 System.out.println(resEmployee);//printout the 1st userName
+//		 List<Employee> EmployeeList=emp.findbyName("%", "jinlai");// create a List to get the return result
+//		 Employee resEmployee=EmployeeList.get(1);// find the 2nd element in the list
+//		 System.out.println(resEmployee);//printout the 1st userName
 		
 /*		//Retrieving objects using session.get
 		emp = null;

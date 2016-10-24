@@ -45,7 +45,7 @@ public class Expense {
 	private String type;
 	private String status;
 	private boolean editFlag;
-	private File receipt;
+	private String receipt;
 
 	
 	
@@ -63,13 +63,13 @@ public Expense() {
  * @param trip	An Trips Object
  * @param amount int
  * @param type String
- * @param receipt File
+ * @param receipt String of file path
  * @param status String, e.g. Approved, Rejected..
  * @param editFlag true or false
  */
 
 public Expense(int expenseId, Employee empl, Trips trip, int amount, String type, 
-		File receipt, String status, boolean editFlag	) {
+		String receipt, String status, boolean editFlag	) {
 		super();
 		this.expenseId = expenseId;
 		this.Empl = empl;
@@ -86,12 +86,12 @@ public Expense(int expenseId, Employee empl, Trips trip, int amount, String type
  * @param trip	An Trips Object
  * @param amount int
  * @param type String
- * @param receipt File
+ * @param receipt String of file path
  * @param status String, e.g. Approved, Rejected..
  * @param editFlag true or false
  */
 public Expense( Employee empl, Trips trip, int amount, String type, 
-		File receipt, String status, boolean editFlag	) {
+		String receipt, String status, boolean editFlag	) {
 		super();
 		this.Empl = empl;
 		this.trip = trip;
@@ -102,10 +102,11 @@ public Expense( Employee empl, Trips trip, int amount, String type,
 		this.receipt = receipt;
 	}
 
+
 @Override
 public String toString() {
 	return "Expense [expenseId=" + expenseId + ", Empl=" + Empl + ", trip=" + trip + ", amount=" + amount + ", type="
-			+ type + ", status=" + status + ", editFlag=" + editFlag + ", receipt=" + this.getReceipt().getPath() + "]";
+			+ type + ", status=" + status + ", editFlag=" + editFlag + ", receipt=" + receipt + "]";
 }
 public String getType() {
 		return type;
@@ -125,13 +126,13 @@ public String getType() {
 	public void setEditFlag(boolean editFlag) {
 		this.editFlag = editFlag;
 	}
-/**
- * get a String path
- * @return a String
- */
-	public String getFilepathToString(){
-		return this.getReceipt().getPath();
-	}
+///**
+// * get a String path
+// * @return a String
+// */
+//	public String getFilepathToString(){
+//		return this.getReceipt().getPath();
+//	}
 	public Employee getEmpl() {
 		return Empl;
 	}
@@ -148,15 +149,14 @@ public String getType() {
 	 * e.g. a filepath like d:\pic1.jpg
 	 * @return a File type, contains the filepath
 	 */
-	public File getReceipt() {
+	public String getReceipt() {
 		return receipt;
 	}
 /**
- * e.g. File save=new File("D:/pic1.jpg");
- * @param a File type, contains the filepath
- * @param receipt
+ * 
+ * @param receipt String of file path
  */
-	public void setReceipt(File receipt) {
+	public void setReceipt(String receipt) {
 		this.receipt = receipt;
 	}
 
@@ -181,12 +181,12 @@ public String getType() {
 	 * @param trip	An Trips Object
 	 * @param amount int
 	 * @param type String
-	 * @param receipt File
+	 * @param receipt String of file path
 	 * @param status String, e.g. Approved, Rejected..
 	 * @param editFlag true or false
 	 */
 	public void add(  Employee empl, Trips trip, int amount, String type, 
-			File receipt, String status, boolean editFlag	) {
+			String receipt, String status, boolean editFlag	) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
