@@ -62,6 +62,67 @@ public class Employee {
 		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", role=" + role + "]";
 	}
+	/**
+	 * e.g. (fisrtname, "%") (firstname, lastname)
+	 * 
+	 * @param firstname if you don't need this condition, input "%"
+	 * @param lastname if you don't need this condition, input "%"
+	 * @return a List of Employee. There are example code in EmployeeData.java
+	 * @author Jinlai
+	 */
+	public List<Employee> findbyName(String firstname, String lastname){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+	    Query query=session.createQuery("from Employee where firstName=? and lastName=? ");
+	    query.setString(0, firstname);
+	    query.setString(1, lastname);
+	    if(lastname=="%"){
+	    	query=session.createQuery("from Employee where firstName=? ");
+	    	query.setString(0, firstname);
+	    }
+	    if(firstname=="%"){
+	    	query=session.createQuery("from Employee where lastName=? ");
+	    	query.setString(0, lastname);
+	    }
+
+	    List<Employee> EmployeeList=query.list();
+	    
+	    for(Employee Employee:EmployeeList){// if successfully get the Data, printout every result before return
+	    	System.out.println(Employee);
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return EmployeeList;// return a List of the User object 
+	}
+	/**
+	 * 
+	 * @param role String	 
+	 * @return a List of Employee. There are example code in EmployeeData.java
+	 * @author Jinlai
+	 */
+	public List<Employee> findbyRole(String role){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+	    Query query=session.createQuery("from Employee where role=?");
+	    query.setString(0, role);
+	    List<Employee> EmployeeList=query.list();
+	    
+	    for(Employee Employee:EmployeeList){// if successfully get the Data, printout every result before return
+	    	System.out.println(Employee);
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return EmployeeList;// return a List of the User object 
+	}
+	
 	public void add( String firstName, String lastName, String password, String role) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
@@ -107,6 +168,11 @@ public class Employee {
 		session.close();
 		factory.close();
 	}
+	/**
+	 * the employeeId is the primary key
+	 * @param employeeId int
+	 * @return an Employee Object
+	 */
 	public Employee getbyId( int employeeId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();

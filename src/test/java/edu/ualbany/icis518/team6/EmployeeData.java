@@ -22,9 +22,8 @@ public class EmployeeData {
 		emp.save(emp);*/
 
 		
-		
-		 List<Employee> EmployeeList=emp.getAllEmployee();// create a List to get the return result
-		 Employee resEmployee=EmployeeList.get(0);// find the 2nd element in the list
+		 List<Employee> EmployeeList=emp.findbyName("%", "jinlai");// create a List to get the return result
+		 Employee resEmployee=EmployeeList.get(1);// find the 2nd element in the list
 		 System.out.println(resEmployee);//printout the 1st userName
 		
 /*		//Retrieving objects using session.get

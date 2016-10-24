@@ -56,7 +56,7 @@ public class Projects {
 		Empl = empl;
 	}
 
-	
+
 	@Override
 	public String toString() {
 		return "Projects [projectId=" + projectId + ", budget=" + budget + ", Empl=" + Empl + ", projectName="
@@ -136,5 +136,54 @@ public class Projects {
 	    factory.close();
 	    return ProjectsList;// return a List of the User object 
 	}
-	
+	/**
+	 * 
+	 * @param projectName String
+	 * @return a List of Projects. There are example code in ProjectsData.java
+	 * @author Jinlai
+	 */
+	public List<Projects> findbyProjectName(String projectName){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+	    String hql="from Projects where projectName=? ";
+	    Query query=session.createQuery(hql);
+	    query.setString(0, projectName);
+	    List<Projects> ProjectsList=query.list();
+	    
+	    for(Projects Projects:ProjectsList){// if successfully get the Data, printout every result before return
+	    	System.out.println(Projects);
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return ProjectsList;// return a List of the User object 
+	}
+/**
+ * 
+ * @param emplin An Employee Object, to get the employeeId
+ * @return a List of Projects. There are example code in ProjectsData.java
+ * @author Jinlai
+ */
+	public List<Projects> findbyEmployeeId(Employee emplin){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+	    String hql="from Projects where pm_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, emplin.getEmployeeId());
+	    List<Projects> ProjectsList=query.list();
+	    
+	    for(Projects Projects:ProjectsList){// if successfully get the Data, printout every result before return
+	    	System.out.println(Projects);
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return ProjectsList;// return a List of the User object 
+	}
 }

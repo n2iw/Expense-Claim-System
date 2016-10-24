@@ -25,12 +25,12 @@ public class ProjectsData {
 //		session.save(prj);
 //		session.getTransaction().commit();
 //		assert(true);
-//		Employee emp = new Employee(); 
-//		emp=emp.getbyId(3);
+		Employee emp = new Employee(); 
+		emp=emp.getbyId(3);
 		Projects pnew=new Projects();
-		pnew=pnew.getbyProjectId(1);
-		pnew.setBudget(4321);
-		pnew.update();
+//		pnew=pnew.getbyProjectId(1);
+//		pnew.setBudget(4321);
+//		pnew.update();
 		//pnew.add("System four", 100500, emp);		
 //		pnew=pnew.getbyProjectId(5);
 //		pnew.delete();*/
@@ -40,8 +40,8 @@ public class ProjectsData {
 //		EmployeeProjects Epp=new EmployeeProjects();
 //		Epp.add(emp, pnew);
 
-		 List<Projects> ProjectsList=pnew.getAllProjects();// create a List to get the return result
-		 Projects resProjects=ProjectsList.get(1);// find the 2nd element in the list
+		 List<Projects> ProjectsList=pnew.findbyEmployeeId(emp);// create a List to get the return result
+		 Projects resProjects=ProjectsList.get(0);// find the 2nd element in the list
 		 System.out.println(resProjects);//printout the 1st userName
 		
 		
