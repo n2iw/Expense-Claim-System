@@ -42,6 +42,7 @@
 		<mapping class="edu.ualbany.icis518.team6.Employee"/>
 		<mapping class="edu.ualbany.icis518.team6.Projects"/>
 		<mapping class="edu.ualbany.icis518.team6.EmployeeProjects"/>
+		<mapping class="edu.ualbany.icis518.team6.EmployeeTrips"/>
 		<mapping class="edu.ualbany.icis518.team6.Trips"/>
 
 		
