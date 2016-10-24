@@ -15,15 +15,15 @@
 	</thead>
 	<tbody>
 	    <tr>
-	    <td><a href="employee_form.jsp">Travel to New York city</a></td><td>approved</td>
+	    <td><a href="employee/trip">Travel to New York city</a></td><td>approved</td>
 	    </tr>
 
 	    <tr>
-	    <td><a href="employee_form.jsp">Travel to New Jersey</a></td><td>saved</td>
+	    <td><a href="employee/trip">Travel to New Jersey</a></td><td>saved</td>
 	    </tr>
 
 	    <tr>
-	    <td><a href="employee_form.jsp">Travel to Rochester</a></td><td>submitted</td>
+	    <td><a href="employee/trip">Travel to Rochester</a></td><td>submitted</td>
 	    </tr>
 	</tbody>
 	</table>

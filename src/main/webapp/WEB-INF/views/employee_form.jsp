@@ -55,7 +55,7 @@
 								Files: </label>
 							<div class="col-sm-10">
                 <p>receipt.jpg, receipt2.jpg</p>
-								<a class="btn btn-default" href="show_receipts.jsp">Show
+								<a class="btn btn-default" href="receipts">Show
 									uploaded Files</a>
 							</div>
 						</div>
@@ -86,7 +86,7 @@
 							<label class="control-label col-sm-2">Uploaded Receipt
 								Files: </label>
 							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_receipts.jsp">Show
+								<a class="btn btn-default" href="receipts">Show
 									uploaded Files</a>
 							</div>
 						</div>
@@ -116,7 +116,7 @@
 							<label class="control-label col-sm-2">Uploaded Receipt
 								Files: </label>
 							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_receipts.jsp">Show
+								<a class="btn btn-default" href="receipts">Show
 									uploaded Files</a>
 							</div>
 						</div>
@@ -147,7 +147,7 @@
 							<label class="control-label col-sm-2">Uploaded Receipt
 								Files: </label>
 							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_receipts.jsp">Show
+								<a class="btn btn-default" href="receipts">Show
 									uploaded Files</a>
 							</div>
 						</div>
