@@ -97,9 +97,7 @@ public Projects getProj() {
 	public int getTripId() {
 		return tripId;
 	}
-	public void setTripId(int tripId) {
-		this.tripId = tripId;
-	}
+
 /*	public Clob getDescriptionInClob() {
 		return description;
 	}

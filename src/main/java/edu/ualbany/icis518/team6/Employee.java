@@ -30,9 +30,6 @@ public class Employee {
 	public int getEmployeeId() {
 		return employeeId;
 	}
-/*	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}*///you can't change the auto increment primary key
 	public String getFirstName() {
 		return firstName;
 	}

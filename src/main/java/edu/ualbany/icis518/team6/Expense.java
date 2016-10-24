@@ -119,9 +119,7 @@ public String getType() {
 	public int getExpenseId() {
 		return expenseId;
 	}
-	public void setExpenseId(int expenseId) {
-		this.expenseId = expenseId;
-	}
+
 	public int getAmount() {
 		return amount;
 	}

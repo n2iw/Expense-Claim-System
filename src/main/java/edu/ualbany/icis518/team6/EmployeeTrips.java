@@ -33,9 +33,6 @@ public class EmployeeTrips {
 	public int getEmpltripId() {
 		return empltripId;
 	}
-	public void setEmpltripId(int empltripId) {
-		this.empltripId = empltripId;
-	}
 	public Trips getProject() {
 		return etrip;
 	}

@@ -32,9 +32,6 @@ public class EmployeeProjects {
 	public int getEmplproId() {
 		return emplproId;
 	}
-	public void setEmplproId(int emplproId) {
-		this.emplproId = emplproId;
-	}
 	public Projects getProject() {
 		return project;
 	}
