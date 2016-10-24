@@ -12,16 +12,26 @@ public class TestHibernate {
 	
 	@Test
 	public void testHibernate() {
-		UserDetail user = new UserDetail();
-		user.setUserID(533);
-		user.setUserName("James");
+
+		User2 uu=new User2();
+		uu.setUserName("asd");
+		uu.setPassword("3222");
+		uu.save();
 		
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
+		/*User usa=new User();
+		usa.add("James+", "noPW");*/
+
 		
+		/*UserDetail user = new UserDetail();
+		user.add("apple", usa);
+		user.add("pen", usa);
+		user.add("applepen", usa);
+		session.save(user);*/
+	
+/*		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();		
 		session.beginTransaction();
-		session.save(user);
-		session.getTransaction().commit();
+		session.getTransaction().commit();*/
 		assert(true);
 	}
 }
