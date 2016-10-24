@@ -3,17 +3,30 @@
   <display-name>ExpenseClaimSystem</display-name>
   
   <servlet>
-  	<servlet-name>spring-web</servlet-name>
+  	<servlet-name>expense-claim</servlet-name>
   	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<!-- <load-on-startup>1</load-on-startup>  -->
+  	<init-param>
+  		<param-name>contextConfigLocation</param-name>
+  		<param-value>/WEB-INF/web-config.xml</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
   </servlet>
   
+  <context-param>
+  	<param-name>configLocation</param-name>
+  	<param-value>/WEB-INF/app-config.xml</param-value>
+  </context-param>
+  
+  <listener>
+  	<listener-class>org.springframework.web.context.ContextLoaderListerner</listener-class>
+  </listener>
+    
   <servlet-mapping>
-  	<servlet-name>spring-web</servlet-name>
+  	<servlet-name>expense-claim</servlet-name>
   	<url-pattern>/*</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>/login.jsp</welcome-file>
   </welcome-file-list>
 </web-app>
