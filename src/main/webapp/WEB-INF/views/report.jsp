@@ -1,5 +1,5 @@
 <% String title = "Expense Claims";%>
-<%@include file="WEB-INF/Header.jsp" %>
+<%@include file="Header.jsp" %>
 
 		<div class="container">
 			<div class="row">
@@ -72,4 +72,4 @@
 			</form>
 		</div>
   
-<%@include file="WEB-INF/Footer.jsp" %>
+<%@include file="Footer.jsp" %>
