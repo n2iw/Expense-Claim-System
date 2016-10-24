@@ -8,7 +8,7 @@
   <form class="form-horizontal" action="#" method="post">
     <div class="form-group">
       <div class="col-sm-2">
-        <img class="img-thumbnail" src="receipt.jpg" width="200px" height="200px">
+        <img class="img-thumbnail" src="/receipts/receipt.jpg" width="200px" height="200px">
       </div>
       <label class="control-label col-sm-2">receipt.jgp</label>
       <div class="col-sm-2">
@@ -21,7 +21,7 @@
   <form class="form-horizontal" action="#" method="post">
     <div class="form-group">
       <div class="col-sm-2">
-        <img class="img-thumbnail" src="receipt2.jpg">
+        <img class="img-thumbnail" src="/receipts/receipt2.jpg">
       </div>
       <label class="control-label col-sm-2">receipt2.jpg</label>
       <div class="col-sm-2">
