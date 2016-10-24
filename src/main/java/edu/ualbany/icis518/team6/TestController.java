@@ -23,6 +23,6 @@ public class TestController {
 			System.out.println("Employee 0 exists!");
 		}
 
-		return "Hello " + e.getFirstName() + "!";
+		return "Newly created emplyeeId is: " + e.getEmployeeId();
 	}
 }
