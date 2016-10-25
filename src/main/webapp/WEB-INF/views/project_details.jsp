@@ -61,7 +61,7 @@
 								 
 									<tbody>
 										<tr>
-											<td><%= e.getFirstName() %></td><td><%= trip.getDescription() %></td><td><%= trip.DateToString(trip.getStartDate()) %> - <%= trip.DateToString(trip.getEndDate()) %></td>
+											<td><%= e.getFirstName() %></td><td><%= trip.getDescription() %></td><td>From: <%= trip.DateToString(trip.getStartDate()) %> to <%= trip.DateToString(trip.getEndDate()) %></td>
 										</tr>
 									</tbody>
 								<% } %>
