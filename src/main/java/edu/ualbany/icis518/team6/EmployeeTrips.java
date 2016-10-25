@@ -33,11 +33,11 @@ public class EmployeeTrips {
 	public int getEmpltripId() {
 		return empltripId;
 	}
-	public Trips getProject() {
+	public Trips getTrip() {
 		return etrip;
 	}
-	public void setProject(Trips project) {
-		this.etrip = project;
+	public void setTrip(Trips trip) {
+		this.etrip = trip;
 	}
 	public Employee getEmpl() {
 		return Empl;
@@ -96,6 +96,30 @@ public class EmployeeTrips {
 		session.close();
 		factory.close();
 		return empltrip;
+	}
+	/**
+	 * find the EmployeeTrips by Employee
+	 * @param emplin
+	 * @return a List of EmployeeTrips
+	 */
+	public static List<EmployeeTrips> getbyEmployee(Employee emplin) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from EmployeeTrips where empl_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, emplin.getEmployeeId());
+	    List<EmployeeTrips> EmployeeTripsList=query.list();
+	    
+	    for(EmployeeTrips EmployeeTrips:EmployeeTripsList){// if successfully get the Data, printout every result before return
+	    	System.out.println(EmployeeTrips);
+	    }
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return EmployeeTripsList;
 	}
 	public static List<EmployeeTrips> getAllEmployeeTrips(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();

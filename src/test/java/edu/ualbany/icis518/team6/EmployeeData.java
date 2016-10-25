@@ -25,9 +25,14 @@ public class EmployeeData {
 		System.out.println(emp1.getEmployeeId());*/
 		//System.out.println(Employee.getbyEmployeeId(3).getAllMyProjects().get(2));
 		
-		Employee empp=Employee.getbyEmployeeId(2);
+/*		Employee empp=Employee.getbyEmployeeId(2);
 		Projects proe=Projects.getbyProjectId(3);
-		empp.setProject(proe);
+		empp.setProject(proe);*/
+		
+		Employee empp=Employee.getbyEmployeeId(3);
+		Trips trip=Trips.getbyTripId(2);
+		System.out.println(empp.getAllMyTrips().get(0));
+		//empp.setTrip(trip);
 		
 		
 //		System.out.println(emp1.toString());

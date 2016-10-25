@@ -154,6 +154,37 @@ public Employee() {
 	    factory.close();
 	    return ProjectsList;
 	}
+	public void setTrip(Trips tripin){
+		EmployeeTrips et=new EmployeeTrips(tripin, this);
+		et.save();
+	}
+	/**
+	 * Find this employee's trips
+	 * @return A List of Trips
+	 * @author Jinlai
+	 */
+	public List<Trips> getAllMyTrips(){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+		
+		List<EmployeeTrips> ET=EmployeeTrips.getbyEmployee(this);
+		int i=ET.size();
+		int a=0;
+	    List<Trips> TripsList=new LinkedList<Trips>();
+	    
+	    for(EmployeeTrips EmployeeTrips:ET){// if successfully get the Data, printout every result before return
+	    	TripsList.add(EmployeeTrips.getTrip());
+	    }
+
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return TripsList;
+	}
+	
 	/**
 	 * 
 	 * @param role String	 

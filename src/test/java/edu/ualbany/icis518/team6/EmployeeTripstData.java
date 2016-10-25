@@ -18,7 +18,10 @@ public class EmployeeTripstData {
 		et.setEmpl(Employee.getbyEmployeeId(4));
 		et.save();*/
 		
-		System.out.println(EmployeeTrips.getbyprimarykey(2));
+		//System.out.println(EmployeeTrips.getbyprimarykey(2));
+		
+		//Employee emp=Employee.getbyEmployeeId(4);
+		//System.out.println(EmployeeTrips.getbyEmployee(emp).get(1));
 
 
 
