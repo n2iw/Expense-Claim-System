@@ -1,5 +1,6 @@
 package edu.ualbany.icis518.team6;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -149,6 +150,29 @@ public class Projects {
 	    return ProjectsList;
 	}
 	/**
+	 * get All the employee objects that in this project
+	 * @return a List of Employee
+	 * @author Jinlai
+	 */
+	public List<Employee> getAllEmployeeOfThisProject(){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+		List<EmployeeProjects> EP=EmployeeProjects.getbyProject(this);
+
+	    List<Employee> EmployeeList=new LinkedList<Employee>();
+	    
+	    for(EmployeeProjects EmployeeProjects:EP){// if successfully get the Data, printout every result before return
+	    	EmployeeList.add(EmployeeProjects.getEmpl());
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return EmployeeList;
+	}
+	/**
 	 * 
 	 * @param projectName String
 	 * @return a List of Projects. There are example code in ProjectsData.java
@@ -187,6 +211,31 @@ public class Projects {
 	    String hql="from Projects where pm_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, projectManager.getEmployeeId());
+	    List<Projects> ProjectsList=query.list();
+	    
+	    for(Projects Projects:ProjectsList){// if successfully get the Data, printout every result before return
+	    	System.out.println(Projects);
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return ProjectsList;
+	}
+	/**
+	 * 
+	 * @param projectManagerId the pm_id, which actually is a Employee.employeeId
+	 * @return a List of Projects.
+	 * @author Jinlai
+	 */
+	public static List<Projects> getbyProjectManagerId(int projectManagerId){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+	    String hql="from Projects where pm_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, projectManagerId);
 	    List<Projects> ProjectsList=query.list();
 	    
 	    for(Projects Projects:ProjectsList){// if successfully get the Data, printout every result before return
