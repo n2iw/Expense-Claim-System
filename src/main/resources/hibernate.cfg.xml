@@ -45,7 +45,7 @@
 		<mapping class="edu.ualbany.icis518.team6.EmployeeTrips"/>
 		<mapping class="edu.ualbany.icis518.team6.Trips"/>
 		<mapping class="edu.ualbany.icis518.team6.Expense"/>
-		<mapping class="edu.ualbany.icis518.team6.Exp_type"/>
+		<mapping class="edu.ualbany.icis518.team6.ExpTypeBudget"/>
 
 		
 
