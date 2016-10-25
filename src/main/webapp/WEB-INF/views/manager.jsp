@@ -1,5 +1,11 @@
+<%@ page import="edu.ualbany.icis518.team6.Projects"%>
+<%@ page import="java.util.List"%>
+<%@ page import="edu.ualbany.icis518.team6.Expense"%>
+<%@ page import="edu.ualbany.icis518.team6.Trips"%>
 <% String title = "Project Details"; %>
 <%@include file="Header.jsp" %>
+
+<% List<Projects> projects = (List<Projects>)request.getAttribute("projects"); %>
 
 <div class="container">
 	<div class="row"><p></p></div>
@@ -15,15 +21,15 @@
 	  		</tr>
 			</thead>
 			<tbody>
-	    	<tr>
-	    		<td><a href="/manager/project">Expense Claim System</a></td><td>Travel to New York City</td>
-	    	</tr>
-	    	<tr>
-	    		<td><a href="/manager/project">Food Management</a></td><td>Travel to Albany City</td>
-	    	</tr>
-		    <tr>
-			    <td><a href="/manager/project">Event  Management</a></td><td>Travel to New Jersey</td>
-	    	</tr>
+			<% for(Projects project: projects ){ 
+			   List<Trips> trips = Trips.getbyProject(project);
+			%>
+			    <% for(Trips trip: trips) { %>
+					<tr>
+						<td><a href="/manager/project?id=<%= project.getProjectId()%>"><%= project.getProjectName() %></a></td><td><%= trip.getDescription() %></td>
+					</tr>
+				<% } %>
+			<% } %>
 			</tbody>
 			</table>
 		</div>
