@@ -4,9 +4,6 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
-			<div class="row">
-				<h4 class="col-sm-8 center-block">Welcome Mike</h4>
-			</div>
 			<form class="form-horizontal" action="/manager/project/create"
 				enctype="multipart/form-data">
 				<div class="well">
