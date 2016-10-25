@@ -235,7 +235,11 @@ public Projects getProj() {
 	    session.close();
 		factory.close();
 	}
-	
+	/**
+	 * get all trips of this project
+	 * @param projin A project Object
+	 * @return a List of Trip
+	 */
 	public static List<Trips> getbyProject(Projects projin){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
@@ -244,6 +248,30 @@ public Projects getProj() {
 	    String hql="from Trips where project_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, projin.getProjectId());
+	    List<Trips> TripsList=query.list();
+	    
+	    for(Trips Trips:TripsList){// if successfully get the Data, printout every result before return
+	    	System.out.println(Trips);
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return TripsList;
+	}
+	/**
+	 * get all trips of this projectId
+	 * @param projectId A projectId
+	 * @return  a List of Trip
+	 */
+	public static List<Trips> getbyProjectId(int projectId){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+	    String hql="from Trips where project_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, projectId);
 	    List<Trips> TripsList=query.list();
 	    
 	    for(Trips Trips:TripsList){// if successfully get the Data, printout every result before return
