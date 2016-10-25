@@ -233,7 +233,11 @@ public String getType() {
 		factory.close();
 		return ExpenseList;
 	}
-	
+	/**
+	 * 
+	 * @param expenseId
+	 * @return
+	 */
 	public static Expense getbyExpenseId( int expenseId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();

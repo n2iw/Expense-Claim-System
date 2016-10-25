@@ -150,6 +150,14 @@ public class Projects {
 	    return ProjectsList;
 	}
 	/**
+	 * add a Employee to this project
+	 * @param emplin An Employee Object
+	 */
+	public void setEmployee(Employee emplin){
+		EmployeeProjects ep=new EmployeeProjects(this, emplin);
+		ep.save();
+	}
+	/**
 	 * get All the employee objects that in this project
 	 * @return a List of Employee
 	 * @author Jinlai

@@ -260,6 +260,14 @@ public Projects getProj() {
 	    return TripsList;
 	}
 	/**
+	 * add an Employee to this trip
+	 * @param emplin An Employee Object
+	 */
+	public void setEmployee(Employee emplin){
+		EmployeeTrips et=new EmployeeTrips(this, emplin);
+		et.save();
+	}
+	/**
 	 * get all trips of this projectId
 	 * @param projectId A projectId
 	 * @return  a List of Trip
