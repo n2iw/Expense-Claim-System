@@ -24,7 +24,7 @@ public class ManagerController {
 	@RequestMapping("/manager/project/create")
 	public String createProject() {
 		//create project and redirect user
-		return "project_details";
+		return "redirect:/manager/project";
 	}
 	
 	@RequestMapping("/manager/trip/new")
@@ -35,6 +35,6 @@ public class ManagerController {
 	@RequestMapping("/manager/trip/create")
 	public String createTrip() {
 		//create project and redirect user
-		return "/manager";
+		return "redirect:/manager";
 	}
 }
