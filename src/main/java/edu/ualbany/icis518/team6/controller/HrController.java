@@ -1,4 +1,4 @@
-package edu.ualbany.icis518.team6.controller;
+/*package edu.ualbany.icis518.team6.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,36 +13,34 @@ import org.springframework.web.servlet.ModelAndView;
 import edu.ualbany.icis518.team6.Employee;
 
 @Controller
-public class ValidationController {
+public class HrController {
 
-	@RequestMapping(value = "/login")
+	@RequestMapping(value = "/hr")
 	public ModelAndView validateEmployee(final HttpServletRequest request, final HttpServletResponse response) {
 		
 		final String employeeId = request.getParameter("userName");
 		final String password = request.getParameter("password");
 
-		/*WebApplicationContext appContext = WebApplicationContextUtils
-				.getWebApplicationContext(request.getSession().getServletContext());*/
+		WebApplicationContext appContext = WebApplicationContextUtils
+				.getWebApplicationContext(request.getSession().getServletContext());
 		
-		System.out.println(employeeId + " = " + password ); 
+		System.out.println("In HR controller"); 
 		
-		Employee emp = new Employee();
-		emp.getbyId(Integer.parseInt(employeeId));
+		Employee emp = new Employee().getbyId(Integer.parseInt(employeeId));
 		String view = null;
 		
 		if(employeeId.trim().equals(emp.getEmployeeId()) && password.trim().equals(emp.getPassword())){
-			System.out.println(emp.getRole());
 			if(emp.getRole().equals("Manager"))
 				view = "manager";
 			else if(emp.getRole().equals("HR"))
-				view = "hr";
+				view = "HR";
 			else
 				view = "employee";
 		}
 		
-		
-		//request.setAttribute("name", employeeId);
-		return new ModelAndView("hr");
+		request.setAttribute("name", employeeId);
+		return new ModelAndView("HR");
 		
 	}
 }
+*/

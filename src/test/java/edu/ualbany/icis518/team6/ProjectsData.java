@@ -27,7 +27,7 @@ public class ProjectsData {
 //		assert(true);
 		Employee emp = new Employee(); 
 		emp=emp.getbyId(3);
-		Projects pnew=new Projects();
+//		Projects pnew=new Projects();
 //		pnew=pnew.getbyProjectId(1);
 //		pnew.setBudget(4321);
 //		pnew.update();
@@ -40,10 +40,10 @@ public class ProjectsData {
 //		EmployeeProjects Epp=new EmployeeProjects();
 //		Epp.add(emp, pnew);
 
-		 List<Projects> ProjectsList=pnew.findbyEmployeeId(emp);// create a List to get the return result
+/*		 List<Projects> ProjectsList=pnew.findbyEmployeeId(emp);// create a List to get the return result
 		 Projects resProjects=ProjectsList.get(0);// find the 2nd element in the list
 		 System.out.println(resProjects);//printout the 1st userName
-		
+*/		
 		
 	}
 		
