@@ -1,7 +1,16 @@
+<%@ page import="edu.ualbany.icis518.team6.Projects"%>
+<%@ page import="java.util.List"%>
+<%@ page import="edu.ualbany.icis518.team6.Expense"%>
+<%@ page import="edu.ualbany.icis518.team6.Employee"%>
+<%@ page import="edu.ualbany.icis518.team6.Trips"%>
 <%
 	String title = "Project Details";
 %>
 <%@include file="Header.jsp"%>
+
+<% Projects project = (Projects)request.getAttribute("project");
+   List<Trips> trips = Trips.getbyProject(project);
+%>
 
 <div class="container">
 	<div class="row">
@@ -14,14 +23,14 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Project Name </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly value="Expense Claim System">
+								<input type="text" class="form-control" readonly value="<%= project.getProjectName() %>">
 							</div>
 						</div>
 						
 						<div class="form-group">
 							<label class="control-label col-sm-2">Project Code : </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly value="123">
+								<input type="text" class="form-control" readonly value="<%= project.getProjectId() %>">
 							</div>
 						</div>
 					</fieldset>
@@ -31,7 +40,7 @@
 						<a class="btn btn-primary form-control" href="/manager/trip/new" role="button">Add Trip</a>
 					</div>
 					<div class="col-sm-6">
-						<a class="btn btn-primary form-control" href="/employee/trip" role="button">Add Expense Claim</a>
+					   <p></p>
 					</div>
 				</div>
 			</form>
@@ -46,11 +55,16 @@
 	    								<th>Employee Name</th> <th>Trip To</th> <th>Dates</th>
 	  								</tr>
 								</thead>
-								<tbody>
-	    							<tr>
-	    								<td>Sam</td><td>New York city</td><td>9/27-10/3</td>
-	    							</tr>
-								</tbody>
+								<% for (Trips trip: trips) {
+									Employee e = trip.getAllEmployeeOfThisTrip().get(0);
+									%>
+								 
+									<tbody>
+										<tr>
+											<td><%= e.getFirstName() %></td><td><%= trip.getDescription() %></td><td>From: <%= trip.DateToString(trip.getStartDate()) %> to <%= trip.DateToString(trip.getEndDate()) %></td>
+										</tr>
+									</tbody>
+								<% } %>
 							</table>
 						</div>
 					</fieldset>

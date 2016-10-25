@@ -245,7 +245,7 @@ public Projects getProj() {
 		Session session = factory.openSession();
 		session.beginTransaction();
 	    
-	    String hql="from Trips where project_id=? ";
+	    String hql="from Trips where proj_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, projin.getProjectId());
 	    List<Trips> TripsList=query.list();
@@ -277,7 +277,7 @@ public Projects getProj() {
 		Session session = factory.openSession();
 		session.beginTransaction();
 	    
-	    String hql="from Trips where project_id=? ";
+	    String hql="from Trips where proj_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, projectId);
 	    List<Trips> TripsList=query.list();
