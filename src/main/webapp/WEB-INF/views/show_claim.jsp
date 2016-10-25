@@ -59,8 +59,8 @@
             <div class="container">
                <fieldset>
 						<legend>Receipt Attached Here</legend>           
-                <img src="receipt.jpg" class="img-thumbnail" alt="Food Receipt" width="304" height="236">
-                <img src="receipt2.jpg" class="img-thumbnail" alt="Food Receipt" width="304" height="236">
+                <img src="/receipts/receipt.jpg" class="img-thumbnail" alt="Food Receipt" width="304" height="236">
+                <img src="/receipts/receipt2.jpg" class="img-thumbnail" alt="Food Receipt" width="304" height="236">
                 
                 </fieldset> 
 									
