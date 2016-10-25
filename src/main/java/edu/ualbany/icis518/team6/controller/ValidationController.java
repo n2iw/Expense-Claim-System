@@ -1,14 +1,9 @@
 package edu.ualbany.icis518.team6.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ualbany.icis518.team6.Employee;
 
@@ -16,33 +11,24 @@ import edu.ualbany.icis518.team6.Employee;
 public class ValidationController {
 
 	@RequestMapping(value = "/login")
-	public ModelAndView validateEmployee(final HttpServletRequest request, final HttpServletResponse response) {
+	public String validateEmployee(@RequestParam(value="userName") int employeeId, 
+				@RequestParam(value="password") String password, Model model) {
 		
-		final String employeeId = request.getParameter("userName");
-		final String password = request.getParameter("password");
-
-		/*WebApplicationContext appContext = WebApplicationContextUtils
-				.getWebApplicationContext(request.getSession().getServletContext());*/
+		Employee emp = new Employee().getbyId(employeeId);
+		String view = "redirect:/";
 		
-		System.out.println(employeeId + " = " + password ); 
-		
-		Employee emp = new Employee();
-		emp.getbyId(Integer.parseInt(employeeId));
-		String view = null;
-		
-		if(employeeId.trim().equals(emp.getEmployeeId()) && password.trim().equals(emp.getPassword())){
-			System.out.println(emp.getRole());
+		if((employeeId == emp.getEmployeeId()) && (password.trim().equals(emp.getPassword()))){
+			//System.out.println(emp.getRole());
 			if(emp.getRole().equals("Manager"))
-				view = "manager";
+				view += "manager";
 			else if(emp.getRole().equals("HR"))
-				view = "hr";
+				view += "hr";
 			else
-				view = "employee";
+				view += "employee";
 		}
 		
-		
-		//request.setAttribute("name", employeeId);
-		return new ModelAndView("hr");
+		model.addAttribute("empName", emp.getFirstName() + " " + emp.getLastName());
+		return view+".jsp";
 		
 	}
 }

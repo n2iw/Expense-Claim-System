@@ -1,46 +1,45 @@
 /*package edu.ualbany.icis518.team6.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.context.support.WebApplicationContextUtils;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ualbany.icis518.team6.Employee;
+import edu.ualbany.icis518.team6.Expense;
+import edu.ualbany.icis518.team6.Trips;
 
 @Controller
 public class HrController {
-
-	@RequestMapping(value = "/hr")
-	public ModelAndView validateEmployee(final HttpServletRequest request, final HttpServletResponse response) {
-		
-		final String employeeId = request.getParameter("userName");
-		final String password = request.getParameter("password");
-
-		WebApplicationContext appContext = WebApplicationContextUtils
-				.getWebApplicationContext(request.getSession().getServletContext());
-		
-		System.out.println("In HR controller"); 
-		
-		Employee emp = new Employee().getbyId(Integer.parseInt(employeeId));
-		String view = null;
-		
-		if(employeeId.trim().equals(emp.getEmployeeId()) && password.trim().equals(emp.getPassword())){
-			if(emp.getRole().equals("Manager"))
-				view = "manager";
-			else if(emp.getRole().equals("HR"))
-				view = "HR";
-			else
-				view = "employee";
-		}
-		
-		request.setAttribute("name", employeeId);
-		return new ModelAndView("HR");
-		
+	
+	@RequestMapping("/employee")
+	public String employeeHomePage(@RequestParam(value="id", defaultValue="1") int id,
+			Model model) {
+		Employee e = Employee.getbyEmployeeId(id);
+		List<Trips> trips = e.getAllMyTrips();
+		model.addAttribute("trips", trips);
+		model.addAttribute("id", id);
+		return "employee";
 	}
-}
-*/
+
+	@RequestMapping("/employee/trip")
+	public String showTrip(@RequestParam(value="id", required=true) int id,
+			@RequestParam(value="tripId", required=true) int tripId,
+			Model model) {
+		Employee e = Employee.getbyEmployeeId(id);
+		Trips trip = Trips.getbyTripId(tripId);
+		List<Expense> exps =  e.getAllMyExpense();
+		//Ask jinlai to add find 
+		model.addAttribute("expenses", exps);
+		model.addAttribute("project", trip.getProj());
+		model.addAttribute("trip", trip);
+		return "employee_form";
+	}
+	
+	@RequestMapping("/employee/receipts")
+	public String showReceipts() {
+		return "show_receipts";
+	}
+}*/
