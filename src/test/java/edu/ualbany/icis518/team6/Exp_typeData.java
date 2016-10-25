@@ -11,18 +11,7 @@ public class Exp_typeData {
 	public static void main(String[] args) {
 	//Instantiate details of Employee class
 
-/*		ExpTypeBudget etb=new ExpTypeBudget("HR", "Hotel", 500);
-		ExpTypeBudget etb2=new ExpTypeBudget("HR", "Flight", 800);
-		ExpTypeBudget etb3=new ExpTypeBudget("Manager", "Food", 50);
-		etb.save();
-		etb2.setBudget(1000);
-		etb2.save();
-		etb3.setType("Car");
-		etb3.save();*/
-		
-		//ExpTypeBudget etb=ExpTypeBudget.getbyPrimarykey(2);
-		//System.out.println(etb);
-		
+
 		
 		
 		 List<ExpTypeBudget> ExpTypeBudgetList=ExpTypeBudget.getAllExpTypeBudget();// create a List to get the return result

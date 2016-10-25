@@ -63,14 +63,13 @@ public class ExpenseData {
 		File pic=book.getPic(); // 用来保存的
 		InputStream inputStream2=new FileInputStream(pic);
 		pstmt.setBinaryStream(6, inputStream2, pic.length()); */
+
 		
 		Projects pro=Projects.getbyProjectId(2);
 		Trips trip=Trips.getbyTripId(5);
 		
 		System.out.println(Expense.getbyTripId(5).get(1));
-		
-			
-		
+	
 
 	}
 }
