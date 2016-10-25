@@ -37,7 +37,7 @@
                      <td>Neil Dave</td>
                      <td>Sushmita Shrestha</td>
    					 <td>200</td>
-   					 <td><a href="show_claim.jsp">PTC001</a></td>
+   					 <td><a href="/hr/claim">PTC001</a></td>
      			</tr>
  				<tr class = active>
                      <td>002</td>
@@ -45,7 +45,7 @@
                      <td>Francisco Chang</td>
                      <td>Samantha Rice</td>
    					 <td>675</td>
-   					 <td><a href="show_claim.jsp">PTC002</a></td>
+   					 <td><a href="/hr/claim">PTC002</a></td>
      
  				</tr>
  				<tr>
@@ -54,7 +54,7 @@
                      <td>Roland Mendel</td>
                      <td>Chris Hughes</td>
    					 <td>700</td>
-   					 <td><a href="show_claim.jsp">PTC003</a></td>     
+   					 <td><a href="/hr/claim">PTC003</a></td>     
  				</tr>
  				
  				<tr class =active>
@@ -63,7 +63,7 @@
                      <td>Tom Cruise</td>
                      <td>Chris Hughes</td>
    					 <td>700</td>
-   					 <td><a href="show_claim.jsp">PTC004</a></td>
+   					 <td><a href="/hr/claim">PTC004</a></td>
      
  				</tr>
  				<tr>
@@ -72,7 +72,7 @@
                      <td>Francis Chang</td>
                      <td>Sam Clinton</td>
    					 <td>60</td>
-   					 <td><a href="show_claim.jsp">PTC005</a></td>
+   					 <td><a href="/hr/claim">PTC005</a></td>
      
  				</tr>
  				<tr class = active>
@@ -81,7 +81,7 @@
                      <td>Roland Chang</td>
                      <td>Chris Fang</td>
    					 <td>80</td>
-   					 <td><a href="show_claim.jsp">PTC006</a></td>
+   					 <td><a href="/hr/claim">PTC006</a></td>
      
  				</tr>
  				</tbody>

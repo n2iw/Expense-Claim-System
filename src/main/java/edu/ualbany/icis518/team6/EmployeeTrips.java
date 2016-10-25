@@ -121,6 +121,30 @@ public class EmployeeTrips {
 		factory.close();
 		return EmployeeTripsList;
 	}
+	/**
+	 * find the EmployeeTrips by Trips
+	 * @param tripin
+	 * @return a List of EmployeeTrips
+	 */
+	public static List<EmployeeTrips> getbyTrip(Trips tripin) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from EmployeeTrips where trip_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, tripin.getTripId());
+	    List<EmployeeTrips> EmployeeTripsList=query.list();
+	    
+	    for(EmployeeTrips EmployeeTrips:EmployeeTripsList){// if successfully get the Data, printout every result before return
+	    	System.out.println(EmployeeTrips);
+	    }
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return EmployeeTripsList;
+	}
 	public static List<EmployeeTrips> getAllEmployeeTrips(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();

@@ -1,14 +1,21 @@
-
+<%@ page import="edu.ualbany.icis518.team6.Projects"%>
+<%@ page import="java.util.List"%>
+<%@ page import="edu.ualbany.icis518.team6.Expense"%>
+<%@ page import="edu.ualbany.icis518.team6.Trips"%>
 <%
 	String title = "Expenses for \"Travel to New York city\"";
 %>
 <%@include file="Header.jsp"%>
 
+<% Projects project = (Projects)request.getAttribute("project"); 
+   Trips trip = (Trips)request.getAttribute("trip");
+%>
+
 <div class="container">
 	<div class="row">
 		<div class="col-sm-8 col-sm-offset-2">
 			<div class="row">
-				<h4 class="col-sm-8 center-block">Expenses for "Travel to New York city"</h4>
+				<h4 class="col-sm-8 center-block">Expenses for "<%= trip.getDescription() %>"</h4>
 			</div>
 			<form class="form-horizontal" action="#" method="post"
 				enctype="multipart/form-data">
@@ -18,27 +25,29 @@
 						<div class="form-group">
 							<label class="control-label col-sm-2">Project Name: </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly value="123">
+								<input type="text" class="form-control" readonly value="<%= project.getProjectName() %>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2">Project Code: </label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly value="456">
+								<input type="text" class="form-control" readonly value="<%= project.getProjectId() %>">
 							</div>
 						</div>
 					</fieldset>
 				</div>
-
+            <% List<Expense> exps = (List<Expense>)request.getAttribute("expenses");
+               for (Expense e: exps) {
+            %>
 				<div class="well">
 					<fieldset>
-						<legend>Food Expenses</legend>
+						<legend><%= e.getType() %> Expenses</legend>
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="food">Amount:
 							</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" id="food" name="food"
-									placeholder="$ Amount" value="100.00">
+									placeholder="$ Amount" value="<%= e.getAmount() %>">
 							</div>
 						</div>
 
@@ -54,105 +63,14 @@
 							<label class="control-label col-sm-2">Uploaded Receipt
 								Files: </label>
 							<div class="col-sm-10">
-                <p>receipt.jpg, receipt2.jpg</p>
-								<a class="btn btn-default" href="show_receipts.jsp">Show
+								<p><%= e.getReceipt() %></p>
+								<a class="btn btn-default" href="receipts">Show
 									uploaded Files</a>
 							</div>
 						</div>
 					</fieldset>
 				</div>
-
-				<div class="well">
-					<fieldset>
-						<legend>Transportation Expenses</legend>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="travel">Amount:
-							</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="travel"
-									name="travel" placeholder="$ Amount">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-sm-2">Upload Receipts: </label>
-							<div class="col-sm-10">
-								<input type="file" class="form-control" name="travel_receipt"
-									multiple>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-sm-2">Uploaded Receipt
-								Files: </label>
-							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_receipts.jsp">Show
-									uploaded Files</a>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-
-				<div class="well">
-					<fieldset>
-						<legend>Accommodation Expenses</legend>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="acc">Amount: </label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="acc"
-									name="accomodation" placeholder="$ Amount">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-sm-2">Upload Receipts: </label>
-							<div class="col-sm-10">
-								<input type="file" class="form-control" name="acc_receipt"
-									multiple>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-sm-2">Uploaded Receipt
-								Files: </label>
-							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_receipts.jsp">Show
-									uploaded Files</a>
-							</div>
-						</div>
-					</fieldset>
-				</div>
-
-				<div class="well">
-					<fieldset>
-						<legend>Misc. Expenses</legend>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="misc">Amount:
-							</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="misc" name="misc"
-									placeholder="$ Amount">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-sm-2">Upload Receipts: </label>
-							<div class="col-sm-10">
-								<input type="file" class="form-control" name="misc_receipt"
-									multiple>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-sm-2">Uploaded Receipt
-								Files: </label>
-							<div class="col-sm-10">
-								<a class="btn btn-default" href="show_receipts.jsp">Show
-									uploaded Files</a>
-							</div>
-						</div>
-					</fieldset>
-				</div>
+			<% } %>
 
 				<div class="form-group">
 					<div class="col-sm-6">

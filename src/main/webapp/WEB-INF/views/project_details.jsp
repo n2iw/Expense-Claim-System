@@ -28,10 +28,10 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-6">
-						<a class="btn btn-primary form-control" href="add_trip.jsp" role="button">Add Trip</a>
+						<a class="btn btn-primary form-control" href="/manager/trip/new" role="button">Add Trip</a>
 					</div>
 					<div class="col-sm-6">
-						<a class="btn btn-primary form-control" href="employee_form.jsp" role="button">Add Expense Claim</a>
+						<a class="btn btn-primary form-control" href="/employee/trip" role="button">Add Expense Claim</a>
 					</div>
 				</div>
 			</form>
