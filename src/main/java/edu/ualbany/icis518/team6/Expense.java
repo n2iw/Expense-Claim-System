@@ -152,7 +152,37 @@ public String getType() {
 		session.close();
 		factory.close();
 	}	
+	public static List<Expense> getbyEmployeeId(int emplId) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where empl_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, emplId);
+	    List<Expense> ExpenseList=query.list();
 
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;
+	}
+	public static List<Expense> getbyEmployee(Employee emplin) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where empl_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, emplin.getEmployeeId());
+	    List<Expense> ExpenseList=query.list();
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;
+	}
+	
 	public static Expense getbyExpenseId( int expenseId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();

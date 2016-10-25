@@ -46,10 +46,14 @@ public class ExpenseData {
 		//Expense exp=Expense.getbyExpenseId(4);
 		//System.out.println(exp);
 		
-		 List<Expense> ExpenseList=Expense.getAllExpense();// create a List to get the return result
+/*		 List<Expense> ExpenseList=Expense.getAllExpense();// create a List to get the return result
 		 Expense resExpense=ExpenseList.get(4);// find the 2nd element in the list
-		 System.out.println(resExpense);//printout the 1st userName
+		 System.out.println(resExpense);//printout the 1st userName		 
+*/	
 		
+		//Expense exp=new Expense(empl, trip, type, amount, status, receipt, deleteit)
+		//System.out.println(Expense.getbyEmployeeId(4).get(1));
+		//System.out.println("2222222222222222222222");
 		
 /*		Blob b;
 		FileOutputStream out=new FileOutputStream(new File("d:/pic1.jpg"));

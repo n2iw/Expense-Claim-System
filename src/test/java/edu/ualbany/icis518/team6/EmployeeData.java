@@ -29,12 +29,14 @@ public class EmployeeData {
 		Projects proe=Projects.getbyProjectId(3);
 		empp.setProject(proe);*/
 		
-		Employee empp=Employee.getbyEmployeeId(3);
+/*		Employee empp=Employee.getbyEmployeeId(3);
 		Trips trip=Trips.getbyTripId(2);
 		System.out.println(empp.getAllMyTrips().get(0));
 		//empp.setTrip(trip);
-		
-		
+*/		
+	
+		Employee empp=Employee.getbyEmployeeId(4);
+		System.out.println(empp.getAllMyExpense().get(0));
 //		System.out.println(emp1.toString());
 //		emp1.setPassword("meiyou");
 //		emp1.save();

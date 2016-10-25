@@ -154,6 +154,9 @@ public Employee() {
 	    factory.close();
 	    return ProjectsList;
 	}
+	public List<Expense> getAllMyExpense(){
+		return Expense.getbyEmployee(this);
+	}
 	public void setTrip(Trips tripin){
 		EmployeeTrips et=new EmployeeTrips(tripin, this);
 		et.save();
