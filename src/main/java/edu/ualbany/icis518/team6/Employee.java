@@ -121,6 +121,10 @@ public Employee() {
 	    factory.close();
 	    return EmployeeList;
 	}
+	public void setProject(Projects proin){
+		EmployeeProjects ep=new EmployeeProjects(proin, this);
+		ep.save();
+	}
 	/**
 	 * Find this employee's projects
 	 * @return A List of Project

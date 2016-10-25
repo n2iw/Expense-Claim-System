@@ -23,7 +23,12 @@ public class EmployeeData {
 		emp1.save();
 		
 		System.out.println(emp1.getEmployeeId());*/
-		System.out.println(Employee.getbyEmployeeId(3).getAllMyProjects().get(2));
+		//System.out.println(Employee.getbyEmployeeId(3).getAllMyProjects().get(2));
+		
+		Employee empp=Employee.getbyEmployeeId(2);
+		Projects proe=Projects.getbyProjectId(3);
+		empp.setProject(proe);
+		
 		
 //		System.out.println(emp1.toString());
 //		emp1.setPassword("meiyou");
