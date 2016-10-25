@@ -12,12 +12,12 @@ public class EmployeeController {
 	}
 
 	@RequestMapping("/employee/trip")
-	public String trip() {
+	public String showTrip() {
 		return "employee_form";
 	}
 	
 	@RequestMapping("/employee/receipts")
-	public String showReceipt() {
+	public String showReceipts() {
 		return "show_receipts";
 	}
 }

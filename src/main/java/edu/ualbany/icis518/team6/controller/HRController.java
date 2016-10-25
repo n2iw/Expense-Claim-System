@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HRController {
 	
 	@RequestMapping("/hr")
-	public String hr() {
+	public String hrHomePage() {
 		return "hr";
 	}
 
 	@RequestMapping("/hr/claim")
-	public String show_claim() {
+	public String showClaim() {
 		return "show_claim";
 	}
 }
