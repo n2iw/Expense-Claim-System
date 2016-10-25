@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.ualbany.icis518.team6.Expense;
 
 @Controller
-public class HRController {
+public class HrController {
 	
 	@RequestMapping("/hr")
 	public String hrHomePage(Model model) {
