@@ -29,5 +29,3 @@
   <a href="/hr" class="btn navbar-btn navbar-right">HR Page</a>
   </div>
 </nav>
-Contact GitHub API Training Shop Blog About
-© 2016 GitHub, Inc. Terms 

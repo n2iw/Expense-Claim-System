@@ -14,7 +14,7 @@ public class ValidationController {
 	public String validateEmployee(@RequestParam(value="userName") int employeeId, 
 				@RequestParam(value="password") String password, Model model) {
 		
-		Employee emp = new Employee().getbyId(employeeId);
+		Employee emp = new Employee().getbyEmployeeId(employeeId);
 		String view = "redirect:/";
 		
 		if((employeeId == emp.getEmployeeId()) && (password.trim().equals(emp.getPassword()))){
@@ -27,7 +27,7 @@ public class ValidationController {
 				view += "employee";
 		}
 		
-		model.addAttribute("empName", emp.getFirstName() + " " + emp.getLastName());
+		model.addAttribute("empId", employeeId);
 		return view+".jsp";
 		
 	}
