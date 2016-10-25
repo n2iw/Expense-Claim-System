@@ -62,42 +62,38 @@ public class Projects {
 		return "Projects [projectId=" + projectId + ", budget=" + budget + ", Empl=" + Empl + ", projectName="
 				+ projectName + "]";
 	}
-	/**
-	 * 
-	 * @param budget int
-	 * @param empl An Employee
-	 * @param projectName String
-	 */
-	public Projects(int budget, Employee empl, String projectName) {
+/**
+ * 
+ * @param projectManager An Employee Object
+ * @param projectName String name of projectName
+ * @param budget int
+ */
+	public Projects( Employee projectManager, String projectName, int budget) {
 		super();
 		this.budget = budget;
-		this.Empl = empl;
+		this.Empl = projectManager;
 		this.projectName = projectName;
 	}
-	public void add( String projectName, int budget, Employee emplin) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		
-//		Projects pp=new Projects();
-//		pp.setProjectName(projectName);
-//		pp.setBudget(budget);
-//		pp.setpm_id(emplin);
-
-		//session.save(pp);
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
+	/**
+	 * 
+	 * @param projectManager An Employee Object
+	 * @param projectName String name of projectName
+	 * @param budget int
+	 */
+	public Projects() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
-/**
- * Update the Projects information to the Database. You can change them {projectName, budget, pm_id} by calling setter
- */
-	public void update() {
+	public void save() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		session.update(this);
+		if(this.getProjectId()==0){
+			session.save(this);
+		}else{
+			session.update(this);
+		}
 
 		session.getTransaction().commit();
 		session.close();
@@ -105,10 +101,10 @@ public class Projects {
 	}
 	/**
 	 * Projects{projectId, projectName, budget, pm_id}
-	 * @param projectId this is the primary key for table Projects, I will implement more getbyXXX method later
+	 * @param projectId this is the primary key for table Projects
 	 * @return A Projects Object
 	 */
-	public Projects getbyProjectId( int projectId) {
+	public static Projects getbyProjectId( int projectId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -130,7 +126,11 @@ public class Projects {
 	    session.close();
 		factory.close();
 	}
-	public List<Projects> getAllProjects(){
+	/**
+	 * 
+	 * @return a List of Projects
+	 */
+	public static List<Projects> getAllProjects(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -146,7 +146,7 @@ public class Projects {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return ProjectsList;// return a List of the User object 
+	    return ProjectsList;
 	}
 	/**
 	 * 
@@ -154,7 +154,7 @@ public class Projects {
 	 * @return a List of Projects. There are example code in ProjectsData.java
 	 * @author Jinlai
 	 */
-	public List<Projects> findbyProjectName(String projectName){
+	public static List<Projects> getbyProjectName(String projectName){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -171,22 +171,22 @@ public class Projects {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return ProjectsList;// return a List of the User object 
+	    return ProjectsList;
 	}
 /**
  * 
- * @param emplin An Employee Object, to get the employeeId
+ * @param projectManager An Employee Object
  * @return a List of Projects. There are example code in ProjectsData.java
  * @author Jinlai
  */
-	public List<Projects> findbyEmployeeId(Employee emplin){
+	public static List<Projects> getbyProjectManager(Employee projectManager){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 	    
 	    String hql="from Projects where pm_id=? ";
 	    Query query=session.createQuery(hql);
-	    query.setInteger(0, emplin.getEmployeeId());
+	    query.setInteger(0, projectManager.getEmployeeId());
 	    List<Projects> ProjectsList=query.list();
 	    
 	    for(Projects Projects:ProjectsList){// if successfully get the Data, printout every result before return
@@ -196,6 +196,6 @@ public class Projects {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return ProjectsList;// return a List of the User object 
+	    return ProjectsList;
 	}
 }

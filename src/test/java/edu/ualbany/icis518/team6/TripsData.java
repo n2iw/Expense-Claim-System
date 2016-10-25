@@ -19,7 +19,7 @@ import org.hibernate.cfg.Configuration;
 
 public class TripsData {
 
-	public static void main(String[] args) throws SerialException, SQLException, IOException {
+	public static void main(String[] args){
 		
 /*		//HOW TO READ the Date type
 		//The Date will return a long number to represent the time
@@ -68,12 +68,13 @@ public class TripsData {
 /*		Date d = new Date();//when a Date is created, it always has the current time
 		Trips trip = new Trips();	
 		trip.add("New Tork", d);*/
-		
-		Trips trip=new Trips();
+		//Trips trip=Trips.getbyTripId(8);
+		//System.out.println(trip.getDescription());
 
-//		 List<Trips> TripsList=trip.getAllTrips();// create a List to get the return result
-//		 Trips resTrips=TripsList.get(4);// find the 2nd element in the list
-//		 System.out.println(resTrips);//printout the 1st userName
+
+		 List<Trips> TripsList=Trips.getAllTrips();// create a List to get the return result
+		 Trips resTrips=TripsList.get(1);// find the 2nd element in the list
+		 System.out.println(resTrips);//printout the 1st userName
 		
 		
 

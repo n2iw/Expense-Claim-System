@@ -26,21 +26,34 @@ public class ExpenseData {
 
 	public static void main(String[] args) throws SerialException, SQLException, IOException {
 		
-		Expense expp=new Expense();
-		Employee empl=new Employee();
-		Trips trip=new Trips();
 		
-		empl=empl.getbyId(3);
-		trip=trip.getbyTripId(2);
-				
-		File save=new File("D:/pic1.txt");
+/*		Employee empl=Employee.getbyEmployeeId(4);
+		Trips trip=Trips.getbyTripId(5);
+		Trips trip2=Trips.getbyTripId(6);
+		Expense expp=new Expense(empl, trip, "food", 50, "go", "none", true);
+		Expense expp1=new Expense(empl, trip, "hotel", 250, "go", "none", true);
+		Expense expp11=new Expense(empl, trip, "car", 100, "go", "none", true);
+		Expense expp2=new Expense(empl, trip2, "food", 20, "go", "none", true);
+		Expense expp22=new Expense(empl, trip2, "hotel", 200, "go", "none", true);
+		expp.save();
+		expp1.save();
+		expp11.save();
+		expp2.setStatus("update");
+		expp2.save();
+		expp22.setType("flight");
+		expp22.save();*/
 		
-		//expp.add(empl, trip, 900, "Hotel", save, "good", true);
+		//Expense exp=Expense.getbyExpenseId(4);
+		//System.out.println(exp);
 		
+/*		 List<Expense> ExpenseList=Expense.getAllExpense();// create a List to get the return result
+		 Expense resExpense=ExpenseList.get(4);// find the 2nd element in the list
+		 System.out.println(resExpense);//printout the 1st userName		 
+*/	
 		
-		
-
-
+		//Expense exp=new Expense(empl, trip, type, amount, status, receipt, deleteit)
+		//System.out.println(Expense.getbyEmployeeId(4).get(1));
+		//System.out.println("2222222222222222222222");
 		
 /*		Blob b;
 		FileOutputStream out=new FileOutputStream(new File("d:/pic1.jpg"));
