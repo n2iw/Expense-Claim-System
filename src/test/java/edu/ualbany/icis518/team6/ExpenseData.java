@@ -65,11 +65,21 @@ public class ExpenseData {
 		pstmt.setBinaryStream(6, inputStream2, pic.length()); */
 
 		
-		Projects pro=Projects.getbyProjectId(2);
-		Trips trip=Trips.getbyTripId(5);
-		
-		System.out.println(Expense.getbyTripId(5).get(1));
-	
+		Projects pro=Projects.getbyProjectId(3);
+		Trips trip=Trips.getbyTripId(1);
+		Employee expl1=Employee.getbyEmployeeId(3);
+		Employee expl2=Employee.getbyEmployeeId(4);
+		Expense expnew1=new Expense(expl1, trip, "food", 50, "submited", "something where", false);
+//		Expense expnew2=new Expense(expl1, trip, "Car", 150, "submited", "something where", false);
+//		Expense expnew3=new Expense(expl1, trip, "Hotel", 500, "submited", "something where", false);
+		expnew1.save();
+//		expnew3.save();
+//		expnew2.save();
+//		Expense expnew4=new Expense(expl2, trip, "Hotel", 400, "submited", "something where", true);
+//		Expense expnew5=new Expense(expl2, trip, "Flight", 300, "submited", "something where", true);
+//		expnew4.save();
+//		expnew5.save();
+
 
 	}
 }
