@@ -1,6 +1,7 @@
 package edu.ualbany.icis518.team6;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -30,9 +31,6 @@ public class Employee {
 	public int getEmployeeId() {
 		return employeeId;
 	}
-/*	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
-	}*///you can't change the auto increment primary key
 	public String getFirstName() {
 		return firstName;
 	}
@@ -59,7 +57,7 @@ public class Employee {
 	}
 	@Override
 	public String toString() {
-		return "Employee [employeeId=" + employeeId + ", firstName=" + firstName + ", lastName=" + lastName
+		return "Employee [employeeId=" + this.employeeId + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", password=" + password + ", role=" + role + "]";
 	}
 	/**
@@ -95,7 +93,7 @@ public Employee() {
 	 * @return a List of Employee. There are example code in EmployeeData.java
 	 * @author Jinlai
 	 */
-	public List<Employee> findbyName(String firstname, String lastname){
+	public static List<Employee> getbyEmployeeName(String firstname, String lastname){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -121,15 +119,77 @@ public Employee() {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return EmployeeList;// return a List of the User object 
+	    return EmployeeList;
 	}
+	public void setProject(Projects proin){
+		EmployeeProjects ep=new EmployeeProjects(proin, this);
+		ep.save();
+	}
+	/**
+	 * Find this employee's projects
+	 * @return A List of Project
+	 * @author Jinlai
+	 */
+	public List<Projects> getAllMyProjects(){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+		
+		List<EmployeeProjects> EP=EmployeeProjects.getbyEmployee(this);
+
+	    List<Projects> ProjectsList=new LinkedList<Projects>();
+	    
+	    for(EmployeeProjects EmployeeProjects:EP){// if successfully get the Data, printout every result before return
+	    	ProjectsList.add(EmployeeProjects.getProject());
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return ProjectsList;
+	}
+	public List<Expense> getAllMyExpense(){
+		return Expense.getbyEmployee(this);
+	}
+	public void setTrip(Trips tripin){
+		EmployeeTrips et=new EmployeeTrips(tripin, this);
+		et.save();
+	}
+	/**
+	 * Find this employee's trips
+	 * @return A List of Trips
+	 * @author Jinlai
+	 */
+	public List<Trips> getAllMyTrips(){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+		
+		List<EmployeeTrips> ET=EmployeeTrips.getbyEmployee(this);
+		int i=ET.size();
+		int a=0;
+	    List<Trips> TripsList=new LinkedList<Trips>();
+	    
+	    for(EmployeeTrips EmployeeTrips:ET){// if successfully get the Data, printout every result before return
+	    	TripsList.add(EmployeeTrips.getTrip());
+	    }
+
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return TripsList;
+	}
+	
 	/**
 	 * 
 	 * @param role String	 
 	 * @return a List of Employee. There are example code in EmployeeData.java
 	 * @author Jinlai
 	 */
-	public List<Employee> findbyRole(String role){
+	public static List<Employee> getbyEmployeeRole(String role){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -145,7 +205,7 @@ public Employee() {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return EmployeeList;// return a List of the User object 
+	    return EmployeeList;
 	}
 	
 	public void save() {
@@ -171,7 +231,7 @@ public Employee() {
 	 * @param employeeId int
 	 * @return an Employee Object
 	 */
-	public Employee getbyId( int employeeId) {
+	public static Employee getbyEmployeeId( int employeeId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -193,7 +253,11 @@ public Employee() {
 	    session.close();
 		factory.close();
 	}
-	public List<Employee> getAllEmployee(){
+	/**
+	 * 
+	 * @return a List of Employee.
+	 */
+	public static List<Employee> getAllEmployee(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -209,6 +273,7 @@ public Employee() {
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return EmployeeList;// return a List of the User object 
+	    return EmployeeList;
 	}
-	}
+	
+}

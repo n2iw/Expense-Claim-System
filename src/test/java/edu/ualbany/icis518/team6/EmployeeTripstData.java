@@ -11,24 +11,26 @@ public class EmployeeTripstData {
 	public static void main(String[] args) {
 	//Instantiate details of Employee class
 
-		EmployeeTrips ET=new EmployeeTrips();
-		Employee emplin=new Employee();
-		Trips tripin=new Trips();
 		
-		emplin=emplin.getbyId(2);
-		tripin=tripin.getbyTripId(1);
+/*		Employee emplin=Employee.getbyEmployeeId(5);
+		Trips trip=Trips.getbyTripId(6);
+		EmployeeTrips et=new EmployeeTrips(trip, emplin);
+		et.setEmpl(Employee.getbyEmployeeId(4));
+		et.save();*/
 		
-		ET=ET.getbyId(1);
-		ET.add(emplin, tripin);
-		//ET.delete();
+		//System.out.println(EmployeeTrips.getbyprimarykey(2));
+		
+		//Employee emp=Employee.getbyEmployeeId(4);
+		//System.out.println(EmployeeTrips.getbyEmployee(emp).get(1));
 
 
+
 		
 		
-		 List<EmployeeTrips> EmployeeTripsList=ET.getAllEmployeeTrips();// create a List to get the return result
+/*		 List<EmployeeTrips> EmployeeTripsList=EmployeeTrips.getAllEmployeeTrips();// create a List to get the return result
 		 EmployeeTrips resEmployeeTrips=EmployeeTripsList.get(1);// find the 2nd element in the list
 		 System.out.println(resEmployeeTrips);//printout the 1st userName
-		 resEmployeeTrips.delete();
+*/		 //resEmployeeTrips.delete();
 		 
 	
 /*		//Retrieving objects using session.get

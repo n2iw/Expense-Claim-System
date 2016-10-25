@@ -7,7 +7,7 @@
 			<div class="row">
 				<h4 class="col-sm-8 center-block">Welcome Mike</h4>
 			</div>
-			<form class="form-horizontal" action="/ExpenseClaimSystem/manager.jsp"
+			<form class="form-horizontal" action="/manager/project/create"
 				enctype="multipart/form-data">
 				<div class="well">
 					<fieldset>

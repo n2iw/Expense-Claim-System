@@ -65,10 +65,10 @@
 				
 				<div class="form-group">
 					<div class="col-sm-6">
-						<a class="btn btn-primary form-control" href="project_details.jsp" role="button">Save</a>
+						<a class="btn btn-primary form-control" href="/manager/trip/create" role="button">Save</a>
 					</div>
 					<div class="col-sm-6">
-						<a class="btn btn-primary form-control" href="project_details.jsp" role="button">Submit</a>
+						<a class="btn btn-primary form-control" href="/manager/trip/create" role="button">Submit</a>
 					</div>
 				</div>
 			</form>

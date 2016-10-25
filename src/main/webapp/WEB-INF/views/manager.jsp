@@ -16,19 +16,19 @@
 			</thead>
 			<tbody>
 	    	<tr>
-	    		<td><a href="project_details.jsp">Expense Claim System</a></td><td>Travel to New York City</td>
+	    		<td><a href="/manager/project">Expense Claim System</a></td><td>Travel to New York City</td>
 	    	</tr>
 	    	<tr>
-	    		<td><a href="project_details.jsp">Food Management</a></td><td>Travel to Albany City</td>
+	    		<td><a href="/manager/project">Food Management</a></td><td>Travel to Albany City</td>
 	    	</tr>
 		    <tr>
-			    <td><a href="project_details.jsp">Event  Management</a></td><td>Travel to New Jersey</td>
+			    <td><a href="/manager/project">Event  Management</a></td><td>Travel to New Jersey</td>
 	    	</tr>
 			</tbody>
 			</table>
 		</div>
 		<div>
-			<a href="addProject.jsp" class="btn btn-primary active" role="button">Add Project</a>
+			<a href="/manager/project/new" class="btn btn-primary active" role="button">Add Project</a>
 		</div>
 	</div>
 

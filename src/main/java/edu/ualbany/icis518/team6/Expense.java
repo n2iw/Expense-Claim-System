@@ -41,44 +41,15 @@ public class Expense {
     @ManyToOne
     @JoinColumn(name="trip_id")
     private Trips trip; 
-	private int amount ;
-	private String type;
+    private String type;
+	private int amount ;	
 	private String status;
-	private boolean editFlag;
 	private String receipt;
-
-	
-	
-	
-	
+	private boolean deleteit;
 	
 public Expense() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-/**
- * the expenseId is the primary key	
- * @param expenseId primary key
- * @param empl An Employee Object
- * @param trip	An Trips Object
- * @param amount int
- * @param type String
- * @param receipt String of file path
- * @param status String, e.g. Approved, Rejected..
- * @param editFlag true or false
- */
-
-public Expense(int expenseId, Employee empl, Trips trip, int amount, String type, 
-		String receipt, String status, boolean editFlag	) {
-		super();
-		this.expenseId = expenseId;
-		this.Empl = empl;
-		this.trip = trip;
-		this.amount = amount;
-		this.type = type;
-		this.status = status;
-		this.editFlag = editFlag;
-		this.receipt = receipt;
 	}
 /**
  * without expenseId
@@ -90,23 +61,24 @@ public Expense(int expenseId, Employee empl, Trips trip, int amount, String type
  * @param status String, e.g. Approved, Rejected..
  * @param editFlag true or false
  */
-public Expense( Employee empl, Trips trip, int amount, String type, 
-		String receipt, String status, boolean editFlag	) {
+public Expense( Employee empl, Trips trip, String type, int amount, String status, 
+		String receipt, boolean deleteit	) {
 		super();
 		this.Empl = empl;
 		this.trip = trip;
 		this.amount = amount;
 		this.type = type;
 		this.status = status;
-		this.editFlag = editFlag;
+		this.deleteit = deleteit;
 		this.receipt = receipt;
 	}
 
 
+
 @Override
 public String toString() {
-	return "Expense [expenseId=" + expenseId + ", Empl=" + Empl + ", trip=" + trip + ", amount=" + amount + ", type="
-			+ type + ", status=" + status + ", editFlag=" + editFlag + ", receipt=" + receipt + "]";
+	return "Expense [expenseId=" + expenseId + ", Empl=" + Empl + ", trip=" + trip + ", type=" + type + ", amount="
+			+ amount + ", status=" + status + ", receipt=" + receipt + ", deleteit=" + deleteit + "]";
 }
 public String getType() {
 		return type;
@@ -121,18 +93,11 @@ public String getType() {
 		this.status = status;
 	}
 	public boolean isEditFlag() {
-		return editFlag;
+		return deleteit;
 	}
-	public void setEditFlag(boolean editFlag) {
-		this.editFlag = editFlag;
+	public void setEditFlag(boolean deleteit) {
+		this.deleteit = deleteit;
 	}
-///**
-// * get a String path
-// * @return a String
-// */
-//	public String getFilepathToString(){
-//		return this.getReceipt().getPath();
-//	}
 	public Employee getEmpl() {
 		return Empl;
 	}
@@ -145,36 +110,24 @@ public String getType() {
 	public void setTrip(Trips trip) {
 		this.trip = trip;
 	}
-	/**
-	 * e.g. a filepath like d:\pic1.jpg
-	 * @return a File type, contains the filepath
-	 */
 	public String getReceipt() {
 		return receipt;
 	}
-/**
- * 
- * @param receipt String of file path
- */
 	public void setReceipt(String receipt) {
 		this.receipt = receipt;
 	}
-
 	public int getExpenseId() {
 		return expenseId;
-	}
-
-	public void setExpenseId(int expenseId) {
-		this.expenseId = expenseId;
 	}
 
 	public int getAmount() {
 		return amount;
 	}
-
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	
+	
 	/**
 	 * 
 	 * @param empl An Employee Object
@@ -185,38 +138,107 @@ public String getType() {
 	 * @param status String, e.g. Approved, Rejected..
 	 * @param editFlag true or false
 	 */
-	public void add(  Employee empl, Trips trip, int amount, String type, 
-			String receipt, String status, boolean editFlag	) {
+	public void save() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		Expense exp=new Expense();
-		exp.setEmpl(empl);
-		exp.setTrip(trip);
-		exp.setAmount(amount);
-		exp.setType(type);
-		exp.setReceipt(receipt);
-		exp.setStatus(status);
-		exp.setEditFlag(editFlag);
-		
-		session.save(exp);
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}	
-	public void update() {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-
-		session.update(this);
+		if(this.getExpenseId()==0){
+			session.save(this);
+		}else{
+			session.update(this);
+		}
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
+	/**
+	 * get all expenses of this tripId
+	 * @param tripId tripId
+	 * @return A List of Expense
+	 */
+	public static List<Expense> getbyTripId(int tripId) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where trip_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, tripId);
+	    List<Expense> ExpenseList=query.list();
 
-	public Expense getbyExpenseId( int expenseId) {
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;
+	}
+	/**
+	 * get all expenses of this trip
+	 * @param tripin A Trips Object
+	 * @return A List of Expense
+	 */
+	public static List<Expense> getbyTrip(Trips tripin) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where trip_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, tripin.getTripId());
+	    List<Expense> ExpenseList=query.list();
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;
+	}
+	/**
+	 * get all  the expenses of this employeeId
+	 * @param emplId  employeeId 
+	 * @return a List of expense
+	 */
+	public static List<Expense> getbyEmployeeId(int emplId) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where empl_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, emplId);
+	    List<Expense> ExpenseList=query.list();
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;
+	}
+	
+	/**
+	 * get all  the expenses of this Employee
+	 * @param emplin An Employee Object
+	 * @return a List of expense
+	 */
+	public static List<Expense> getbyEmployee(Employee emplin) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where empl_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, emplin.getEmployeeId());
+	    List<Expense> ExpenseList=query.list();
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;
+	}
+	/**
+	 * 
+	 * @param expenseId
+	 * @return
+	 */
+	public static Expense getbyExpenseId( int expenseId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -238,7 +260,7 @@ public String getType() {
 	    session.close();
 		factory.close();
 	}
-	public List<Expense> getAllExpense(){
+	public static List<Expense> getAllExpense(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
