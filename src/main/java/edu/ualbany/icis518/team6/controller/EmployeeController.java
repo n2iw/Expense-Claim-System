@@ -15,7 +15,7 @@ import edu.ualbany.icis518.team6.Trips;
 public class EmployeeController {
 	
 	@RequestMapping("/employee")
-	public String employeeHomePage(@RequestParam(value="id", required=true) int id,
+	public String employeeHomePage(@RequestParam(value="id", defaultValue="1") int id,
 			Model model) {
 		Employee e = Employee.getbyEmployeeId(id);
 		List<Trips> trips = e.getAllMyTrips();
@@ -29,8 +29,12 @@ public class EmployeeController {
 			@RequestParam(value="tripId", required=true) int tripId,
 			Model model) {
 		Employee e = Employee.getbyEmployeeId(id);
+		Trips trip = Trips.getbyTripId(tripId);
 		List<Expense> exps =  e.getAllMyExpense();
+		//Ask jinlai to add find 
 		model.addAttribute("expenses", exps);
+		model.addAttribute("project", trip.getProj());
+		model.addAttribute("trip", trip);
 		return "employee_form";
 	}
 	
