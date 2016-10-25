@@ -151,7 +151,52 @@ public String getType() {
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
-	}	
+	}
+	/**
+	 * get all expenses of this tripId
+	 * @param tripId tripId
+	 * @return A List of Expense
+	 */
+	public static List<Expense> getbyTripId(int tripId) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where trip_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, tripId);
+	    List<Expense> ExpenseList=query.list();
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;
+	}
+	/**
+	 * get all expenses of this trip
+	 * @param tripin A Trips Object
+	 * @return A List of Expense
+	 */
+	public static List<Expense> getbyTrip(Trips tripin) {
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where trip_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, tripin.getTripId());
+	    List<Expense> ExpenseList=query.list();
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;
+	}
+	/**
+	 * get all  the expenses of this employeeId
+	 * @param emplId  employeeId 
+	 * @return a List of expense
+	 */
 	public static List<Expense> getbyEmployeeId(int emplId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
@@ -167,6 +212,12 @@ public String getType() {
 		factory.close();
 		return ExpenseList;
 	}
+	
+	/**
+	 * get all  the expenses of this Employee
+	 * @param emplin An Employee Object
+	 * @return a List of expense
+	 */
 	public static List<Expense> getbyEmployee(Employee emplin) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
@@ -182,7 +233,11 @@ public String getType() {
 		factory.close();
 		return ExpenseList;
 	}
-	
+	/**
+	 * 
+	 * @param expenseId
+	 * @return
+	 */
 	public static Expense getbyExpenseId( int expenseId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();

@@ -25,10 +25,13 @@ public class ProjectsData {
 //		session.save(prj);
 //		session.getTransaction().commit();
 //		assert(true);
-		Employee emp = new Employee(); 
+/*		Employee emp = new Employee(); 
 		emp=emp.getbyEmployeeId(2);
 		Projects pnew=new Projects(emp, "Sys2", 4000);
-		pnew.save();
+		pnew.save();*/
+		
+		Projects pro=Projects.getbyProjectId(2);
+		System.out.println(pro.getAllEmployeeOfThisProject().get(3));
 
 //		pnew.save();
 //		pnew.setBudget(10000);

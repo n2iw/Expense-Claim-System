@@ -72,13 +72,13 @@ public class TripsData {
 		//System.out.println(trip.getDescription());
 
 
-		 List<Trips> TripsList=Trips.getAllTrips();// create a List to get the return result
+/*		 List<Trips> TripsList=Trips.getAllTrips();// create a List to get the return result
 		 Trips resTrips=TripsList.get(1);// find the 2nd element in the list
 		 System.out.println(resTrips);//printout the 1st userName
+*/		
 		
-		
-
-
+		Trips trip=Trips.getbyTripId(3);
+		System.out.println(trip.getAllEmployeeOfThisTrip().get(0));
 
 		//trip.add("2222", dat);
 		
