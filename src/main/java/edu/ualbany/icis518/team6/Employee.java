@@ -1,6 +1,7 @@
 package edu.ualbany.icis518.team6;
 
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -119,6 +120,35 @@ public Employee() {
 	    session.close();
 	    factory.close();
 	    return EmployeeList;
+	}
+	/**
+	 * Find this employee's projects
+	 * @return A List of Project
+	 * @author Jinlai
+	 */
+	public List<Projects> getAllMyProjects(){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+		
+		List<EmployeeProjects> EP=EmployeeProjects.getbyEmployee(this);
+		int i=EP.size();
+		int a=0;
+	    List<Projects> ProjectsList=new LinkedList<Projects>();
+	    
+	    for(EmployeeProjects EmployeeProjects:EP){// if successfully get the Data, printout every result before return
+	    	ProjectsList.add(EmployeeProjects.getProject());
+	    }
+	    
+/*	    while(i!=0){
+	    	ProjectsList.add(EP.get(a).getProject());
+	    }*/
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return ProjectsList;
 	}
 	/**
 	 * 
