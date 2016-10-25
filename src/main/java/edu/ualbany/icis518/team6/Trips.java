@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -171,6 +172,32 @@ public Projects getProj() {
 					+ ed + ", proj=" + proj + "]";
 
 	}
+	/**
+	 * get All the employee objects that in this trip
+	 * @return a List of Employee
+	 * @author Jinlai
+	 */
+	public List<Employee> getAllEmployeeOfThisTrip(){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+		
+		List<EmployeeTrips> ET=EmployeeTrips.getbyTrip(this);
+
+	    List<Employee> EmployeeList=new LinkedList<Employee>();
+	    
+	    for(EmployeeTrips EmployeeTrips:ET){// if successfully get the Data, printout every result before return
+	    	EmployeeList.add(EmployeeTrips.getEmpl());
+	    }
+
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return EmployeeList;
+	}
+	
 	public void save(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
