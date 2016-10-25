@@ -137,17 +137,12 @@ public Employee() {
 	    
 		
 		List<EmployeeProjects> EP=EmployeeProjects.getbyEmployee(this);
-		int i=EP.size();
-		int a=0;
+
 	    List<Projects> ProjectsList=new LinkedList<Projects>();
 	    
 	    for(EmployeeProjects EmployeeProjects:EP){// if successfully get the Data, printout every result before return
 	    	ProjectsList.add(EmployeeProjects.getProject());
 	    }
-	    
-/*	    while(i!=0){
-	    	ProjectsList.add(EP.get(a).getProject());
-	    }*/
 	    
 	    session.getTransaction().commit();
 	    session.close();
