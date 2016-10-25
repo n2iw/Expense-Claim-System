@@ -36,6 +36,16 @@
 						</div>
 					</fieldset>
 				</div>
+			
+				<div class="form-group">
+					<div class="col-sm-6">
+					    <a href="/employee" class="btn btn-primary form-control" >Add Expense</a>
+					</div>
+					<div class="col-sm-6">
+					  <p></p>
+					</div>
+				</div>
+
             <% List<Expense> exps = (List<Expense>)request.getAttribute("expenses");
                for (Expense e: exps) {
             %>
