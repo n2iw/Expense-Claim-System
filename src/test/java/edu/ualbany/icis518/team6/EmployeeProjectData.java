@@ -11,23 +11,39 @@ public class EmployeeProjectData {
 	public static void main(String[] args) {
 	//Instantiate details of Employee class
 
-		EmployeeProjects EP=new EmployeeProjects();
-/*		Employee empl=new Employee();
-		Projects pro=new Projects();
 		
-		empl=empl.getbyId(4);		
-		pro=pro.getbyProjectId(3);*/
+		Employee empl= Employee.getbyEmployeeId(1);
+		//System.out.println(empl);
+		Projects proj=Projects.getbyProjectId(1);
+		//System.out.println(proj);
+
+		EmployeeProjects EP= new EmployeeProjects();
 		
+
 		
+		//EP.save();
+
+		List<EmployeeProjects> eproList=EmployeeProjects.getbyProject(proj);
+		eproList.add(EmployeeProjects.getbyPrimaryId(2));
+		System.out.println("total: "+eproList.size()+" "+eproList.get(2));
+		//eproList.get(0);
+		//EmployeeProjects epuls=EmployeeProjects.getbyPrimaryId(2);
+		//System.out.println(epuls);
+		//System.out.println(eproList.get(1));
+/*		eproList.add(epuls);
+		System.out.println(eproList.size());
+		EmployeeProjects ecc=eproList.get(0);
+		System.out.println(ecc);*/
+		//eproList.
 		//EP.add(empl, pro);
 
 
 
 		
 		
-		 List<EmployeeProjects> EmployeeProjectsList=EP.getAllEmployeeProjects();// create a List to get the return result
-		 EmployeeProjects resEmployeeProjects=EmployeeProjectsList.get(1);// find the 2nd element in the list
-		 System.out.println(resEmployeeProjects);//printout the 1st userName
+//		 List<EmployeeProjects> EmployeeProjectsList=EP.getAllEmployeeProjects();// create a List to get the return result
+//		 EmployeeProjects resEmployeeProjects=EmployeeProjectsList.get(1);// find the 2nd element in the list
+//		 System.out.println(resEmployeeProjects);//printout the 1st userName
 
 	
 /*		//Retrieving objects using session.get

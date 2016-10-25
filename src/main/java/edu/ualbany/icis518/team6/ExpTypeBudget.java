@@ -18,12 +18,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 @Entity 
-@Table (name = "Exp_type")
-public class Exp_type {
+@Table (name = "ExpTypeBudget")
+public class ExpTypeBudget {
 	@Id @GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name = "Exp_typeId")
 	private int Exp_typeId;	// primary key use only, no meaning
-	private int employee_type_id;// this is the employee_type_id you need
+	private String role;
 	private String type;
 	private int budget;
 
@@ -34,18 +34,18 @@ public class Exp_type {
 	public int getExp_typeId() {
 	return Exp_typeId;
 }
-/*public void setExp_typeId(int exp_typeId) {
-	Exp_typeId = exp_typeId;
-}*/
-public int getEmployee_type_id() {
-	return employee_type_id;
-}
-public void setEmployee_type_id(int employee_type_id) {
-	this.employee_type_id = employee_type_id;
-}
+
 public String getType() {
 	return type;
 }
+public String getRole() {
+	return role;
+}
+
+public void setRole(String role) {
+	this.role = role;
+}
+
 public void setType(String type) {
 	this.type = type;
 }
@@ -56,62 +56,84 @@ public void setBudget(int budget) {
 	this.budget = budget;
 }
 
-public void add(int employee_type_id, String type, int budget) {
+@Override
+public String toString() {
+	return "ExpTypeBudget [Exp_typeId=" + Exp_typeId + ", role=" + role + ", type=" + type + ", budget=" + budget + "]";
+}
+
+/**
+ * 
+ * @param role String
+ * @param type String
+ * @param budget int
+ */
+public ExpTypeBudget(String role, String type, int budget) {
+	super();
+	this.role = role;
+	this.type = type;
+	this.budget = budget;
+}
+/**
+ * 
+ * @param role String
+ * @param type String
+ * @param budget int
+ */
+public ExpTypeBudget() {
+	super();
+	// TODO Auto-generated constructor stub
+}
+
+public void save() {
 	SessionFactory factory = new Configuration().configure().buildSessionFactory();
 	Session session = factory.openSession();
 	session.beginTransaction();
 	
-	Exp_type Ety=new Exp_type();
-	Ety.setEmployee_type_id(employee_type_id);
-	Ety.setType(type);
-	Ety.setBudget(budget);
-
-	session.save(Ety);
+	if(this.getExp_typeId()==0){
+		session.save(this);
+	}else{
+		session.update(this);
+	}
+	
 	session.getTransaction().commit();
 	session.close();
 	factory.close();
 }
 
-	public void update() {
+/**
+ * Exp_typeId is the primary key, no meaning
+ * @param Exp_typeId
+ * @return
+ */
+	public static ExpTypeBudget getbyPrimarykey( int Exp_typeId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		session.update(this);
-
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
-	}
-	public Exp_type getbyPrimarykey( int Exp_typeId) {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
-		
-		Exp_type expty = session.get(Exp_type.class, Exp_typeId);
+		ExpTypeBudget expty = session.get(ExpTypeBudget.class, Exp_typeId);
 
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 		return expty;
 	}
-	public List<Exp_type> getAllExp_type(){
+	public static List<ExpTypeBudget> getAllExpTypeBudget(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 	    
-	    String hql="from Exp_type";
+	    String hql="from ExpTypeBudget";
 	    Query query=session.createQuery(hql);
-	    List<Exp_type> Exp_typeList=query.list();
+	    List<ExpTypeBudget> ExpTypeBudgetList=query.list();
 	    
-	    for(Exp_type Exp_type:Exp_typeList){// if successfully get the Data, printout every result before return
-	    	System.out.println(Exp_type);
+	    for(ExpTypeBudget ExpTypeBudget:ExpTypeBudgetList){// if successfully get the Data, printout every result before return
+	    	System.out.println(ExpTypeBudget);
 	    }
 	    
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
-	    return Exp_typeList;// return a List of the User object 
+	    return ExpTypeBudgetList;// return a List of the User object 
 	}
 	public void delete(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();

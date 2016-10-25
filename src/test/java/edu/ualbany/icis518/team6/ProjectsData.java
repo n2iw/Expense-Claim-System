@@ -26,8 +26,13 @@ public class ProjectsData {
 //		session.getTransaction().commit();
 //		assert(true);
 		Employee emp = new Employee(); 
-		emp=emp.getbyId(3);
-		Projects pnew=new Projects();
+		emp=emp.getbyEmployeeId(2);
+		Projects pnew=new Projects(emp, "Sys2", 4000);
+		pnew.save();
+
+//		pnew.save();
+//		pnew.setBudget(10000);
+//		pnew.save();
 //		pnew=pnew.getbyProjectId(1);
 //		pnew.setBudget(4321);
 //		pnew.update();
@@ -40,9 +45,9 @@ public class ProjectsData {
 //		EmployeeProjects Epp=new EmployeeProjects();
 //		Epp.add(emp, pnew);
 
-		 List<Projects> ProjectsList=pnew.findbyEmployeeId(emp);// create a List to get the return result
-		 Projects resProjects=ProjectsList.get(0);// find the 2nd element in the list
-		 System.out.println(resProjects);//printout the 1st userName
+//		 List<Projects> ProjectsList=pnew.findbyEmployeeId(emp);// create a List to get the return result
+//		 Projects resProjects=ProjectsList.get(0);// find the 2nd element in the list
+//		 System.out.println(resProjects);//printout the 1st userName
 		
 		
 	}

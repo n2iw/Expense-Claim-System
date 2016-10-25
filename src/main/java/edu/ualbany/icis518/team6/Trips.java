@@ -82,36 +82,6 @@ public Projects getProj() {
 	    return Date.format(datein);
 
 	}
-	public Clob getDescriptionInClob() {
-		return description;
-	}
-	public String getDescription() throws SQLException, IOException {
-	    
-			String reString;      
-	        Reader is = this.description.getCharacterStream(); 
-	        BufferedReader br = new BufferedReader(is);  
-	        String s = br.readLine();  
-	        StringBuffer sb = new StringBuffer();  
-	        while (s != null) {
-	            sb.append(s);  
-	            s = br.readLine();  
-	        }  
-	        reString = sb.toString();  
-	        return reString; 
-
-	}
-//	public void setDescription(Clob content) {
-//		this.description = content;
-//	}
-
-	public void setDescription(String content) {
-		try {
-			this.description = new javax.sql.rowset.serial.SerialClob(content.toCharArray());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -127,22 +97,67 @@ public Projects getProj() {
 	public int getTripId() {
 		return tripId;
 	}
-	public void setTripId(int tripId) {
-		this.tripId = tripId;
+
+/*	public Clob getDescriptionInClob() {
+		return description;
 	}
-	public void update() {
-		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-		Session session = factory.openSession();
-		session.beginTransaction();
+	public void setDescription(Clob content) {
+	this.description = content;
+	}*/
+	public String getDescription(){
+	    
+	    StringBuilder sb = new StringBuilder();
+	    try {
+	        Reader reader = description.getCharacterStream();
+	        BufferedReader br = new BufferedReader(reader);
 
-		session.update(this);
-		session.getTransaction().commit();
-		session.close();
-		factory.close();
+	        String line;
+	        while(null != (line = br.readLine())) {
+	            sb.append(line);
+	        }
+	        br.close();
+	    } catch (SQLException e) {
+	        // handle this exception
+	    } catch (IOException e) {
+	        // handle this exception
+	    }
+	    return sb.toString();
 	}
 
+	public void setDescription(String content) {
+		try {
+			this.description = new javax.sql.rowset.serial.SerialClob(content.toCharArray());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
 
-
+/**
+ * 
+ * @param proj	A Projects Object, used for get projectId
+ * @param startDate	A Date type
+ * @param endDate A Date type
+ * @param description String
+ */
+	public Trips( Projects proj, Date startDate, Date endDate, String description ) {
+		super();
+		this.setDescription(description);
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.proj = proj;
+	}
+	/**
+	 * 
+	 * @param proj	A Projects Object, to get projectId
+	 * @param startDate	A Date type
+	 * @param endDate A Date type
+	 * @param description String
+	 */	
+	public Trips() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	@Override
 	public String toString() {
 		String des="";
@@ -150,54 +165,28 @@ public Projects getProj() {
 		String ed="";
 		st=this.DateToString(this.getStartDate());
 		ed=this.DateToString(this.getEndDate());
-		try {
-			des=this.getDescription();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		des=this.getDescription();
 
 			return "Trips [tripId=" + tripId + ", description=" + des + ", startDate=" + st + ", endDate="
 					+ ed + ", proj=" + proj + "]";
 
 	}
-//	public void add( Clob description, Date startDate, Date endDate, Projects proin) {
-//		SessionFactory factory = new Configuration().configure().buildSessionFactory();
-//		Session session = factory.openSession();
-//		session.beginTransaction();
-//		
-//		Trips trip=new Trips();
-//		trip.setDescription(description);
-//		trip.setStartDate(startDate);
-//		trip.setEndDate(endDate);
-//		trip.setProj(proin);
-//
-//		session.save(trip);
-//		session.getTransaction().commit();
-//		session.close();
-//		factory.close();
-//	}
-	public void add( String description, Date startDate, Date endDate, Projects proin) throws SerialException, SQLException {
+	public void save(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
 		
-		Trips trip=new Trips();
-//		Clob content=new javax.sql.rowset.serial.SerialClob(description.toCharArray()); 
-		trip.setDescription(description);
-		trip.setStartDate(startDate);
-		trip.setEndDate(endDate);
-		trip.setProj(proin);
-
-		session.save(trip);
+		if(this.getTripId()==0){
+			session.save(this);
+		}else{
+			session.update(this);
+		}
+		
 		session.getTransaction().commit();
 		session.close();
 		factory.close();
 	}
-	public Trips getbyTripId( int tripId) {
+	public static Trips getbyTripId( int tripId) {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
@@ -219,7 +208,27 @@ public Projects getProj() {
 	    session.close();
 		factory.close();
 	}
-	public List<Trips> getAllTrips(){
+	
+	public static List<Trips> getbyProject(Projects projin){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+	    
+	    String hql="from Trips where project_id=? ";
+	    Query query=session.createQuery(hql);
+	    query.setInteger(0, projin.getProjectId());
+	    List<Trips> TripsList=query.list();
+	    
+	    for(Trips Trips:TripsList){// if successfully get the Data, printout every result before return
+	    	System.out.println(Trips);
+	    }
+	    
+	    session.getTransaction().commit();
+	    session.close();
+	    factory.close();
+	    return TripsList;
+	}
+	public static List<Trips> getAllTrips(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
 		session.beginTransaction();
