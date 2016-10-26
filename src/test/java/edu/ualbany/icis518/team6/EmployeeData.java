@@ -11,18 +11,18 @@ public class EmployeeData {
 	public static void main(String[] args) {
 	//Instantiate details of Employee class
 
-/*		Employee emp1 = new Employee("wan1","jinlai", "meiyou", "HR");
-		Employee emp2 = new Employee("wan2","jinlai", "meiyou", "Manager");
+		Employee emp1 = new Employee("thorat","sayali", "sayali", "HR");
+		/*Employee emp2 = new Employee("wan2","jinlai", "meiyou", "Manager");
 		Employee emp3 = new Employee("wan3","jinlai", "meiyou", "Developer");
 		Employee emp4 = new Employee("wan4","jinlai", "meiyou", "Developer");
 		Employee emp5 = new Employee("wan5","jinlai", "meiyou", "Developer");
-		
+		*/
 		emp1.save();
 
-		emp1.setPassword("youlalalala");
-		emp1.save();
+		//emp1.setPassword("youlalalala");
+		//emp1.save();
 		
-		System.out.println(emp1.getEmployeeId());*/
+//		System.out.println(emp1.getEmployeeId());*/
 		//System.out.println(Employee.getbyEmployeeId(3).getAllMyProjects().get(2));
 		
 /*		Employee empp=Employee.getbyEmployeeId(2);
@@ -35,8 +35,8 @@ public class EmployeeData {
 		//empp.setTrip(trip);
 */		
 	
-		Employee empp=Employee.getbyEmployeeId(4);
-		System.out.println(empp.getAllMyExpense().get(0));
+//		Employee empp=Employee.getbyEmployeeId(4);
+//		System.out.println(empp.getAllMyExpense().get(0));
 //		System.out.println(emp1.toString());
 //		emp1.setPassword("meiyou");
 //		emp1.save();

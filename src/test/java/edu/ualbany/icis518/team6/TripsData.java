@@ -88,6 +88,13 @@ public class TripsData {
 //		Trips trip=Trips.getbyTripId(3);
 //		System.out.println(trip.getAllEmployeeOfThisTrip().get(0));
 
+
+		Projects pro=Projects.getbyProjectId(1);
+		Date dat=new Date();
+		Trips trip=new Trips(pro, dat, dat, "Expense");
+		trip.save();
+		//System.out.println(trip.getAllEmployeeOfThisTrip().get(0));
+
 		//trip.add("2222", dat);
 		
 /*		Trips trip=new Trips();
