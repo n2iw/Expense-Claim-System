@@ -45,6 +45,20 @@ public class EmployeeController {
 		return "employee_form";
 	}
 	
+		
+	@RequestMapping("/employee/expense/new")
+	public String newExpense(@RequestParam(value="id", required=true) int id,
+			@RequestParam(value="tripId", required=true) int tripId,
+			Model model
+			) {
+		Employee e = Employee.getbyEmployeeId(id);
+		Trips trip = Trips.getbyTripId(tripId);
+		model.addAttribute("project", trip.getProj());
+		model.addAttribute("trip", trip);
+		model.addAttribute("employee", e);
+		return "add_expense";
+	}
+	
 	@RequestMapping("/employee/receipts")
 	public String showReceipts() {
 		return "show_receipts";
