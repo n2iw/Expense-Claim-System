@@ -1,5 +1,6 @@
 package edu.ualbany.icis518.team6.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -30,8 +31,14 @@ public class EmployeeController {
 			Model model) {
 		Employee e = Employee.getbyEmployeeId(id);
 		Trips trip = Trips.getbyTripId(tripId);
-		List<Expense> exps =  e.getAllMyExpense();
-		//Ask jinlai to add find 
+		List<Expense> temp =  e.getAllMyExpense();
+		List<Expense> exps = new ArrayList<Expense>();
+		for (Expense expense : temp) {
+			if (expense.getTrip().getTripId() == tripId) {
+				exps.add(expense);
+			}
+		}
+
 		model.addAttribute("expenses", exps);
 		model.addAttribute("project", trip.getProj());
 		model.addAttribute("trip", trip);
