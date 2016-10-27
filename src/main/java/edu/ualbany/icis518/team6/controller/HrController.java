@@ -16,8 +16,12 @@ public class HrController {
 	@RequestMapping("/hr")
 	public String hrHomePage(Model model) {
 		Expense exp = new Expense();
-		List<Expense> expList = exp.getAllExpense();
-		model.addAttribute("expList", expList);
+		List<Expense> submittedExpList = exp.getbyStatus("Submitted");
+		List<Expense> historyExpList = exp.getbyStatus("Approved");
+		historyExpList.addAll(exp.getbyStatus("Declined"));
+		
+		model.addAttribute("expList", submittedExpList);
+		model.addAttribute("historyExpList", historyExpList);
 		return "hr";
 	}
 
@@ -34,11 +38,11 @@ public class HrController {
 		Expense exp = new Expense().getbyExpenseId(id);	
 		switch(claimAction){
 			case "Approve":
-				exp.setStatus("approved");
+				exp.setStatus("Approved");
 				exp.save();
 				break;
 			case "Decline":
-				exp.setStatus("declined");
+				exp.setStatus("Declined");
 				exp.save();
 				break;
 		}
