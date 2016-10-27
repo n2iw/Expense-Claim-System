@@ -7,7 +7,7 @@
 <div class="container">
 <div class="row"><p></p></div>
 <div class="well">
-<h4>Travel List</h4>
+<h4>Expense Claim List</h4>
 </div>
 <div class="table-responsive">
    <table class="table table-hover table-striped table-condensed">
@@ -36,4 +36,5 @@
 	</ul>
 	</div>
 </div>
+
 <%@include file="Footer.jsp" %>
