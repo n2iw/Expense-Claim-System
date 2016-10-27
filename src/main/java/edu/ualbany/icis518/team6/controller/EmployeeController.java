@@ -16,8 +16,11 @@ import edu.ualbany.icis518.team6.Trips;
 public class EmployeeController {
 	
 	@RequestMapping("/employee")
-	public String employeeHomePage(@RequestParam(value="id", defaultValue="1") int id,
+	public String employeeHomePage(@RequestParam(value="id", defaultValue="-1") int id,
 			Model model) {
+		if (id == -1) {
+			return "redirect:/employee?id=1";
+		}
 		Employee e = Employee.getbyEmployeeId(id);
 		List<Trips> trips = e.getAllMyTrips();
 		model.addAttribute("trips", trips);

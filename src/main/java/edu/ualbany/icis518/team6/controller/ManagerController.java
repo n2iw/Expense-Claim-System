@@ -14,9 +14,13 @@ import java.util.List;
 public class ManagerController {
 	
 	@RequestMapping("/manager")
-	public String managerHomePage(@RequestParam(value="id", defaultValue="1") int id,
+	public String managerHomePage(@RequestParam(value="id", defaultValue="-1") int id,
 			Model model) {
+		if (id == -1) {
+			return "redirect:/manager?id=1";
+		}
 		Employee e = Employee.getbyEmployeeId(id);
+		//TODO: Need to check if this id is a manager or not
 		List<Projects> projects = Projects.getbyProjectManager(e);
 		model.addAttribute("projects", projects);
 		return "manager";
