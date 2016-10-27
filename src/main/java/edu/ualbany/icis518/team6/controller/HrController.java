@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ualbany.icis518.team6.Expense;
+import edu.ualbany.icis518.team6.Projects;
 
 @Controller
 public class HrController {
@@ -36,10 +37,15 @@ public class HrController {
 	public String processClaim(@RequestParam(value="id", required=true) int id, 
 			@RequestParam String claimAction, Model model){
 		Expense exp = new Expense().getbyExpenseId(id);	
+		Projects project = exp.getTrip().getProj();
 		switch(claimAction){
 			case "Approve":
 				exp.setStatus("Approved");
+				int amt = exp.getTrip().getProj().getBudget() - exp.getAmount();
+				System.out.println(amt);
+				project.setBudget(amt);
 				exp.save();
+				project.save();
 				break;
 			case "Decline":
 				exp.setStatus("Declined");
