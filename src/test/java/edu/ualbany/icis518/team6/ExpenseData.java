@@ -27,7 +27,7 @@ public class ExpenseData {
 	public static void main(String[] args) throws SerialException, SQLException, IOException {
 		
 		
-/*		Employee empl=Employee.getbyEmployeeId(4);
+	 /*   Employee empl=Employee.getbyEmployeeId(4);
 		Trips trip=Trips.getbyTripId(5);
 		Trips trip2=Trips.getbyTripId(6);
 		Expense expp=new Expense(empl, trip, "food", 50, "go", "none", true);
@@ -46,10 +46,10 @@ public class ExpenseData {
 		//Expense exp=Expense.getbyExpenseId(4);
 		//System.out.println(exp);
 		
-/*		 List<Expense> ExpenseList=Expense.getAllExpense();// create a List to get the return result
+		 List<Expense> ExpenseList=Expense.getAllExpense();// create a List to get the return result
 		 Expense resExpense=ExpenseList.get(4);// find the 2nd element in the list
 		 System.out.println(resExpense);//printout the 1st userName		 
-*/	
+
 		
 		//Expense exp=new Expense(empl, trip, type, amount, status, receipt, deleteit)
 		//System.out.println(Expense.getbyEmployeeId(4).get(1));
@@ -65,14 +65,14 @@ public class ExpenseData {
 		pstmt.setBinaryStream(6, inputStream2, pic.length()); */
 
 		
-		Projects pro=Projects.getbyProjectId(3);
-		Trips trip=Trips.getbyTripId(1);
-		Employee expl1=Employee.getbyEmployeeId(3);
-		Employee expl2=Employee.getbyEmployeeId(4);
-		Expense expnew1=new Expense(expl1, trip, "food", 50, "submited", "something where", false);
+	//	Projects pro=Projects.getbyProjectId(3);
+	//	Trips trip=Trips.getbyTripId(1);
+	//	Employee expl1=Employee.getbyEmployeeId(3);
+	//	Employee expl2=Employee.getbyEmployeeId(4);
+	//	Expense expnew1=new Expense(expl1, trip, "food", 50, "submited", "something where", false);
 //		Expense expnew2=new Expense(expl1, trip, "Car", 150, "submited", "something where", false);
 //		Expense expnew3=new Expense(expl1, trip, "Hotel", 500, "submited", "something where", false);
-		expnew1.save();
+	//	expnew1.save();
 //		expnew3.save();
 //		expnew2.save();
 //		Expense expnew4=new Expense(expl2, trip, "Hotel", 400, "submited", "something where", true);

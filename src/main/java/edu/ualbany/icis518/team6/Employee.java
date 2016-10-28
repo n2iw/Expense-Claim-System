@@ -91,7 +91,7 @@ public Employee() {
 	 * @param firstname if you don't need this condition, input "%"
 	 * @param lastname if you don't need this condition, input "%"
 	 * @return a List of Employee. There are example code in EmployeeData.java
-	 * @author Jinlai
+	 * 
 	 */
 	public static List<Employee> getbyEmployeeName(String firstname, String lastname){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -112,7 +112,7 @@ public Employee() {
 
 	    List<Employee> EmployeeList=query.list();
 	    
-	    for(Employee Employee:EmployeeList){// if successfully get the Data, printout every result before return
+	    for(Employee Employee:EmployeeList){// if successful get the Data, printout every result before return
 	    	System.out.println(Employee);
 	    }
 	    
@@ -128,7 +128,7 @@ public Employee() {
 	/**
 	 * Find this employee's projects
 	 * @return A List of Project
-	 * @author Jinlai
+	 * 
 	 */
 	public List<Projects> getAllMyProjects(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -159,7 +159,7 @@ public Employee() {
 	/**
 	 * Find this employee's trips
 	 * @return A List of Trips
-	 * @author Jinlai
+	 * 
 	 */
 	public List<Trips> getAllMyTrips(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -187,7 +187,7 @@ public Employee() {
 	 * 
 	 * @param role String	 
 	 * @return a List of Employee. There are example code in EmployeeData.java
-	 * @author Jinlai
+	 * 
 	 */
 	public static List<Employee> getbyEmployeeRole(String role){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -266,7 +266,7 @@ public Employee() {
 	    Query query=session.createQuery(hql);
 	    List<Employee> EmployeeList=query.list();
 	    
-	    for(Employee Employee:EmployeeList){// if successfully get the Data, printout every result before return
+	    for(Employee Employee:EmployeeList){// if successful get the Data, printout every result before return
 	    	System.out.println(Employee);
 	    }
 	    

@@ -65,9 +65,9 @@ public class TripsData {
 */		
 
 
-/*		Date d = new Date();//when a Date is created, it always has the current time
+		/*Date d = new Date();//when a Date is created, it always has the current time
 		Trips trip = new Trips();	
-		trip.add("New Tork", d);*/
+		trip.add("New York", d);*/
 		//Trips trip=Trips.getbyTripId(8);
 		//System.out.println(trip.getDescription());
 
@@ -91,7 +91,7 @@ public class TripsData {
 
 		Projects pro=Projects.getbyProjectId(1);
 		Date dat=new Date();
-		Trips trip=new Trips(pro, dat, dat, "Expense");
+		Trips trip=new Trips(pro, dat, dat, "Trip to New York");
 		trip.save();
 		//System.out.println(trip.getAllEmployeeOfThisTrip().get(0));
 

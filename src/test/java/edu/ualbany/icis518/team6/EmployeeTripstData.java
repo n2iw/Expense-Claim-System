@@ -12,11 +12,11 @@ public class EmployeeTripstData {
 	//Instantiate details of Employee class
 
 		
-/*		Employee emplin=Employee.getbyEmployeeId(5);
+		Employee emplin=Employee.getbyEmployeeId(5);
 		Trips trip=Trips.getbyTripId(6);
 		EmployeeTrips et=new EmployeeTrips(trip, emplin);
 		et.setEmpl(Employee.getbyEmployeeId(4));
-		et.save();*/
+		et.save();
 		
 		//System.out.println(EmployeeTrips.getbyprimarykey(2));
 		

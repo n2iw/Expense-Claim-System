@@ -160,7 +160,7 @@ public class Projects {
 	/**
 	 * get All the employee objects that in this project
 	 * @return a List of Employee
-	 * @author Jinlai
+	 * 
 	 */
 	public List<Employee> getAllEmployeeOfThisProject(){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -171,7 +171,7 @@ public class Projects {
 
 	    List<Employee> EmployeeList=new LinkedList<Employee>();
 	    
-	    for(EmployeeProjects EmployeeProjects:EP){// if successfully get the Data, printout every result before return
+	    for(EmployeeProjects EmployeeProjects:EP){// if successful get the Data, printout every result before return
 	    	EmployeeList.add(EmployeeProjects.getEmpl());
 	    }
 	    
@@ -184,7 +184,7 @@ public class Projects {
 	 * 
 	 * @param projectName String
 	 * @return a List of Projects. There are example code in ProjectsData.java
-	 * @author Jinlai
+	 * 
 	 */
 	public static List<Projects> getbyProjectName(String projectName){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -209,7 +209,7 @@ public class Projects {
  * 
  * @param projectManager An Employee Object
  * @return a List of Projects. There are example code in ProjectsData.java
- * @author Jinlai
+ * 
  */
 	public static List<Projects> getbyProjectManager(Employee projectManager){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -234,7 +234,7 @@ public class Projects {
 	 * 
 	 * @param projectManagerId the pm_id, which actually is a Employee.employeeId
 	 * @return a List of Projects.
-	 * @author Jinlai
+	 *
 	 */
 	public static List<Projects> getbyProjectManagerId(int projectManagerId){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();

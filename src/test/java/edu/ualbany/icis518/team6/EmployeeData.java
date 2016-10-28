@@ -11,7 +11,7 @@ public class EmployeeData {
 	public static void main(String[] args) {
 	//Instantiate details of Employee class
 
-		Employee emp1 = new Employee("thorat","sayali", "sayali", "HR");
+		Employee emp1 = new Employee("gautam","trisha", "Te@m6", "Web Designer");
 		/*Employee emp2 = new Employee("wan2","jinlai", "meiyou", "Manager");
 		Employee emp3 = new Employee("wan3","jinlai", "meiyou", "Developer");
 		Employee emp4 = new Employee("wan4","jinlai", "meiyou", "Developer");

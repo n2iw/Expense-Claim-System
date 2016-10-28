@@ -19,8 +19,6 @@ public class EmployeeProjectData {
 
 		EmployeeProjects EP= new EmployeeProjects();
 		
-
-		
 		//EP.save();
 
 		List<EmployeeProjects> eproList=EmployeeProjects.getbyProject(proj);
@@ -37,9 +35,6 @@ public class EmployeeProjectData {
 		//eproList.
 		//EP.add(empl, pro);
 
-
-
-		
 		
 //		 List<EmployeeProjects> EmployeeProjectsList=EP.getAllEmployeeProjects();// create a List to get the return result
 //		 EmployeeProjects resEmployeeProjects=EmployeeProjectsList.get(1);// find the 2nd element in the list

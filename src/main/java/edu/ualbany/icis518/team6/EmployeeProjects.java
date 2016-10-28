@@ -83,7 +83,7 @@ public class EmployeeProjects {
 		factory.close();
 	}
 /**
- * the primary key of this EmployeeProjects table, no meaning
+ * the primary key of this EmployeeProjects table,
  * @param emplproId int
  * @return
  */
@@ -103,7 +103,7 @@ public class EmployeeProjects {
 	 * Find all the info by a EmployeeId
 	 * @param emplin An Employee Object
 	 * @return a List of EmployeeProjects
-	 * @author Jinlai
+	 * 
 	 */
 	public static List<EmployeeProjects> getbyEmployee(Employee emplin){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -128,7 +128,7 @@ public class EmployeeProjects {
 	 * Find all the info by a ProjectId
 	 * @param projin An Projects Object
 	 * @return a List of EmployeeProjects
-	 * @author Jinlai
+	 * 
 	 */
 	public static List<EmployeeProjects> getbyProject(Projects projin){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
