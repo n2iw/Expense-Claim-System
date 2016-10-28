@@ -24,11 +24,18 @@ public class ValidationController {
 			else if(emp.getRole().equals("HR"))
 				view += "hr";
 			else
-				view += "employee";
+				view += "employee?id=" + emp.getEmployeeId();
 		}
 		
-		model.addAttribute("empId", employeeId);
-		return view+".jsp";
+		System.out.println(view);
 		
+		model.addAttribute("empId", employeeId);
+		return view;
+		
+	}
+	
+	@RequestMapping("/")
+	public String homePage() {
+		return "login";
 	}
 }
