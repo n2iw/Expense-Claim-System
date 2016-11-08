@@ -301,4 +301,26 @@ public String getType() {
 	    factory.close();
 	    return ExpenseList;// return a List of the User object 
 	}
+
+	//This method will return list of expenses based on status.
+	public static List<Expense> getbyStatus(String status){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where status=? ";
+	    Query query=session.createQuery(hql);
+	    query.setString(0, status);
+	    List<Expense> ExpenseList=query.list();
+	    
+	    for(Expense Expense:ExpenseList){// if successfully get the Data, printout every result before return
+	    	System.out.println(Expense);
+	    }
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;// return a List of the User object 
+	}	
+	
 }
