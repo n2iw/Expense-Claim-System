@@ -1,3 +1,4 @@
+
 package edu.ualbany.icis518.team6.controller;
 
 import java.util.List;
@@ -5,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ualbany.icis518.team6.Expense;
@@ -14,6 +14,10 @@ import edu.ualbany.icis518.team6.Projects;
 @Controller
 public class HrController {
 	
+	/*
+	 * This method returns list of expenses with Submitted status
+	 * along with history expenses.
+	 */
 	@RequestMapping("/hr")
 	public String hrHomePage(Model model) {
 		Expense exp = new Expense();
@@ -25,7 +29,10 @@ public class HrController {
 		model.addAttribute("historyExpList", historyExpList);
 		return "hr";
 	}
-
+	
+	/*
+	 * This method returns expense details associated with specific claim id
+	 */
 	@RequestMapping("/hr/claim")
 	public String showClaim(@RequestParam(value="id", required=true) int id, Model model) {
 		Expense exp = new Expense().getbyExpenseId(id);
@@ -33,6 +40,9 @@ public class HrController {
 		return "show_claim";
 	}
 	
+	/*
+	 * This method calls model class to submit claim action in database.
+	 */
 	@RequestMapping("/hr/claim/approve")
 	public String processClaim(@RequestParam(value="id", required=true) int id, 
 			@RequestParam String claimAction, Model model){

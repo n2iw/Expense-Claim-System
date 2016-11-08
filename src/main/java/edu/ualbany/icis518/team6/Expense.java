@@ -279,6 +279,7 @@ public String getType() {
 	    return ExpenseList;// return a List of the User object 
 	}
 
+	//This method will return list of expenses based on status.
 	public static List<Expense> getbyStatus(String status){
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();

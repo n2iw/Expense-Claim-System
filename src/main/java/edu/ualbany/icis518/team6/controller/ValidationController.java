@@ -10,6 +10,9 @@ import edu.ualbany.icis518.team6.Employee;
 @Controller
 public class ValidationController {
 
+	/*
+	 * This method validates employee and redirect to landing page based on the role of employee.
+	 */
 	@RequestMapping(value = "/login")
 	public String validateEmployee(@RequestParam(value="userName") int employeeId, 
 				@RequestParam(value="password") String password, Model model) {
@@ -18,7 +21,6 @@ public class ValidationController {
 		String view = "redirect:/";
 		
 		if((employeeId == emp.getEmployeeId()) && (password.trim().equals(emp.getPassword()))){
-			//System.out.println(emp.getRole());
 			if(emp.getRole().equals("Manager"))
 				view += "manager";
 			else if(emp.getRole().equals("HR"))
@@ -27,11 +29,8 @@ public class ValidationController {
 				view += "employee?id=" + emp.getEmployeeId();
 		}
 		
-		System.out.println(view);
-		
 		model.addAttribute("empId", employeeId);
-		return view;
-		
+		return view;		
 	}
 	
 	@RequestMapping("/")
