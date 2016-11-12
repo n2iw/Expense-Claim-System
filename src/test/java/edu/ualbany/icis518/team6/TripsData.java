@@ -76,12 +76,17 @@ public class TripsData {
 		 Trips resTrips=TripsList.get(1);// find the 2nd element in the list
 		 System.out.println(resTrips);//printout the 1st userName
 */		
-
-		Projects pro=Projects.getbyProjectId(1);
-		Date dat=new Date();
-		Trips trip=new Trips(pro, dat, dat, "Expense");
-		trip.save();
-		//System.out.println(trip.getAllEmployeeOfThisTrip().get(0));
+//		Projects pro=Projects.getbyProjectId(3);
+//		Date dat=new Date();
+//		Trips trip1= new Trips(pro, dat, dat, "Albany");
+//		trip1.save();
+		
+//		Employee developer=Employee.getbyEmployeeId(3);
+//		Projects pro1=new Projects(developer, "Eat", 400);
+//		pro1.save();
+		
+//		Trips trip=Trips.getbyTripId(3);
+//		System.out.println(trip.getAllEmployeeOfThisTrip().get(0));
 
 		//trip.add("2222", dat);
 		

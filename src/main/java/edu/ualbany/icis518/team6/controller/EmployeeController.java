@@ -1,5 +1,6 @@
 package edu.ualbany.icis518.team6.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,11 @@ import edu.ualbany.icis518.team6.Trips;
 public class EmployeeController {
 	
 	@RequestMapping("/employee")
-	public String employeeHomePage(@RequestParam(value="id", defaultValue="1") int id,
+	public String employeeHomePage(@RequestParam(value="id", defaultValue="-1") int id,
 			Model model) {
+		if (id == -1) {
+			return "redirect:/employee?id=1";
+		}
 		Employee e = Employee.getbyEmployeeId(id);
 		List<Trips> trips = e.getAllMyTrips();
 		model.addAttribute("trips", trips);
@@ -30,12 +34,32 @@ public class EmployeeController {
 			Model model) {
 		Employee e = Employee.getbyEmployeeId(id);
 		Trips trip = Trips.getbyTripId(tripId);
-		List<Expense> exps =  e.getAllMyExpense();
-		//Ask jinlai to add find 
+		List<Expense> temp =  e.getAllMyExpense();
+		List<Expense> exps = new ArrayList<Expense>();
+		for (Expense expense : temp) {
+			if (expense.getTrip().getTripId() == tripId) {
+				exps.add(expense);
+			}
+		}
+
 		model.addAttribute("expenses", exps);
 		model.addAttribute("project", trip.getProj());
 		model.addAttribute("trip", trip);
 		return "employee_form";
+	}
+	
+		
+	@RequestMapping("/employee/expense/new")
+	public String newExpense(@RequestParam(value="id", required=true) int id,
+			@RequestParam(value="tripId", required=true) int tripId,
+			Model model
+			) {
+		Employee e = Employee.getbyEmployeeId(id);
+		Trips trip = Trips.getbyTripId(tripId);
+		model.addAttribute("project", trip.getProj());
+		model.addAttribute("trip", trip);
+		model.addAttribute("employee", e);
+		return "add_expense";
 	}
 	
 	@RequestMapping("/employee/receipts")

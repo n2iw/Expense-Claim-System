@@ -43,53 +43,36 @@
 										value="<%=project.getProjectId()%>">
 								</div>
 							</div>
-						</fieldset>
-					</div>
 
-					<div class="form-group">
-						<div class="col-sm-6 col-sm-offset-6">
-						 <!--<a href="/employee" class="btn btn-primaryX form-control" >Add Expense</a>-->
-							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" >Add expense</button>
-							 <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-								aria-labelledby="myModalLabel">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
-											</button>
-											<h4 class="modal-title" id="myModalLabel">Modal title</h4>
-										</div>
-										<div class="modal-body"></div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal">Close</button>
-											<button type="button" class="btn btn-primary">Save
-												changes</button>
-										</div>
-									</div>
-								</div>
-							</div>
 						</div>
+					</fieldset>
+				</div>
+			
+				<div class="form-group">
+					<div class="col-sm-6">
+					    <a href="/employee/expense/new?id=<%= request.getParameter("id") %>&tripId=<%= request.getParameter("tripId") %>" class="btn btn-primary form-control" >Add Expense</a>
+					</div>
+					<div class="col-sm-6">
+					  <p></p>
+
 					</div>
 
 
-					<%
-						List<Expense> exps = (List<Expense>) request.getAttribute("expenses");
-						for (Expense e : exps) {
-					%>
+            <% 
+               Object temp = request.getAttribute("expenses");
+               if (temp instanceof List) { 
+				   List<Expense> exps = (List<Expense>)temp;
+				   for (Expense e: exps) {
+            %>
 					<div class="well">
 						<fieldset>
-							<legend><%=e.getType()%>
-								Expenses
-							</legend>
+							<legend><%= e.getType() %> Expenses</legend>
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="food">Amount:
 								</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="food" name="food"
-										placeholder="$ Amount" value="<%=e.getAmount()%>">
+										placeholder="$ Amount" value="<%= e.getAmount() %>">
 								</div>
 							</div>
 
@@ -100,6 +83,22 @@
 										multiple>
 								</div>
 							</div>
+
+							<div class="form-group">
+
+								<label class="control-label col-sm-2">Uploaded Receipt
+									Files: </label>
+								<div class="col-sm-10">
+									<p><%= e.getReceipt() %></p>
+									<a class="btn btn-default" href="receipts">Show
+										uploaded Files</a>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				<% } %>
+			<% } %>
+
 
 							<div class="form-group">
 								<label class="control-label col-sm-2">Uploaded Receipt

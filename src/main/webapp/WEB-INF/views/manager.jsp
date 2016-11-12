@@ -5,7 +5,6 @@
 <% String title = "Project Details"; %>
 <%@include file="Header.jsp" %>
 
-<% List<Projects> projects = (List<Projects>)request.getAttribute("projects"); %>
 
 <div class="container">
 	<div class="row">
@@ -24,15 +23,30 @@
 	  		</tr>
 			</thead>
 			<tbody>
-			<% for(Projects project: projects ){ 
-			   List<Trips> trips = Trips.getbyProject(project);
+			<%
+				Object temp = request.getAttribute("projects");
+				if (temp instanceof List) {
+					List<Projects> projects = (List<Projects>) temp;
+					for (Projects project : projects) {
+							List<Trips> trips = Trips.getbyProject(project);
+
+							if (trips.size() > 0) { 
 			%>
-			    <% for(Trips trip: trips) { %>
-					<tr>
-						<td><a href="/manager/project?id=<%= project.getProjectId()%>"><%= project.getProjectName() %></a></td><td><%= trip.getDescription() %></td>
-					</tr>
+								<tr>
+									<td rowspan="<%=trips.size()%>"><a
+										href="/manager/project?id=<%=project.getProjectId()%>"><%=project.getProjectName()%></a></td>
+									<td><%=trips.get(0).getDescription()%></td>
+								</tr>
+								<%
+									for (int i = 1; i < trips.size(); i++) {
+										Trips trip = trips.get(i); %>
+										<tr>
+											<td><%=trip.getDescription()%></td>
+										</tr>
+								<% } %>
+							<% } %>
+					<% } %>
 				<% } %>
-			<% } %>
 			</tbody>
 			</table>
 		</div>

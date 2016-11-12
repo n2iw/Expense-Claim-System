@@ -9,6 +9,8 @@
 <div class="well">
 <h4>Travel List</h4>
 </div>
+
+<div class="well well-sm"><h4>Expense Claim List</h4></div>
 <div class="table-responsive">
    <table class="table table-hover table-striped table-condensed">
 	<thead>
@@ -34,6 +36,34 @@
 	    <% } %>
 	</tbody>
 	</table>
+
+	
+	<div class="well well-sm">
+		<h4>Claim History</h4>
+	</div>
+	<table class="table table-hover table-striped table-condensed">
+	<thead>
+	  <tr>
+	    <th>Expense ID</th>
+	    <th>Employee ID</th>
+	    <th>Amount</th>
+	    <th>Type of Expense</th>
+	    <th>Status</th>
+	  </tr>
+	</thead>
+	<tbody>
+	    <% for(Expense exp : (List<Expense>)request.getAttribute("historyExpList")) {%>
+			<tr>
+			<td><a href="hr/claim?id=${id}<%= exp.getExpenseId() %>"><%= exp.getExpenseId()%></td>
+			<td><%= exp.getEmpl().getEmployeeId() %></td>
+			<td><%= exp.getAmount() %>
+			<td><%= exp.getType() %>
+			<td><%= exp.getStatus() %>
+			</tr>
+	    <% } %>
+	</tbody>	
+	</table>
 	</div>
 </div>
+
 <%@include file="Footer.jsp" %>

@@ -27,7 +27,7 @@
 </div>
 <!--  <nav class="navbar navbar-default">
   <div class="container">
-  
+  <a href="/" class="btn navbar-btn navbar-right">Logout</a>
   <a href="/employee" class="btn navbar-btn navbar-right">My Expenses</a>
   <a href="/manager" class="btn navbar-btn navbar-right">Manager Page</a>
   <a href="/hr" class="btn navbar-btn navbar-right">HR Page</a>
