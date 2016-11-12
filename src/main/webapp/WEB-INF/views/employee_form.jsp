@@ -99,21 +99,8 @@
 				<% } %>
 			<% } %>
 
-
-							<div class="form-group">
-								<label class="control-label col-sm-2">Uploaded Receipt
-									Files: </label>
-								<div class="col-sm-10">
-									<p><%=e.getReceipt()%></p>
-									<a class="btn btn-default" href="receipts">Show uploaded
-										Files</a>
-								</div>
-							</div>
-						</fieldset>
-					</div>
-					<%
-						}
-					%>
+					
+</div>
 
 					<div class="form-group">
 						<div class="col-sm-offset-6 col-sm-3">
