@@ -18,6 +18,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@SuppressWarnings("unused")
 @Entity
 @Table (name = "Employee")
 public class Employee {
@@ -110,7 +111,8 @@ public Employee() {
 	    	query.setString(0, lastname);
 	    }
 
-	    List<Employee> EmployeeList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Employee> EmployeeList=query.list();
 	    
 	    for(Employee Employee:EmployeeList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Employee);
@@ -196,7 +198,8 @@ public Employee() {
 	    
 	    Query query=session.createQuery("from Employee where role=?");
 	    query.setString(0, role);
-	    List<Employee> EmployeeList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Employee> EmployeeList=query.list();
 	    
 	    for(Employee Employee:EmployeeList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Employee);
@@ -264,7 +267,8 @@ public Employee() {
 	    
 	    String hql="from Employee";
 	    Query query=session.createQuery(hql);
-	    List<Employee> EmployeeList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Employee> EmployeeList=query.list();
 	    
 	    for(Employee Employee:EmployeeList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Employee);

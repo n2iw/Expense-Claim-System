@@ -110,7 +110,8 @@ public class EmployeeTrips {
 	    String hql="from EmployeeTrips where empl_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, emplin.getEmployeeId());
-	    List<EmployeeTrips> EmployeeTripsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<EmployeeTrips> EmployeeTripsList=query.list();
 	    
 	    for(EmployeeTrips EmployeeTrips:EmployeeTripsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(EmployeeTrips);
@@ -134,7 +135,8 @@ public class EmployeeTrips {
 	    String hql="from EmployeeTrips where trip_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, tripin.getTripId());
-	    List<EmployeeTrips> EmployeeTripsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<EmployeeTrips> EmployeeTripsList=query.list();
 	    
 	    for(EmployeeTrips EmployeeTrips:EmployeeTripsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(EmployeeTrips);
@@ -152,7 +154,8 @@ public class EmployeeTrips {
 	    
 	    String hql="from EmployeeTrips";
 	    Query query=session.createQuery(hql);
-	    List<EmployeeTrips> EmployeeTripsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<EmployeeTrips> EmployeeTripsList=query.list();
 	    
 	    for(EmployeeTrips EmployeeTrips:EmployeeTripsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(EmployeeTrips);
