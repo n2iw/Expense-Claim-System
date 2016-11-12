@@ -11,13 +11,13 @@ public class EmployeeData {
 	public static void main(String[] args) {
 	//Instantiate details of Employee class
 
-		Employee emp1 = new Employee("thorat","sayali", "sayali", "HR");
-		/*Employee emp2 = new Employee("wan2","jinlai", "meiyou", "Manager");
-		Employee emp3 = new Employee("wan3","jinlai", "meiyou", "Developer");
+		//Employee emp1 = new Employee("thorat","sayali", "sayali", "HR");
+		//Employee emp2 = new Employee("wan2","jinlai", "meiyou", "HR");
+		//Employee emp3 = new Employee("wan3","jinlai", "meiyou", "Developer");
 		Employee emp4 = new Employee("wan4","jinlai", "meiyou", "Developer");
-		Employee emp5 = new Employee("wan5","jinlai", "meiyou", "Developer");
+		/*Employee emp5 = new Employee("wan5","jinlai", "meiyou", "Developer");
 		*/
-		emp1.save();
+		emp4.save();
 
 		//emp1.setPassword("youlalalala");
 		//emp1.save();

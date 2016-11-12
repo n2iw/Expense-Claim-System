@@ -8,16 +8,19 @@
 <% List<Projects> projects = (List<Projects>)request.getAttribute("projects"); %>
 
 <div class="container">
-	<div class="row"><p></p></div>
-		<div class="well">
+	<div class="row">
+		<div class="well col-sm-12">
 			<h4>Project Details</h4>
 		</div>
-
+		</div>
+		<div class="row">
+		<div class="col-sm-12">
 		<div class="table-responsive">
    			<table class="table table-hover table-striped table-condensed">
 			<thead>
 	  		<tr>
-	    		<th>Projects</th> <th>Trips</th>
+	    		<th>Projects</th>
+	    		<th>Trips</th>
 	  		</tr>
 			</thead>
 			<tbody>
@@ -33,8 +36,12 @@
 			</tbody>
 			</table>
 		</div>
-		<div>
-			<a href="/manager/project/new" class="btn btn-primary active" role="button">Add Project</a>
+		</div>
+		</div>
+		<div class="row">
+		<div class="col-sm-12">
+			<a href="/manager/project/new" class="btn btn-primary" role="button">Add Project</a>
+		</div>
 		</div>
 	</div>
 

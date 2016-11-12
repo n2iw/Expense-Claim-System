@@ -6,10 +6,13 @@
 
 
 <div class="container">
-<div class="row"><p></p></div>
-<div class="well">
-<h4>Travel List</h4>
+<div class="row">
+<div class="col-sm-offset-4 col-sm-4 col-sm-offset-4">
+<center><h3>Travel List</h3></center>
 </div>
+</div>
+<div class="row">
+<div class="col-sm-12">
 <div class="table-responsive">
    <table class="table table-hover table-striped table-condensed">
 	<thead>
@@ -25,8 +28,8 @@
 	    <% } %>
 	</tbody>
 	</table>
-	<ul>
-	</ul>
+	</div>
+	</div>
 	</div>
 </div>
 <%@include file="Footer.jsp" %>

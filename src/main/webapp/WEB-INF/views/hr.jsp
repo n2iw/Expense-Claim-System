@@ -18,6 +18,7 @@
 	    <th>Amount</th>
 	    <th>Type of Expense</th>
 	    <th>Status</th>
+	    <th>Reciept</th>
 	  </tr>
 	</thead>
 	<tbody>
@@ -25,15 +26,14 @@
 			<tr>
 			<td><a href="hr/claim?id=${id}<%= exp.getExpenseId() %>"><%= exp.getExpenseId()%></td>
 			<td><%= exp.getEmpl().getEmployeeId() %></td>
-			<td><%= exp.getAmount() %>
-			<td><%= exp.getType() %>
-			<td><%= exp.getStatus() %>
+			<td><%= exp.getAmount() %></td>
+			<td><%= exp.getType() %></td>
+			<td><%= exp.getStatus() %></td>
+			<td>image</td>
 			</tr>
 	    <% } %>
 	</tbody>
 	</table>
-	<ul>
-	</ul>
 	</div>
 </div>
 <%@include file="Footer.jsp" %>
