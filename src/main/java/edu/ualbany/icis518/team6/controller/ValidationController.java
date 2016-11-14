@@ -29,11 +29,15 @@ public class ValidationController {
 				@RequestParam(value="password") String password, Model model) {
 			
 		Employee emp = new Employee().getbyEmployeeId(employeeId);
+		//GenerateEncodedPassword encodePwd = (GenerateEncodedPassword)context.getBean(GenerateEncodedPassword.class);
+		//String encodedPassword = encodePwd.getEncodedPassword(password);
+		String encodedPassword = password;
 		String view = "redirect:/";
-		System.out.println("\n"+ password);
-
 		
-		if((employeeId == emp.getEmployeeId()) && (password.trim().equals(emp.getPassword()))){
+		if(emp.equals(null)){
+			model.addAttribute("error", "Invalid User Name");
+			return "login";
+		}else if(encodedPassword.trim().equals(emp.getPassword())){
 			if(emp.getRole().equals("Manager"))
 				view += "manager";
 			else if(emp.getRole().equals("HR"))
@@ -43,9 +47,9 @@ public class ValidationController {
 			
 			session.setAttribute("employee", emp);
 		}else{
-			
+			model.addAttribute("error", "Invalid Password");
+			return "login";
 		}
-		model.addAttribute("empId", employeeId);
 		return view;		
 	}
 	
