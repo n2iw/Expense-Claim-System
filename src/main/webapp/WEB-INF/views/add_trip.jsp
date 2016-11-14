@@ -4,9 +4,9 @@
 <%@include file="Header.jsp"%>
 
 <div class="container">
+<div class="row">
+<div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
 	<div class="row">
-		<h1 class="col-sm-8 col-sm-offset-2"></h1>
-	</div>
 		<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
 			<div class="well">
 				<fieldset>
@@ -27,7 +27,8 @@
 				</fieldset>
 			</div>
 		</form>
-		<br>
+		</div>
+		<div class="row">
 		<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
 			<div class="well">
 				<fieldset>
@@ -64,14 +65,17 @@
 				</div>
 				
 				<div class="form-group">
-					<div class="col-sm-6">
+					<div class="col-sm-offset-6 col-sm-3">
 						<a class="btn btn-primary form-control" href="/manager/trip/create" role="button">Save</a>
 					</div>
-					<div class="col-sm-6">
-						<a class="btn btn-primary form-control" href="/manager/trip/create" role="button">Submit</a>
+					<div class="col-sm-3">
+						<a class="btn btn-danger form-control" href="/manager/trip/create" role="button">Submit</a>
 					</div>
 				</div>
 			</form>
+			</div>
+</div>
+</div>
 </div>
 
 <%@include file="Footer.jsp"%>

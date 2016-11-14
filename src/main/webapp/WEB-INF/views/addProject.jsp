@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-sm-8 col-sm-offset-2">
+		<div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
 			<form class="form-horizontal" action="/manager/project/create"
 				enctype="multipart/form-data">
 				<div class="well">
@@ -24,7 +24,7 @@
 					</fieldset>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-6 col-sm-offset-6">
+					<div class="col-sm-offset-9 col-sm-3">
 						<input class="btn btn-primary form-control" type="submit"
 							value="Save">
 					</div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ page import="edu.ualbany.icis518.team6.Employee" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,22 +11,46 @@
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 
 
-<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/header_style.css">
 <title>${ title }</title>
 </head>
 <body>
-<div>
+<!-- <div class="container-fluid">
+<div class="row">
+<div class="col-sm-12">
 
-<header class="" id="header">
+<div id="header">
   <p id="header-title" class="text-center">Expense Claim System</p>
-</header>
 </div>
-
-<nav class="navbar navbar-default">
+</div>
+</div>
+</div>-->
+<div class="container">
+<div class="row first" id="header">
+    <div class="col-sm-2 first_row_column">
+      <img class="img-responsive" src="/images/wtlogo.png" alt="Application Logo" />
+    </div>
+    <div class="col-sm-8 first_row_column">
+      <h1 align="center" >Expense Claim System</h1>
+    </div>
+    <div class="col-sm-2 first_row_column"> 
+      <div class="dropdown profile_column">
+        <button class="btn dropdown-toggle" id="profile_button" type="button" data-toggle="dropdown">
+          <span id = "lblData">User</span>
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="/">Logout</a></li>
+        </ul>
+      </div>
+    </div>  
+  </div>
+</div>
+<!--  <nav class="navbar navbar-default">
   <div class="container">
-  
+  <a href="/" class="btn navbar-btn navbar-right">Logout</a>
   <a href="/employee" class="btn navbar-btn navbar-right">My Expenses</a>
   <a href="/manager" class="btn navbar-btn navbar-right">Manager Page</a>
   <a href="/hr" class="btn navbar-btn navbar-right">HR Page</a>
   </div>
-</nav>
+</nav>-->
