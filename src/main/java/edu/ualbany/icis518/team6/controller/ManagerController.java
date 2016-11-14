@@ -14,7 +14,6 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 @Controller
-@RequestMapping("/manager/{id}")
 public class ManagerController {
 	
 	private Employee getEmployee(HttpSession session, int id) {
@@ -29,10 +28,9 @@ public class ManagerController {
 		return e;
 	}
 	
-	@RequestMapping("")
-	public String managerHomePage(@PathVariable int id,
-			HttpSession session, Model model) {
-		Employee e = getEmployee(session, id);
+	@RequestMapping("/manager")
+	public String managerHomePage(HttpSession session, Model model) {
+		Employee e = getEmployee(session, 1);
 		//TODO: Need to check if this id is a manager or not
 		List<Projects> projects = Projects.getbyProjectManager(e);
 		model.addAttribute("projects", projects);
