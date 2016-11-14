@@ -17,23 +17,25 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class ManagerController {
 	
-	private Employee getEmployee(HttpSession session, int id) {
-		Employee e;
+	private Employee getEmployee(HttpSession session) {
+		Employee e = null;
 		Object obj = session.getAttribute("employee");
 		if (obj != null && obj instanceof Employee) {
 			e = (Employee)obj;
-		} else {
-			e = Employee.getbyEmployeeId(id);
-			session.setAttribute("employee", e);
-		}
+		} 
 		return e;
-	}
+	}	
 	
 	@GetMapping(value={"/manager", "/project"})
 	public String managerHomePage(HttpSession session, Model model) {
-		Employee e = getEmployee(session, 1);
-		//TODO: Need to check if this id is a manager or not
-		List<Projects> projects = Projects.getbyProjectManager(e);
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		if (!employee.getRole().equals("manager")) {
+			return "redirect:/employee";
+		}
+		List<Projects> projects = Projects.getbyProjectManager(employee);
 		model.addAttribute("projects", projects);
 		return "manager";
 	}
@@ -43,7 +45,13 @@ public class ManagerController {
 			@PathVariable int projectId,
 			HttpSession session, 
 			Model model) {
-		Employee e = getEmployee(session, id);
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		if (!employee.getRole().equals("manager")) {
+			return "redirect:/employee";
+		}
 		Projects project = Projects.getbyProjectId(projectId);
 		model.addAttribute("project", project);
 		return "project_details";
@@ -54,7 +62,13 @@ public class ManagerController {
 			@PathVariable int projectId,
 			HttpSession session,
 			Model model) {
-		Employee e = getEmployee(session, id);
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		if (!employee.getRole().equals("manager")) {
+			return "redirect:/employee";
+		}
 		return "addProject";
 	}
 	
@@ -63,7 +77,13 @@ public class ManagerController {
 			@PathVariable int projectId,
 			HttpSession session,
 			Model model) {
-		Employee e = getEmployee(session, id);
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		if (!employee.getRole().equals("manager")) {
+			return "redirect:/employee";
+		}
 		//create project and redirect user
 		return "redirect:/manager/" + id + "/project";
 	}
@@ -73,7 +93,13 @@ public class ManagerController {
 			@PathVariable int projectId,
 			HttpSession session,
 			Model model) {
-		Employee e = getEmployee(session, id);
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		if (!employee.getRole().equals("manager")) {
+			return "redirect:/employee";
+		}
 		return "add_trip";
 	}
 	
@@ -82,7 +108,13 @@ public class ManagerController {
 			@PathVariable int projectId,
 			HttpSession session,
 			Model model) {
-		Employee e = getEmployee(session, id);
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		if (!employee.getRole().equals("manager")) {
+			return "redirect:/employee";
+		}
 		//create project and redirect user
 		return "redirect:/manager/" + id;
 	}

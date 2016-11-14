@@ -21,31 +21,34 @@ import edu.ualbany.icis518.team6.Trips;
 @Controller
 @RequestMapping("/employee")
 public class EmployeeController {
-	private Employee getEmployee(HttpSession session, int id) {
-		Employee e;
+	private Employee getEmployee(HttpSession session) {
+		Employee e = null;
 		Object obj = session.getAttribute("employee");
 		if (obj != null && obj instanceof Employee) {
 			e = (Employee)obj;
-		} else {
-			e = Employee.getbyEmployeeId(id);
-			session.setAttribute("employee", e);
-		}
+		} 
 		return e;
 	}	
 
 	@GetMapping(value={"/trip", ""})
 	public String employeeHomePage( HttpSession session, Model model) {
-		Employee e = getEmployee(session, 1);
-		List<Trips> trips = e.getAllMyTrips();
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		List<Trips> trips = employee.getAllMyTrips();
 		model.addAttribute("trips", trips);
 		return "employee";
 	}
 
 	@GetMapping("/trip/{tripId}")
 	public String showTrip(@PathVariable int tripId, HttpSession session, Model model) {
-		Employee e = getEmployee(session, 1);
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
 		Trips trip = Trips.getbyTripId(tripId);
-		List<Expense> exps = Expense.getbyEmployeeAndTrip(e, trip);
+		List<Expense> exps = Expense.getbyEmployeeAndTrip(employee, trip);
 
 		model.addAttribute("expenses", exps);
 		model.addAttribute("project", trip.getProj());
@@ -62,27 +65,43 @@ public class EmployeeController {
 	
 	@PostMapping("/expense")
 	public String createExpense(@ModelAttribute Expense exp, HttpSession session, Model model) {
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
 		exp.save();
 		return "redirect:/employee/trip/" + exp.getTrip().getTripId();
 	}
 	
 	@GetMapping("/expense/{expenseId}/delete")
 	public String deleteExpense(@PathVariable int expenseId, HttpSession session, Model model) {
-		Expense e = Expense.getbyExpenseId(expenseId);
-		e.delete();
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		Expense exp = Expense.getbyExpenseId(expenseId);
+		exp.delete();
 	    return "expense";	
 	}
 
 	@GetMapping("/expense/{expenseId}/submit")
 	public String submitExpense(@PathVariable int expenseId, HttpSession session, Model model) {
-		Expense e = Expense.getbyExpenseId(expenseId);
-		e.setStatus("submitted");
-		e.save();
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		Expense exp = Expense.getbyExpenseId(expenseId);
+		exp.setStatus("submitted");
+		exp.save();
 	    return "expense";	
 	}
 		
 	@GetMapping("/expense/new")
 	public String newExpense( @RequestParam int tripId, HttpSession session, Model model) {
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
 		Trips trip = Trips.getbyTripId(tripId);
 		model.addAttribute("project", trip.getProj());
 		model.addAttribute("trip", trip);
@@ -91,6 +110,10 @@ public class EmployeeController {
 
 	@GetMapping("/expense/{expenseId}/receipts")
 	public String showReceipts( @PathVariable int expenseId, HttpSession session, Model model) {
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
 		return "show_receipts";
 	}
 }
