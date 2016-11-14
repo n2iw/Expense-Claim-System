@@ -2,6 +2,7 @@ package edu.ualbany.icis518.team6.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +29,7 @@ public class ManagerController {
 		return e;
 	}
 	
-	@RequestMapping("/manager")
+	@GetMapping(value={"/manager", "/project"})
 	public String managerHomePage(HttpSession session, Model model) {
 		Employee e = getEmployee(session, 1);
 		//TODO: Need to check if this id is a manager or not
@@ -37,7 +38,7 @@ public class ManagerController {
 		return "manager";
 	}
 
-	@RequestMapping("/project/{projectId}")
+	@GetMapping("/project/{projectId}")
 	public String showProject(@PathVariable int id,
 			@PathVariable int projectId,
 			HttpSession session, 
@@ -48,7 +49,7 @@ public class ManagerController {
 		return "project_details";
 	}
 
-	@RequestMapping("/project/new")
+	@GetMapping("/project/new")
 	public String newProject(@PathVariable int id,
 			@PathVariable int projectId,
 			HttpSession session,
@@ -57,7 +58,7 @@ public class ManagerController {
 		return "addProject";
 	}
 	
-	@RequestMapping("project/create")
+	@GetMapping("project/create")
 	public String createProject(@PathVariable int id,
 			@PathVariable int projectId,
 			HttpSession session,
@@ -67,7 +68,7 @@ public class ManagerController {
 		return "redirect:/manager/" + id + "/project";
 	}
 	
-	@RequestMapping("/trip/new")
+	@GetMapping("/trip/new")
 	public String newTrip(@PathVariable int id,
 			@PathVariable int projectId,
 			HttpSession session,
@@ -76,7 +77,7 @@ public class ManagerController {
 		return "add_trip";
 	}
 	
-	@RequestMapping("/trip/create")
+	@GetMapping("/trip/create")
 	public String createTrip(@PathVariable int id,
 			@PathVariable int projectId,
 			HttpSession session,
