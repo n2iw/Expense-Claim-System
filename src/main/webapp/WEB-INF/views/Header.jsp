@@ -33,7 +33,7 @@
     <div class="col-sm-8 first_row_column">
       <h1 align="center" >Expense Claim System</h1>
     </div>
-    <div class="col-sm-2 first_row_column"> 
+    <!-- <div class="col-sm-2 first_row_column"> 
       <div class="dropdown profile_column">
         <button class="btn dropdown-toggle" id="profile_button" type="button" data-toggle="dropdown">
           <span id = "lblData">User</span>
@@ -43,14 +43,30 @@
           <li><a href="/">Logout</a></li>
         </ul>
       </div>
-    </div>  
-  </div>
+    </div>-->  
+  
 </div>
-<!--  <nav class="navbar navbar-default">
-  <div class="container">
-  <a href="/" class="btn navbar-btn navbar-right">Logout</a>
-  <a href="/employee" class="btn navbar-btn navbar-right">My Expenses</a>
-  <a href="/manager" class="btn navbar-btn navbar-right">Manager Page</a>
-  <a href="/hr" class="btn navbar-btn navbar-right">HR Page</a>
-  </div>
-</nav>-->
+<div class="row">
+<div class="col-sm-12" id="toolbar">
+<%if ("HR".equalsIgnoreCase("HR")){ %>
+<nav class="navbar navbar-default">
+  <a href="/hr" class="btn navbar-btn">HR Page</a>
+  <a href="/employee" class="btn navbar-btn">My Expenses</a>
+  <a href="/" class="btn navbar-btn">Logout</a>
+</nav>
+<% } else if("Manager".equalsIgnoreCase("manager")){%>
+ <nav class="navbar navbar-default">
+  <a href="/manager" class="btn navbar-btn">Manager Page</a>
+  <a href="/employee" class="btn navbar-btn">My Expenses</a>
+  <a href="/" class="btn navbar-btn">Logout</a>
+</nav>
+<%}
+else{%>
+<nav class="navbar navbar-default">
+  <a href="/employee" class="btn navbar-btn">My Expenses</a>
+  <a href="/" class="btn navbar-btn">Logout</a>
+</nav>
+<%}%>
+</div>
+</div>
+</div>

@@ -1,6 +1,4 @@
-<%
-	String title = "Add Trip";
-%>
+
 <%@include file="Header.jsp"%>
 
 <div class="container">
