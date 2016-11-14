@@ -48,6 +48,7 @@ public class Employee {
 		return password;
 	}
 	public void setPassword(String password) {
+		
 		this.password = password;
 	}
 	public String getRole() {
@@ -73,7 +74,6 @@ public Employee() {
 		// TODO Auto-generated constructor stub
 	}
 /**
- * 
  * @param firstName String
  * @param lastName String
  * @param password String
@@ -88,7 +88,6 @@ public Employee() {
 	}
 	/**
 	 * e.g. (fisrtname, "%") (firstname, lastname)
-	 * 
 	 * @param firstname if you don't need this condition, input "%"
 	 * @param lastname if you don't need this condition, input "%"
 	 * @return a List of Employee. There are example code in EmployeeData.java
@@ -168,7 +167,6 @@ public Employee() {
 		Session session = factory.openSession();
 		session.beginTransaction();
 	    
-		
 		List<EmployeeTrips> ET=EmployeeTrips.getbyEmployee(this);
 		int i=ET.size();
 		int a=0;
@@ -177,14 +175,12 @@ public Employee() {
 	    for(EmployeeTrips EmployeeTrips:ET){// if successfully get the Data, printout every result before return
 	    	TripsList.add(EmployeeTrips.getTrip());
 	    }
-
 	    
 	    session.getTransaction().commit();
 	    session.close();
 	    factory.close();
 	    return TripsList;
 	}
-	
 	/**
 	 * 
 	 * @param role String	 
