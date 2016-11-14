@@ -13,9 +13,10 @@
 %>
 
 <div class="container">
+<div class="row">
+<div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
 	<div class="row">
-		<h1 class="col-sm-8 col-sm-offset-2"></h1>
-	</div>
+		<div class="col-sm-12">
 		<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
 			<div class="well">
 				<fieldset>
@@ -36,14 +37,16 @@
 					</fieldset>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-6">
+					<div class="col-sm-offset-9 col-sm-3">
 						<a class="btn btn-primary form-control" href="/manager/trip/new" role="button">Add Trip</a>
 					</div>
-					<div class="col-sm-6">
-					   <p></p>
-					</div>
+					
 				</div>
 			</form>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-sm-12">
 			<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
 				<div class="well">
 					<fieldset>
@@ -70,6 +73,10 @@
 					</fieldset>
 				</div>
 			</form>
+			</div>
+			</div>
+</div>
+</div>
 </div>
 
 <%@include file="Footer.jsp"%>
