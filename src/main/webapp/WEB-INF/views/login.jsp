@@ -1,5 +1,5 @@
 
-<% String title = "Login here"; %>
+
 <%@include file="Header.jsp"%>
 
 <div class="container">
