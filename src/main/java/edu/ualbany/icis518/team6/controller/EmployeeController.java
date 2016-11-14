@@ -29,6 +29,7 @@ public class EmployeeController {
 		}
 		return e;
 	}	
+
 	@RequestMapping(value={"/trip", ""})
 	public String employeeHomePage( HttpSession session, Model model) {
 		Employee e = getEmployee(session, 1);
