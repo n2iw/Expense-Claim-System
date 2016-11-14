@@ -55,6 +55,7 @@ public class ValidationController {
 	
 	@RequestMapping("/")
 	public String homePage() {
+		session.invalidate();
 		return "login";
 	}
 }

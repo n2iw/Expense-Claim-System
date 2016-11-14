@@ -27,6 +27,10 @@ public class HrController {
 	@RequestMapping("/hr")
 	public String hrHomePage(Model model) {
 		
+		if(session.getAttribute("employee")==null){
+			return "redirect:/";
+		}
+		
 		System.out.println(session.getAttribute("employee"));
 		Expense exp = new Expense();
 		List<Expense> submittedExpList = exp.getbyStatus("Submitted");
