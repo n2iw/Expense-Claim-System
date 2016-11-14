@@ -7,7 +7,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -30,7 +33,7 @@ public class EmployeeController {
 		return e;
 	}	
 
-	@RequestMapping(value={"/trip", ""})
+	@GetMapping(value={"/trip", ""})
 	public String employeeHomePage( HttpSession session, Model model) {
 		Employee e = getEmployee(session, 1);
 		List<Trips> trips = e.getAllMyTrips();
@@ -38,7 +41,7 @@ public class EmployeeController {
 		return "employee";
 	}
 
-	@RequestMapping("/trip/{tripId}")
+	@GetMapping("/trip/{tripId}")
 	public String showTrip(@PathVariable int tripId, HttpSession session, Model model) {
 		Employee e = getEmployee(session, 1);
 		Trips trip = Trips.getbyTripId(tripId);
@@ -50,23 +53,45 @@ public class EmployeeController {
 		return "employee_form";
 	}
 	
-	@RequestMapping("/expense/{expenseId}")
+	@GetMapping("/expense/{expenseId}")
 	public String showExpense(@PathVariable int expenseId, HttpSession session, Model model) {
 		Expense e = Expense.getbyExpenseId(expenseId);
 		model.addAttribute("expense", e);
 	    return "expense";	
 	}
 	
+	@PostMapping("/expense")
+	public String createExpense(@ModelAttribute Expense exp, HttpSession session, Model model) {
+		exp.save();
+		return "redirect:/employee/trip/" + exp.getTrip().getTripId();
+	}
+	
+	@GetMapping("/expense/{expenseId}/delete")
+	public String deleteExpense(@PathVariable int expenseId, HttpSession session, Model model) {
+		Expense e = Expense.getbyExpenseId(expenseId);
+		e.delete();
+	    return "expense";	
+	}
+
+	@GetMapping("/expense/{expenseId}/submit")
+	public String submitExpense(@PathVariable int expenseId, HttpSession session, Model model) {
+		Expense e = Expense.getbyExpenseId(expenseId);
+		e.setStatus("submitted");
+		e.save();
+	    return "expense";	
+	}
 		
-	@RequestMapping("/trip/{tripId}/expense/new")
-	public String newExpense( @PathVariable int tripId, HttpSession session, Model model) {
+	@GetMapping("/expense/new")
+	public String newExpense( @RequestParam int tripId, HttpSession session, Model model) {
 		Trips trip = Trips.getbyTripId(tripId);
 		model.addAttribute("project", trip.getProj());
 		model.addAttribute("trip", trip);
 		return "add_expense";
 	}
+
+
 	
-	@RequestMapping("/trip/{tripId}/receipts")
+	@GetMapping("/trip/{tripId}/receipts")
 	public String showReceipts( @PathVariable int tripId, HttpSession session, Model model) {
 		return "show_receipts";
 	}
