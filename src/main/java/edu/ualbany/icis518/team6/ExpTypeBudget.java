@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@SuppressWarnings("unused")
 @Entity 
 @Table (name = "ExpTypeBudget")
 public class ExpTypeBudget {
@@ -124,7 +125,8 @@ public void save() {
 	    
 	    String hql="from ExpTypeBudget";
 	    Query query=session.createQuery(hql);
-	    List<ExpTypeBudget> ExpTypeBudgetList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<ExpTypeBudget> ExpTypeBudgetList=query.list();
 	    
 	    for(ExpTypeBudget ExpTypeBudget:ExpTypeBudgetList){// if successfully get the Data, printout every result before return
 	    	System.out.println(ExpTypeBudget);

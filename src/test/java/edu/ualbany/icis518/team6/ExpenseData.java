@@ -22,6 +22,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@SuppressWarnings("unused")
 public class ExpenseData {
 
 	public static void main(String[] args) throws SerialException, SQLException, IOException {
@@ -79,7 +80,6 @@ public class ExpenseData {
 //		expnew4.save();
 //		expnew5.save();
 		
-
 		
 		
 		

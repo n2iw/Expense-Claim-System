@@ -28,6 +28,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@SuppressWarnings("unused")
 @Entity 
 @Table (name = "Expense")
 public class Expense {
@@ -60,11 +61,6 @@ public Expense() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-
-
 @Override
 public String toString() {
 	return "Expense [expenseId=" + expenseId + ", Empl=" + Empl + ", trip=" + trip + ", type=" + type + ", amount="
@@ -168,7 +164,8 @@ public String getType() {
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, tripin.getTripId());
 	    query.setInteger(1, emplin.getEmployeeId());
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -188,7 +185,8 @@ public String getType() {
 	    String hql="from Expense where trip_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, tripId);
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -208,7 +206,8 @@ public String getType() {
 	    String hql="from Expense where trip_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, tripin.getTripId());
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -228,7 +227,8 @@ public String getType() {
 	    String hql="from Expense where empl_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, emplId);
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -249,7 +249,8 @@ public String getType() {
 	    String hql="from Expense where empl_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, emplin.getEmployeeId());
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -290,7 +291,8 @@ public String getType() {
 	    
 	    String hql="from Expense";
 	    Query query=session.createQuery(hql);
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 	    
 	    for(Expense Expense:ExpenseList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Expense);
