@@ -53,12 +53,12 @@ public class EmployeeController {
 		return "employee_form";
 	}
 	
-	@GetMapping("/expense/{expenseId}")
-	public String showExpense(@PathVariable int expenseId, HttpSession session, Model model) {
-		Expense e = Expense.getbyExpenseId(expenseId);
-		model.addAttribute("expense", e);
-	    return "expense";	
-	}
+//	@GetMapping("/expense/{expenseId}")
+//	public String showExpense(@PathVariable int expenseId, HttpSession session, Model model) {
+//		Expense e = Expense.getbyExpenseId(expenseId);
+//		model.addAttribute("expense", e);
+//	    return "expense";	
+//	}
 	
 	@PostMapping("/expense")
 	public String createExpense(@ModelAttribute Expense exp, HttpSession session, Model model) {
@@ -89,10 +89,8 @@ public class EmployeeController {
 		return "add_expense";
 	}
 
-
-	
-	@GetMapping("/trip/{tripId}/receipts")
-	public String showReceipts( @PathVariable int tripId, HttpSession session, Model model) {
+	@GetMapping("/expense/{expenseId}/receipts")
+	public String showReceipts( @PathVariable int expenseId, HttpSession session, Model model) {
 		return "show_receipts";
 	}
 }
