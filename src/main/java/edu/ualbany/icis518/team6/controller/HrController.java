@@ -3,6 +3,9 @@ package edu.ualbany.icis518.team6.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +17,17 @@ import edu.ualbany.icis518.team6.Projects;
 @Controller
 public class HrController {
 	
+	@Autowired
+	private HttpSession session;
+	
 	/*
 	 * This method returns list of expenses with Submitted status
 	 * along with history expenses.
 	 */
 	@RequestMapping("/hr")
 	public String hrHomePage(Model model) {
+		
+		System.out.println(session.getAttribute("employee"));
 		Expense exp = new Expense();
 		List<Expense> submittedExpList = exp.getbyStatus("Submitted");
 		List<Expense> historyExpList = exp.getbyStatus("Approved");

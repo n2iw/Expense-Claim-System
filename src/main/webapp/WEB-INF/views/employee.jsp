@@ -25,7 +25,7 @@
 	<tbody>
 	    <% for(Trips trip : (List<Trips>)request.getAttribute("trips")) {%>
 			<tr>
-			<td><a href="employee/trip?id=${id}&tripId=<%= trip.getTripId() %>"><%= trip.getDescription() %></a></td>
+			<td><a href="employee/trip/<%= trip.getTripId() %>"><%= trip.getDescription() %></a></td>
 			</tr>
 	    <% } %>
 	</tbody>
