@@ -40,7 +40,7 @@
 			
 				<div class="form-group">
 					<div class="col-sm-offset-9 col-sm-3">
-					    <a href="/employee/expense/new?id=<%= request.getParameter("id") %>&tripId=<%= request.getParameter("tripId") %>" class="btn btn-primary form-control" >Add Expense</a>
+					    <a href="/employee/expense/new?tripId=<%= request.getParameter("tripId") %>" class="btn btn-primary form-control" >Add Expense</a>
 					</div>
 					
 				</div>
@@ -48,17 +48,25 @@
 				</div>
 				
 				
-<form class="form-horizontal" action="#" method="post"
-				enctype="multipart/form-data">
+
             <% 
                Object temp = request.getAttribute("expenses");
                if (temp instanceof List) { 
 				   List<Expense> exps = (List<Expense>)temp;
 				   for (Expense e: exps) {
             %>
+            <form class="form-horizontal" action="#" method="post"
+				enctype="multipart/form-data">
 					<div class="well">
 						<fieldset>
 							<legend><%= e.getType() %> Expenses</legend>
+							<div class="form-group">
+								<label class="control-label col-sm-2" for="food">Expense Id :
+								</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="food" name="food" value="<%= e.getExpenseId() %>">
+								</div>
+							</div>
 							<div class="form-group">
 								<label class="control-label col-sm-2" for="food">Amount:
 								</label>
@@ -87,19 +95,23 @@
 							</div>
 						</fieldset>
 					</div>
-				<% } %>
-			<% } %>
-
-				<div class="form-group">
-					<div class="col-sm-offset-6 col-sm-3">
+					<div class="form-group">
+					<div class="col-sm-offset-6 col-sm-2">
 						<input class="btn btn-primary form-control" type="submit"
 							value="Save">
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
+						<a href="#" class="btn btn-danger form-control">Delete</a>
+					</div>
+					<div class="col-sm-2">
 						<a href="#" class="btn btn-danger form-control">Submit</a>
 					</div>
 				</div>
 			</form>
+				<% } %>
+			<% } %>
+
+				
 		</div>
 	</div>
 </div>
