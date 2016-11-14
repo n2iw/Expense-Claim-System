@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ page import="edu.ualbany.icis518.team6.Employee" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,7 +28,7 @@
 <div class="container">
 <div class="row first" id="header">
     <div class="col-sm-2 first_row_column">
-      <img class="img-responsive" src="/images/wtlogo.png" alt="Wishtree Logo" />
+      <img class="img-responsive" src="/images/wtlogo.png" alt="Application Logo" />
     </div>
     <div class="col-sm-8 first_row_column">
       <h1 align="center" >Expense Claim System</h1>
