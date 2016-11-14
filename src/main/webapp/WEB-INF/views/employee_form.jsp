@@ -85,13 +85,7 @@
 								multiple>
 						</div>
 					</div>
-					<div class="form-group">
-						<label class="control-label col-sm-2" for="food">Amount: </label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="food" name="food"
-								placeholder="$ Amount" value="<%=e.getAmount()%>">
-						</div>
-					</div>
+					
 
 					<div class="form-group">
 						<label class="control-label col-sm-2">Uploaded Receipt
