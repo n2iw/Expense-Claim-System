@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
    <%@ page import="edu.ualbany.icis518.team6.Employee" %>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,9 +47,12 @@
     </div>-->  
   
 </div>
+<%Employee emp = (Employee)session.getAttribute("employee");
+String role = emp.getRole();
+%>
 <div class="row">
 <div class="col-sm-12" id="toolbar">
-<%if ("HR".equalsIgnoreCase("HR")){ %>
+<%if ( role.equalsIgnoreCase("HR")){ %>
 <nav class="navbar navbar-default">
   <a href="/hr" class="btn navbar-btn">HR Page</a>
   <a href="/employee" class="btn navbar-btn">My Expenses</a>
