@@ -5,6 +5,9 @@
 	color: #fff;
 	background-image: linear-gradient(to bottom,#563d7c 0,#6f5499 100%);
 }
+#toolbar{
+	padding : 0px;
+}
 .dropdown-menu{
 	background-color: #6f5499;
 }
