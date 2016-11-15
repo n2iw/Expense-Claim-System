@@ -12,7 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ualbany.icis518.team6.Employee;
+import edu.ualbany.icis518.team6.EmployeeTrips;
+import edu.ualbany.icis518.team6.Expense;
 import edu.ualbany.icis518.team6.Projects;
+import edu.ualbany.icis518.team6.Trips;
 
 import java.util.List;
 
@@ -56,7 +59,11 @@ public class ManagerController {
 		Projects project = Projects.getbyProjectId(projectId);
 		if (project == null) {
 			System.out.println("ManagerController: project not found for id=" + projectId);
-			return "/project";
+			return "redirect:/manager";
+		}
+		// Not my project
+		if (project.getProjectManager().getEmployeeId() != employee.getEmployeeId()) {
+			return "redirect:/manager";
 		}
 		model.addAttribute("project", project);
 		return "project_details";
@@ -71,11 +78,15 @@ public class ManagerController {
 		if (!employee.getRole().equalsIgnoreCase("manager")) {
 			return "redirect:/employee";
 		}
-		return "addProject";
+		Projects project = new Projects();
+		project.setProjectName("");
+		model.addAttribute("project", project);
+		return "project_details";
+//		return "addProject";
 	}
 	
 	@PostMapping("/project")
-	public String createProject(@RequestBody MultiValueMap<String,String> formData, HttpSession session, Model model) {
+	public String updateProject(@RequestBody MultiValueMap<String,String> formData, HttpSession session, Model model) {
 		Employee employee = getEmployee(session);
 		if (employee == null) {
 			return "redirect:/";
@@ -84,16 +95,20 @@ public class ManagerController {
 			return "redirect:/employee";
 		}
 //		System.out.println(formData);
-		Projects newProject = new Projects();
-		newProject.setProjectManager(employee);
-		newProject.setBudget(Integer.parseInt(formData.getFirst("budget")));
-		newProject.setProjectName(formData.getFirst("name"));
-		newProject.save();
+		int projectId = Integer.parseInt(formData.getFirst("projectId"));
+		Projects project = Projects.getbyProjectId(projectId);
+		if ( project == null) {
+			project = new Projects();
+		}
+		project.setProjectManager(employee);
+		project.setBudget(Integer.parseInt(formData.getFirst("budget")));
+		project.setProjectName(formData.getFirst("name"));
+		project.save();
 		return "redirect:/manager";
 	}
-	
-	@GetMapping("/trip/new")
-	public String newTrip(HttpSession session, Model model) {
+
+	@GetMapping("/project/{projectId}/delete")
+	public String deleteProject(@PathVariable int projectId, HttpSession session, Model model) {
 		Employee employee = getEmployee(session);
 		if (employee == null) {
 			return "redirect:/";
@@ -101,11 +116,63 @@ public class ManagerController {
 		if (!employee.getRole().equalsIgnoreCase("manager")) {
 			return "redirect:/employee";
 		}
-		return "add_trip";
+		Projects project = Projects.getbyProjectId(projectId);
+		if (project != null) {
+			//TODO: delete all related EmployeeTrips record
+			for (Trips trip: Trips.getbyProject(project)) {
+				for (EmployeeTrips et: EmployeeTrips.getbyTrip(trip)) {
+					et.delete();
+				}
+				for (Expense exp: Expense.getbyTrip(trip)) {
+					exp.delete();
+				}
+				trip.delete();
+			}
+			project.delete();
+		}
+		return "redirect:/manager";
+	}
+	
+	@GetMapping("/trip/{tripId}")
+	public String showTrip( @PathVariable int tripId, HttpSession session, Model model) {
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		if (!employee.getRole().equalsIgnoreCase("manager")) {
+			return "redirect:/employee";
+		}
+		Trips trip = Trips.getbyTripId(tripId);
+		if (trip == null) {
+			System.out.println("ManagerController: trip not found for id=" + tripId);
+			return "redirect:/manager";
+		}
+		model.addAttribute("trip", trip);
+		return "trip_detail";
+	}
+
+	@GetMapping("/trip/new")
+	public String newTrip(@RequestParam int projectId ,HttpSession session, Model model) {
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		if (!employee.getRole().equalsIgnoreCase("manager")) {
+			return "redirect:/employee";
+		}
+		Projects project = Projects.getbyProjectId(projectId);
+		if (project == null) {
+			return "redirect:/manager";
+		}
+		Trips trip = new Trips();
+		trip.setProj(project);
+		trip.setDescription("");
+		model.addAttribute("trip", trip);
+		return "trip_detail";
 	}
 	
 	@PostMapping("/trip")
-	public String createTrip(HttpSession session, Model model) {
+	public String createTrip(@RequestBody MultiValueMap<String,String> formData, HttpSession session, Model model) {
 		Employee employee = getEmployee(session);
 		if (employee == null) {
 			return "redirect:/";
@@ -113,7 +180,60 @@ public class ManagerController {
 		if (!employee.getRole().equalsIgnoreCase("manager")) {
 			return "redirect:/employee";
 		}
-		//create project and redirect user
-		return "redirect:/manager";
+//		System.out.println(formData);
+		int projectId = Integer.parseInt(formData.getFirst("projectId"));
+		Projects project = Projects.getbyProjectId(projectId);
+		if (project == null) {
+			return "redirect:/manager";
+		}
+		int tripId = Integer.parseInt(formData.getFirst("tripId"));
+		Trips trip = Trips.getbyTripId(tripId);
+		if ( trip == null) {
+			trip = new Trips();
+		}
+		trip.setProj(project);
+		trip.setDescription(formData.getFirst("description"));
+		trip.setStartDate(trip.StringToDate(formData.getFirst("startDate")));
+		trip.setEndDate(trip.StringToDate(formData.getFirst("endDate")));
+		trip.save();
+		for (String employeeIdString: formData.get("employeeId")) {
+			Employee emp = Employee.getbyEmployeeId(Integer.parseInt(employeeIdString));
+			if (emp == null) {
+				continue;
+			}
+			trip.setEmployee(emp);
+		}
+		return "redirect:/project/" + project.getProjectId();
+	}
+
+	@GetMapping("/trip/{tripId}/delete")
+	public String deleteTrip( @PathVariable int tripId, HttpSession session, Model model) {
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		if (!employee.getRole().equalsIgnoreCase("manager")) {
+			return "redirect:/employee";
+		}
+		Trips trip = Trips.getbyTripId(tripId);
+		if (trip == null) {
+			System.out.println("ManagerController: trip not found for id=" + tripId);
+			return "redirect:/manager";
+		}
+		Projects project = trip.getProj();
+
+		for (EmployeeTrips et: EmployeeTrips.getbyTrip(trip)) {
+			et.delete();
+		}
+		
+		for (Expense exp: Expense.getbyTrip(trip)) {
+			exp.delete();
+		}
+
+		trip.delete();
+		if (project == null) {
+			return "redirect:/manager";
+		}
+		return "redirect:/project/" + project.getProjectId();
 	}
 }
