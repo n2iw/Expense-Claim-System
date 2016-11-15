@@ -3,9 +3,14 @@
 <%@include file="Header.jsp"%>
 
 <div class="container">
-	<div class="well">
+	<div class="row well">
+	<div class="col-sm-12">
 		<form action="login" method="post" name="myForm" id="form-signin">
-			<h2 id="form-signin-heading">Login here</h2>
+			<h2 id="form-signin-heading" align="center">Login</h2>
+			<br>
+			<%if(!"string".isEmpty()){ %>
+			<p></p>
+			<%} %>
 			<div class="form-group">
 		 	  <input class="form-control" id="userName" name="userName" value="${user.userName }"
 				type="text" class="input-block-level" placeholder="username...">
@@ -22,6 +27,7 @@
 			&nbsp;&nbsp;&nbsp;&nbsp;
 			<button class="btn btn-large btn-primary" type="button">Reset</button>
 		</form>
+	</div>
 	</div>
 
 </div>
