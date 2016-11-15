@@ -32,7 +32,7 @@
 <div class="container">
 <div class="row first" id="header">
     <div class="col-sm-2 first_row_column">
-      <img class="img-responsive" src="" alt="Application Logo" />
+      <img class="img-responsive" src="/receipts/logo.jpg" alt="Application Logo" />
     </div>
     <div class="col-sm-8 first_row_column">
       <h1 align="center" >Expense Claim System</h1>
@@ -71,7 +71,7 @@ else{
   <a href="/employee" class="btn navbar-btn">My Expenses</a>
   <a href="/" class="btn navbar-btn">Logout</a>
 </nav>
-<% } else if("Manager".equalsIgnoreCase("manager")){%>
+<% } else if(role.equalsIgnoreCase("manager")){%>
  <nav class="navbar navbar-default">
   <a href="/manager" class="btn navbar-btn">Manager Page</a>
   <a href="/employee" class="btn navbar-btn">My Expenses</a>
