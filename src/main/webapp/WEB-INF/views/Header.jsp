@@ -32,7 +32,7 @@
 <div class="container">
 <div class="row first" id="header">
     <div class="col-sm-2 first_row_column">
-      <img class="img-responsive" src="/receipts/logo.png" alt="Application Logo" />
+      <img class="img-responsive" src="" alt="Application Logo" />
     </div>
     <div class="col-sm-8 first_row_column">
       <h1 align="center" >Expense Claim System</h1>

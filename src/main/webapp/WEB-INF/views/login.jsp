@@ -1,5 +1,6 @@
 
 
+<%@page import="org.springframework.ui.Model"%>
 <%@include file="Header.jsp"%>
 
 <div class="container">
@@ -8,7 +9,7 @@
 		<form action="login" method="post" name="myForm" id="form-signin">
 			<h2 id="form-signin-heading" align="center">Login</h2>
 			<br>
-			<%if(!"string".isEmpty()){ %>
+			<%if(!"".isEmpty()){ %>
 			<p></p>
 			<%} %>
 			<div class="form-group">
