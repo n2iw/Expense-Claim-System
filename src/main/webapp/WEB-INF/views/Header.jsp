@@ -10,6 +10,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
+<script src="/js/jquery-3.1.0.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
 
 
 <link rel="stylesheet" href="/css/header_style.css">
@@ -29,7 +32,7 @@
 <div class="container">
 <div class="row first" id="header">
     <div class="col-sm-2 first_row_column">
-      <img class="img-responsive" src="/images/wtlogo.png" alt="Application Logo" />
+      <img class="img-responsive" src="" alt="Application Logo" />
     </div>
     <div class="col-sm-8 first_row_column">
       <h1 align="center" >Expense Claim System</h1>

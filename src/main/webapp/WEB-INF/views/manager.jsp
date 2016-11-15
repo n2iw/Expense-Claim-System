@@ -20,7 +20,7 @@
    			<table class="table table-hover table-striped table-condensed">
 			<thead>
 	  		<tr>
-	    		<th>Projects</th> <th>Trips</th>
+	    		<th>Projects</th> <th>Budget</th> <th>Trips</th>
 	  		</tr>
 			</thead>
 			<tbody>
@@ -34,8 +34,10 @@
 							if (trips.size() > 0) { 
 			%>
 								<tr>
-									<td rowspan="<%=trips.size()%>"><a
-										href="/manager/project?id=<%=project.getProjectId()%>"><%=project.getProjectName()%></a></td>
+									<td rowspan="<%=trips.size()%>">
+										<a href="/project/<%=project.getProjectId()%>"><%=project.getProjectName()%></a>
+									</td>
+									<td rowspan="<%=trips.size()%>"> <%=project.getBudget()%> </td>
 									<td><%=trips.get(0).getDescription()%></td>
 								</tr>
 								<%
@@ -45,6 +47,12 @@
 											<td><%=trip.getDescription()%></td>
 										</tr>
 								<% } %>
+							<% } else {%>
+								<tr>
+									<td><a href="/project/<%=project.getProjectId()%>"><%=project.getProjectName()%></a></td>
+									<td> <%=project.getBudget()%> </td>
+									<td></td>
+								</tr>
 							<% } %>
 					<% } %>
 				<% } %>
@@ -55,7 +63,7 @@
 		</div>
 		<div class="row">
 		<div class="col-sm-12">
-			<a href="/manager/project/new" class="btn btn-primary active" role="button">Add Project</a>
+			<a href="/project/new" class="btn btn-primary active" role="button">Add Project</a>
 		</div>
 		</div>
 	</div>

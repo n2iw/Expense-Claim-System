@@ -33,6 +33,7 @@
 										<th>Type of Expense</th>
 										<th>Amount</th>
 										<th>Status</th>
+										<th>Receipt</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -43,6 +44,7 @@
 										<td><%=exp.getType()%>
 										<td><%=exp.getAmount()%>
 										<td><%=exp.getStatus()%>
+										<td>file</td>
 									</tr>
 								</tbody>
 							</table>
