@@ -31,10 +31,10 @@
 </div>-->
 <div class="container">
 <div class="row first" id="header">
-    <div class="col-sm-2 first_row_column">
+    <!-- <div class="col-sm-2 first_row_column">
       <img class="img-responsive" src="" alt="Application Logo" />
-    </div>
-    <div class="col-sm-8 first_row_column">
+    </div>-->
+    <div class="col-sm-12 first_row_column">
       <h1 align="center" >Expense Claim System</h1>
     </div>
     <!-- <div class="col-sm-2 first_row_column"> 
