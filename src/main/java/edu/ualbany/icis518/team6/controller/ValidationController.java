@@ -34,13 +34,13 @@ public class ValidationController {
 		String encodedPassword = password;
 		String view = "redirect:/";
 		
-		if(emp.equals(null)){
+		if(emp == null){
 			model.addAttribute("error", "Invalid User Name");
 			return "login";
 		}else if(encodedPassword.trim().equals(emp.getPassword())){
-			if(emp.getRole().equals("Manager"))
+			if(emp.getRole().equalsIgnoreCase("manager"))
 				view += "manager";
-			else if(emp.getRole().equals("HR"))
+			else if(emp.getRole().equalsIgnoreCase("HR"))
 				view += "hr";
 			else
 				view += "employee?id=" + emp.getEmployeeId();
