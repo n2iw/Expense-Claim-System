@@ -64,7 +64,7 @@ else{
   <a href="/employee" class="btn navbar-btn">My Expenses</a>
   <a href="/" class="btn navbar-btn">Logout</a>
 </nav>
-<% } else if("Manager".equalsIgnoreCase("manager")){%>
+<% } else if(role.equalsIgnoreCase("manager")){%>
  <nav class="navbar navbar-default">
   <a href="/manager" class="btn navbar-btn">Manager Page</a>
   <a href="/employee" class="btn navbar-btn">My Expenses</a>
