@@ -5,73 +5,80 @@
 
 <%@include file="Header.jsp"%>
 
-<% Projects project = (Projects)request.getAttribute("project"); 
+<% 
    Trips trip = (Trips)request.getAttribute("trip");
+   Expense exp = (Expense)request.getAttribute("expense");
 %>
 
 <div class="container">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
 			<div class="row">
-				<h4 class="col-sm-offset-2 col-sm-8 col-sm-offset-2" align="center">Expenses for "<%= trip.getDescription() %>"</h4>
 			</div>
 			<div class="row">
-			<form class="form-horizontal" action="#" method="post"
-				enctype="multipart/form-data">
+                <form class="form-horizontal" action="#" method="post">
+                    <div class="well">
+                        <fieldset>
+                            <legend>Expenses for "<%= trip.getDescription() %>"</legend>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Description</label>
+                                <div class="col-sm-10">
+                                    <input readonly name="description" type="text" class="form-control" value="<%= trip.getDescription()%>">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Date </label>
+                                <div class="col-sm-10">
+                                    <input readonly name="startDate" type="text" class="form-control" value="<%= trip.DateToString(trip.getStartDate()) %>">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Date </label>
+                                <div class="col-sm-10">
+                                    <input readonly name="endDate" type="text" class="form-control" value="<%= trip.DateToString(trip.getEndDate()) %>">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                    </div>
+                </form>
+				</div>
+			<form class="form-horizontal" action="/employee/expense" method="post" >
 				<div class="well">
 					<fieldset>
-						<legend>Project Information</legend>
-						<div class="form-group">
-							<label class="control-label col-sm-2">Project Name: </label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly value="<%= project.getProjectName() %>">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-2">Project Code: </label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly value="<%= project.getProjectId() %>">
-							</div>
-						</div>
-					</fieldset>
-				</div>
-				</form>
-				</div>
-			<form class="form-horizontal" action="#" method="post"
-				enctype="multipart/form-data">
-				<div class="well">
-					<fieldset>
-						<legend>Add New Expense</legend>
+						<legend>New Expense</legend>
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="type">Type:
 							</label>
 							<div class="col-sm-10">
-								<select class="form-control" id="type" name="type">
+								<select name="type" class="form-control" id="type" name="type">
 									<option value="Food">Food</option>
 									<option value="Travel">Travel</option>
 									<option value="Hotel">Hotel</option>
 									<option value="Misc">Misc</option>
-								</select> 
+								</select>
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="control-label col-sm-2" for="food">Amount:
+							<label class="control-label col-sm-2" for="amount">Amount:
 							</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="food" name="food"
-									placeholder="$ Amount" >
+								<input name ="amount" type="text" class="form-control" id="amount" placeholder="$ Amount" >
 							</div>
 						</div>
 
 						<div class="form-group">
-							<label class="control-label col-sm-2">Upload Receipts: </label>
+							<label class="control-label col-sm-2">Upload Receipt: </label>
 							<div class="col-sm-10">
-								<input type="file" class="form-control" name="food_receipt"
-									multiple>
+								<input type="file" class="form-control" name="receipt">
 							</div>
 						</div>
 					</fieldset>
+					<input type="hidden" name="tripId" value="<%= exp.getTrip().getTripId() %>">
+					<input type="hidden" name="expenseId" value="<%= exp.getExpenseId() %>">
 				</div>
 
 				<div class="form-group">
