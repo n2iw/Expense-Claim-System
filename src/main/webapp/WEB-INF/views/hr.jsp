@@ -33,7 +33,23 @@
 			<td><%= exp.getAmount() %>
 			<td><%= exp.getType() %>
 			<td><%= exp.getStatus() %>
-			<td>file</td>
+			<td><a href="javascript:;" id="receipt1">Receipt</a></td>
+			<div class="modal fade" id="secondModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Receipt</h4>
+      </div>
+      <div class="modal-body imagecontainer">
+        <img src="/receipts/receipt.jpg" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 			</tr>
 	    <% } %>
 	</tbody>
@@ -69,7 +85,25 @@
 			<td><%= exp.getAmount() %>
 			<td><%= exp.getType() %>
 			<td><%= exp.getStatus() %>
-			<td>file</td>
+			<td><a href="javascript:;" id="receipt">Receipt</a></td>
+			<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Receipt</h4>
+      </div>
+      <div class="modal-body">
+        <img src="/receipts/receipt.jpg" />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+			
 			</tr>
 	    <% } %>
 	</tbody>	
@@ -80,5 +114,5 @@
 </div>
 </div>
 </div>
-
+<<script src="/js/hr.js"></script>
 <%@include file="Footer.jsp" %>

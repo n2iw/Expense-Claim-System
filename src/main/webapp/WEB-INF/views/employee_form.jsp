@@ -60,42 +60,42 @@
 					<div class="well">
 						<fieldset>
 							<legend><%= e.getType() %> Expenses</legend>
-							<div class="form-group">
-								<label class="control-label col-sm-2" for="food">Expense Id :
+							<div class="form-group" id="hide">
+								<label class="control-label col-sm-4" for="food">Expense Id :
 								</label>
-								<div class="col-sm-10">
+								<div class="col-sm-8">
 									<input type="text" class="form-control" id="food" name="food" 
 									value="<%= e.getExpenseId() %>">
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="control-label col-sm-2" for="food">Amount:
+								<label class="control-label col-sm-4" for="food">Amount:
 								</label>
-								<div class="col-sm-10">
+								<div class="col-sm-8">
 									<input type="text" class="form-control" id="food" name="food"
 										placeholder="$ Amount" value="<%= e.getAmount() %>">
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-sm-2">Upload Receipts: </label>
-								<div class="col-sm-10">
+								<label class="control-label col-sm-4">Upload Receipts: </label>
+								<div class="col-sm-8">
 									<input type="file" class="form-control" name="food_receipt"
 										multiple>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-sm-2">Uploaded Receipt
+								<label class="control-label col-sm-4">Uploaded Receipt
 									Files: </label>
-								<div class="col-sm-10">
+								<div class="col-sm-8">
 									<p><%= e.getReceipt() %></p>
 									<a class="btn btn-default" href="receipts">Show
 										uploaded Files</a>
 								</div>
 							</div>
 						</fieldset>
-					</div>
+					
 					<div class="form-group">
 					<div class="col-sm-offset-6 col-sm-2">
 						<input class="btn btn-primary form-control" type="submit"
@@ -108,6 +108,8 @@
 						<a href="#" class="btn btn-danger form-control">Submit</a>
 					</div>
 				</div>
+				</div>
+				
 			</form>
 				<% } %>
 			<% } %>
@@ -116,5 +118,5 @@
 		</div>
 	</div>
 </div>
-
+<<script src="/js/employee_form.js"></script>
 <%@include file="Footer.jsp"%>
