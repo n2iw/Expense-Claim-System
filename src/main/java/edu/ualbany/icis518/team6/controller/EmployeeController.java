@@ -62,9 +62,21 @@ public class EmployeeController {
 //		model.addAttribute("expense", e);
 //	    return "expense";	
 //	}
+		
+	@GetMapping("/expense/new")
+	public String newExpense( @RequestParam int tripId, HttpSession session, Model model) {
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		Trips trip = Trips.getbyTripId(tripId);
+		model.addAttribute("project", trip.getProj());
+		model.addAttribute("trip", trip);
+		return "add_expense";
+	}
 	
 	@PostMapping("/expense")
-	public String createExpense(@ModelAttribute Expense exp, HttpSession session, Model model) {
+	public String saveExpense(@ModelAttribute Expense exp, HttpSession session, Model model) {
 		Employee employee = getEmployee(session);
 		if (employee == null) {
 			return "redirect:/";
@@ -94,18 +106,6 @@ public class EmployeeController {
 		exp.setStatus("submitted");
 		exp.save();
 	    return "expense";	
-	}
-		
-	@GetMapping("/expense/new")
-	public String newExpense( @RequestParam int tripId, HttpSession session, Model model) {
-		Employee employee = getEmployee(session);
-		if (employee == null) {
-			return "redirect:/";
-		}
-		Trips trip = Trips.getbyTripId(tripId);
-		model.addAttribute("project", trip.getProj());
-		model.addAttribute("trip", trip);
-		return "add_expense";
 	}
 
 	@GetMapping("/expense/{expenseId}/receipts")
