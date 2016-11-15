@@ -17,28 +17,35 @@
 <div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
 	<div class="row">
 		<div class="col-sm-12">
-		<form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+		<form class="form-horizontal" action="/project" method="post">
 			<div class="well">
 				<fieldset>
-					<legend>Expense Claim System</legend>
+					<legend>Project</legend>
 						<div class="form-group">
-							<label class="control-label col-sm-2">Project Name </label>
+						    <input type="hidden" name="projectId" value="<%= project.getProjectId() %>">
+							<label class="control-label col-sm-2">Name</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly value="<%= project.getProjectName() %>">
+								<input name="name" type="text" class="form-control" value="<%= project.getProjectName() %>">
 							</div>
 						</div>
 						
 						<div class="form-group">
-							<label class="control-label col-sm-2">Project Code : </label>
+							<label class="control-label col-sm-2">Budget</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" readonly value="<%= project.getProjectId() %>">
+								<input name="budget" type="text" class="form-control" value="<%= project.getBudget() %>">
 							</div>
 						</div>
 					</fieldset>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-9 col-sm-3">
-						<a class="btn btn-primary form-control" href="/manager/trip/new" role="button">Add Trip</a>
+					<div class="col-sm-offset-3 col-sm-3">
+						<a class="btn btn-primary form-control" href="/trip/new?projectId=<%= project.getProjectId() %>" role="button">Add Trip</a>
+					</div>
+					<div class="col-sm-3">
+						<a class="btn btn-danger form-control" href="/project/<%= project.getProjectId() %>/delete" role="button">Delete</a>
+					</div>
+					<div class="col-sm-3">
+						<input type="submit" class="btn btn-primary form-control" value="Save">
 					</div>
 					
 				</div>
@@ -55,16 +62,20 @@
    							<table class="table table-hover table-striped table-condensed">
 								<thead>
 	  								<tr>
-	    								<th>Employee Name</th> <th>Trip To</th> <th>Dates</th>
+	    								 <th>Description</th> <th>Employee Name</th> <th>Dates</th>
 	  								</tr>
 								</thead>
 								<% for (Trips trip: trips) {
-									Employee e = trip.getAllEmployeeOfThisTrip().get(0);
+									List<Employee> employees = trip.getAllEmployeeOfThisTrip();
+									Employee e = new Employee();
+									    if (employees.size() > 0) {
+									        e = employees.get(0);
+									    }
 									%>
 								 
 									<tbody>
 										<tr>
-											<td><%= e.getFirstName() %></td><td><%= trip.getDescription() %></td><td>From: <%= trip.DateToString(trip.getStartDate()) %> to <%= trip.DateToString(trip.getEndDate()) %></td>
+											<td><a href="/trip/<%= trip.getTripId() %>"><%= trip.getDescription() %></a></td><td><%= e.getFirstName() %></td><td>From: <%= trip.DateToString(trip.getStartDate()) %> to <%= trip.DateToString(trip.getEndDate()) %></td>
 										</tr>
 									</tbody>
 								<% } %>
