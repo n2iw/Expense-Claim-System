@@ -47,8 +47,15 @@
     </div>-->  
   
 </div>
+
 <%Employee emp = (Employee)session.getAttribute("employee");
-if(emp == null){} 
+if(emp == null){%>
+	<div class="row">
+	<div class="col-sm-12" id="toolbar">
+		<nav class="navbar navbar-default"></nav>
+	</div>
+	</div>	
+<%} 
 else{
 	
 	String role = emp.getRole();

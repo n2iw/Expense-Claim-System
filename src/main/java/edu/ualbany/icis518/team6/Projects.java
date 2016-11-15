@@ -18,6 +18,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@SuppressWarnings("unused")
 @Entity 
 @Table (name = "Projects")
 
@@ -27,6 +28,9 @@ public class Projects {
 	@Column(name = "projectId")
 	private int projectId;
 	private int budget;
+	private int currentBudget;  //added 
+	
+	
     @ManyToOne
     @JoinColumn(name="pm_id")
 	private Employee Empl;
@@ -44,6 +48,19 @@ public class Projects {
 	public void setBudget(int budget) {
 		this.budget = budget;
 	}
+	
+	//added later
+	
+	public int getCurrentBudget() {
+	    
+		return currentBudget;
+	}
+	public void setCurrentBudget(int currentBudget) {
+		
+		
+		this.currentBudget = currentBudget;
+	}
+	
 	public String getProjectName() {
 		return projectName;
 	}
@@ -60,7 +77,7 @@ public class Projects {
 
 	@Override
 	public String toString() {
-		return "Projects [projectId=" + projectId + ", budget=" + budget + ", Empl=" + Empl + ", projectName="
+		return "Projects [projectId=" + projectId + ", budget=" + budget + ", currentBudget= " + currentBudget +",Empl=" + Empl + ", projectName="
 				+ projectName + "]";
 	}
 /**
@@ -68,10 +85,12 @@ public class Projects {
  * @param projectManager An Employee Object
  * @param projectName String name of projectName
  * @param budget int
+ * @param currentBudget int  //added later
  */
-	public Projects( Employee projectManager, String projectName, int budget) {
+	public Projects( Employee projectManager, String projectName, int budget, int currentBudget) {
 		super();
 		this.budget = budget;
+		this.currentBudget =currentBudget;   //added later
 		this.Empl = projectManager;
 		this.projectName = projectName;
 	}
@@ -80,6 +99,7 @@ public class Projects {
 	 * @param projectManager An Employee Object
 	 * @param projectName String name of projectName
 	 * @param budget int
+	 * @param currentBudget int
 	 */
 	public Projects() {
 		super();
@@ -101,7 +121,7 @@ public class Projects {
 		factory.close();
 	}
 	/**
-	 * Projects{projectId, projectName, budget, pm_id}
+	 * Projects{projectId, projectName, budget, currentBudget, pm_id}
 	 * @param projectId this is the primary key for table Projects
 	 * @return A Projects Object
 	 */
@@ -138,7 +158,8 @@ public class Projects {
 	    
 	    String hql="from Projects";
 	    Query query=session.createQuery(hql);
-	    List<Projects> ProjectsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Projects> ProjectsList=query.list();
 	    
 	    for(Projects Projects:ProjectsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Projects);
@@ -194,7 +215,8 @@ public class Projects {
 	    String hql="from Projects where projectName=? ";
 	    Query query=session.createQuery(hql);
 	    query.setString(0, projectName);
-	    List<Projects> ProjectsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Projects> ProjectsList=query.list();
 	    
 	    for(Projects Projects:ProjectsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Projects);
@@ -219,7 +241,8 @@ public class Projects {
 	    String hql="from Projects where pm_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, projectManager.getEmployeeId());
-	    List<Projects> ProjectsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Projects> ProjectsList=query.list();
 	    
 	    for(Projects Projects:ProjectsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Projects);
@@ -244,7 +267,8 @@ public class Projects {
 	    String hql="from Projects where pm_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, projectManagerId);
-	    List<Projects> ProjectsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Projects> ProjectsList=query.list();
 	    
 	    for(Projects Projects:ProjectsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Projects);

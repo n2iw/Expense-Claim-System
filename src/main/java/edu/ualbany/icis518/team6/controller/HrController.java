@@ -63,9 +63,8 @@ public class HrController {
 		switch(claimAction){
 			case "Approve":
 				exp.setStatus("Approved");
-				int amt = exp.getTrip().getProj().getBudget() - exp.getAmount();
-				System.out.println(amt);
-				project.setBudget(amt);
+				int amount = exp.getTrip().getProj().getCurrentBudget() - exp.getAmount();
+				project.setCurrentBudget(amount);
 				exp.save();
 				project.save();
 				break;
