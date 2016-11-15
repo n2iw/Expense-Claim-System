@@ -41,7 +41,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Receipt</h4>
       </div>
-      <div class="modal-body imagecontainer">
+      <div class="modal-body" id="imagecontainer">
         <img src="/receipts/receipt.jpg" />
       </div>
       <div class="modal-footer">
@@ -94,7 +94,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Receipt</h4>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="imagecontainer">
         <img src="/receipts/receipt.jpg" />
       </div>
       <div class="modal-footer">
