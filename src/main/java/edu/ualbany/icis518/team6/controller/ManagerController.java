@@ -105,7 +105,7 @@ public class ManagerController {
 		project.setBudget(Integer.parseInt(formData.getFirst("budget")));
 		project.setProjectName(formData.getFirst("name"));
 		project.save();
-		return "redirect:/manager";
+		return "redirect:/project/" + project.getProjectId();
 	}
 
 	@GetMapping("/project/{projectId}/delete")

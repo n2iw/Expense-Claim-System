@@ -7,15 +7,18 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ualbany.icis518.team6.Employee;
 import edu.ualbany.icis518.team6.Expense;
+import edu.ualbany.icis518.team6.Projects;
 import edu.ualbany.icis518.team6.Trips;
 
 @Controller
@@ -51,7 +54,6 @@ public class EmployeeController {
 		List<Expense> exps = Expense.getbyEmployeeAndTrip(employee, trip);
 
 		model.addAttribute("expenses", exps);
-		model.addAttribute("project", trip.getProj());
 		model.addAttribute("trip", trip);
 		return "employee_form";
 	}
@@ -70,19 +72,44 @@ public class EmployeeController {
 			return "redirect:/";
 		}
 		Trips trip = Trips.getbyTripId(tripId);
-		model.addAttribute("project", trip.getProj());
+		if (trip == null) {
+			return "redirect:/employee";
+		}
+		Expense exp = new Expense();
+		exp.setEmpl(employee);
+		exp.setTrip(trip);
 		model.addAttribute("trip", trip);
+		model.addAttribute("expense", exp);
 		return "add_expense";
 	}
 	
 	@PostMapping("/expense")
-	public String saveExpense(@ModelAttribute Expense exp, HttpSession session, Model model) {
+	public String saveExpense(@RequestBody MultiValueMap<String,String> formData, HttpSession session, Model model) {
 		Employee employee = getEmployee(session);
 		if (employee == null) {
 			return "redirect:/";
 		}
+		int tripId = Integer.parseInt(formData.getFirst("tripId"));
+		int expenseId = Integer.parseInt(formData.getFirst("expenseId"));
+		Trips trip = Trips.getbyTripId(tripId);
+		if ( trip == null) {
+			return "redirect:/employee";
+		}
+		Expense exp = Expense.getbyExpenseId(expenseId);
+		if (exp == null) {
+			exp = new Expense();
+		}
+		exp.setTrip(trip);
+		exp.setEmpl(employee);
+		exp.setAmount(Integer.parseInt(formData.getFirst("amount")));
+		exp.setType(formData.getFirst("type"));
+		exp.setReceipt(formData.getFirst("receipt"));
+		exp.setdeleted(false);
+		if (exp.getStatus() == null) {
+			exp.setStatus("saved");
+		}
 		exp.save();
-		return "redirect:/employee/trip/" + exp.getTrip().getTripId();
+		return "redirect:/employee/trip/" + trip.getTripId();
 	}
 	
 	@GetMapping("/expense/{expenseId}/delete")
@@ -92,8 +119,12 @@ public class EmployeeController {
 			return "redirect:/";
 		}
 		Expense exp = Expense.getbyExpenseId(expenseId);
-		exp.delete();
-	    return "expense";	
+		if (exp == null) {
+			return "redirect:/employee";	
+		}
+		exp.setdeleted(true);
+		exp.save();
+		return "redirect:/employee/trip/" + exp.getTrip().getTripId();	
 	}
 
 	@GetMapping("/expense/{expenseId}/submit")
@@ -103,9 +134,12 @@ public class EmployeeController {
 			return "redirect:/";
 		}
 		Expense exp = Expense.getbyExpenseId(expenseId);
+		if (exp == null) {
+			return "redirect:/employee";	
+		}
 		exp.setStatus("submitted");
 		exp.save();
-	    return "expense";	
+		return "redirect:/employee/trip/" + exp.getTrip().getTripId();	
 	}
 
 	@GetMapping("/expense/{expenseId}/receipts")
@@ -113,6 +147,10 @@ public class EmployeeController {
 		Employee employee = getEmployee(session);
 		if (employee == null) {
 			return "redirect:/";
+		}
+		Expense exp = Expense.getbyExpenseId(expenseId);
+		if (exp != null) {
+			model.addAttribute("receip", exp.getReceipt());
 		}
 		return "show_receipts";
 	}
