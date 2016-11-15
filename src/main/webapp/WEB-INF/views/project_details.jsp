@@ -39,10 +39,14 @@
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-3 col-sm-3">
-						<a class="btn btn-primary form-control" href="/trip/new?projectId=<%= project.getProjectId() %>" role="button">Add Trip</a>
+					   <% if (project.getProjectId() != 0) { %>
+					    	<a class="btn btn-primary form-control" href="/trip/new?projectId=<%= project.getProjectId() %> " role="button">Add Trip</a>
+					   <% } %>
 					</div>
 					<div class="col-sm-3">
-						<a class="btn btn-danger form-control" href="/project/<%= project.getProjectId() %>/delete" role="button">Delete</a>
+					   <% if (project.getProjectId() != 0) { %>
+							<a class="btn btn-danger form-control" href="/project/<%= project.getProjectId() %>/delete" role="button">Delete</a>
+					   <% } %>
 					</div>
 					<div class="col-sm-3">
 						<input type="submit" class="btn btn-primary form-control" value="Save">
