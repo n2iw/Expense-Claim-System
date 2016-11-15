@@ -64,7 +64,8 @@
 								<label class="control-label col-sm-2" for="food">Expense Id :
 								</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="food" name="food" value="<%= e.getExpenseId() %>">
+									<input type="text" class="form-control" id="food" name="food" 
+									value="<%= e.getExpenseId() %>">
 								</div>
 							</div>
 							<div class="form-group">
