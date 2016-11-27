@@ -120,7 +120,9 @@
 
 						<div class="form-group">
 							<div class="col-sm-6">
+							  <% if(e.getReceipt() != null && !e.getReceipt().isEmpty()) { %>
 								<a class="" href="/employee/expense/<%= e.getExpenseId() %>/receipts">View Receipt</a>
+							 <% } %>
 							</div>
 						</div>
 						<div class="form-group">
