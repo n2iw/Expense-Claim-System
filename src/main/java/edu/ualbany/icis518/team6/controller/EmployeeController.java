@@ -25,6 +25,7 @@ import edu.ualbany.icis518.team6.util.StorageService;
 public class EmployeeController {
 
     private final StorageService storageService;
+    private final String receiptPrefix = "receipt_";
 
    @Autowired
 	public EmployeeController(StorageService storageService) {
@@ -115,8 +116,14 @@ public class EmployeeController {
 		exp.setEmpl(employee);
 		exp.setAmount(amount);
 		exp.setType(type);
-		storageService.store(file);
-		exp.setReceipt(storageService.getStoredFileName(file));
+		exp.save(); //Save to get id
+		if (file.getSize() > 0) {
+			storageService.store(file, receiptPrefix + exp.getExpenseId());
+			if (exp.getReceipt() != null && !exp.getReceipt().isEmpty()) {
+				storageService.delete(exp.getReceipt());
+			}
+			exp.setReceipt(storageService.getStoredPublicPath(file, receiptPrefix + exp.getExpenseId()));
+		}
 		exp.setdeleted(false);
 		if (exp.getStatus() == null) {
 			exp.setStatus("saved");

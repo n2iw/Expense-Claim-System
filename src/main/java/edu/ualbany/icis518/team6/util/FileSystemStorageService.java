@@ -33,19 +33,27 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
-    public String getStoredFileName(Part file) {
-    	return  publicLocationString + "/" + file.getSubmittedFileName().replaceAll("\\s+", "_");
+    public String getStoredPublicPath(Part file, String newName) {
+    	return  publicLocationString + "/" + getStoredFileName(file, newName);
+    }
+
+    @Override
+    public String getStoredFileName(Part file, String newName) {
+    	String fileName = file.getSubmittedFileName();
+    	String[] fileNameSplits = fileName.split("\\.");
+    	int extensionIndex = fileNameSplits.length - 1;
+    	return  newName + "." + fileNameSplits[extensionIndex];
     }
     
     @Override
-    public void store(Part file) {
+    public void store(Part file, String newName) {
         try {
             if (file.getSize() == 0) {
                 throw new StorageException("Failed to store empty file " + file.getSubmittedFileName());
             }
-            Files.copy(file.getInputStream(), this.rootLocation.resolve(getStoredFileName(file)));
+            Files.copy(file.getInputStream(), this.rootLocation.resolve(getStoredFileName(file, newName)));
         } catch (IOException e) {
-            throw new StorageException("Failed to store file " + getStoredFileName(file), e);
+            throw new StorageException("Failed to store file " + getStoredFileName(file, newName), e);
         }
     }
 

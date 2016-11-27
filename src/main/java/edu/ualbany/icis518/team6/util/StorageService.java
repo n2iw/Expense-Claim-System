@@ -11,9 +11,11 @@ public interface StorageService {
 
     void init();
 
-    void store(Part file);
+    void store(Part file, String newName);
     
-    String getStoredFileName(Part file);
+    String getStoredFileName(Part file, String newName);
+
+    String getStoredPublicPath(Part file, String newName);
 
     Stream<Path> loadAll();
 
