@@ -45,7 +45,7 @@
                     </div>
                 </form>
 				</div>
-			<form class="form-horizontal" action="/employee/expense" method="post" >
+			<form class="form-horizontal" action="/employee/expense" method="post" enctype="multipart/form-data">
 				<div class="well">
 					<fieldset>
 						<legend>New Expense</legend>

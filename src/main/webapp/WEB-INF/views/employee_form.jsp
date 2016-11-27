@@ -72,11 +72,11 @@
             %>
 
 			<form class="form-horizontal" action="/employee/expense"
-				method="post">
+				method="post" enctype="multipart/form-data">
 				<div class="well">
 					<fieldset>
 					   <div class="form-group">
-                            <label class="control-label col-sm-2" for="status">Amount:
+                            <label class="control-label col-sm-2" for="status">Status:
                             </label>
                             <div class="col-sm-10">
                                <% if (e.getdeleted()) { %>
@@ -119,8 +119,10 @@
 						</div>
 
 						<div class="form-group">
-							<div class="col-sm-6">
-								<a class="" href="/employee/expense/<%= e.getExpenseId() %>/receipts">View Receipt</a>
+							<div class="col-sm-2 col-sm-offset-2">
+							  <% if(e.getReceipt() != null && !e.getReceipt().isEmpty()) { %>
+								<a class="btn btn-default" href="/employee/expense/<%= e.getExpenseId() %>/receipts">View Receipt</a>
+							 <% } %>
 							</div>
 						</div>
 						<div class="form-group">
