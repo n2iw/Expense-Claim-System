@@ -69,6 +69,9 @@
                if (temp instanceof List) { 
 				   List<Expense> exps = (List<Expense>)temp;
 				   for (Expense e: exps) {
+					   if (e.getdeleted()) {
+						   continue;
+					   }
             %>
 
 			<form class="form-horizontal" action="/employee/expense"
