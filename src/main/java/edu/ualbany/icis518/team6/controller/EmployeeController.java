@@ -1,5 +1,6 @@
 package edu.ualbany.icis518.team6.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -59,7 +60,26 @@ public class EmployeeController {
 			return "redirect:/";
 		}
 		Trips trip = Trips.getbyTripId(tripId);
-		List<Expense> exps = Expense.getbyEmployeeAndTrip(employee, trip);
+		List<Expense> allExps = Expense.getbyEmployeeAndTrip(employee, trip);
+		List<Expense> exps = new ArrayList<>();
+		List<Expense> submittedExps = new ArrayList<>();
+		for (Expense exp : allExps) {
+			if (exp.getdeleted()) {
+				continue;
+			}
+			switch(exp.getStatus().toLowerCase()) {
+			case "saved":
+				exps.add(exp);
+				break;
+			case "submitted":
+			case "declined":
+			case "approved":
+				submittedExps.add(exp);
+				break;
+			default:
+				System.out.println("Wrong Expense status: " + exp.getStatus());
+			}
+		}
 
 		model.addAttribute("expenses", exps);
 		model.addAttribute("trip", trip);
@@ -126,7 +146,7 @@ public class EmployeeController {
 		}
 		exp.setdeleted(false);
 		if (exp.getStatus() == null) {
-			exp.setStatus("saved");
+			exp.setStatus("Saved");
 		}
 		exp.save();
 		return "redirect:/employee/trip/" + trip.getTripId();
@@ -176,7 +196,7 @@ public class EmployeeController {
 		if (exp == null) {
 			return "redirect:/employee";	
 		}
-		exp.setStatus("submitted");
+		exp.setStatus("Submitted");
 		exp.save();
 		return "redirect:/employee/trip/" + exp.getTrip().getTripId();	
 	}
