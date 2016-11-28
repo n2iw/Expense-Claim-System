@@ -62,19 +62,19 @@ public class EmployeeController {
 		Trips trip = Trips.getbyTripId(tripId);
 		List<Expense> allExps = Expense.getbyEmployeeAndTrip(employee, trip);
 		List<Expense> exps = new ArrayList<>();
-		List<Expense> submittedExps = new ArrayList<>();
+		List<Expense> readonlyExps = new ArrayList<>();
 		for (Expense exp : allExps) {
 			if (exp.getdeleted()) {
 				continue;
 			}
 			switch(exp.getStatus().toLowerCase()) {
 			case "saved":
+			case "declined":
 				exps.add(exp);
 				break;
 			case "submitted":
-			case "declined":
 			case "approved":
-				submittedExps.add(exp);
+				readonlyExps.add(exp);
 				break;
 			default:
 				System.out.println("Wrong Expense status: " + exp.getStatus());
@@ -82,17 +82,11 @@ public class EmployeeController {
 		}
 
 		model.addAttribute("expenses", exps);
+		model.addAttribute("readonlyExpenses", readonlyExps);
 		model.addAttribute("trip", trip);
 		return "employee_form";
 	}
 	
-//	@GetMapping("/expense/{expenseId}")
-//	public String showExpense(@PathVariable int expenseId, HttpSession session, Model model) {
-//		Expense e = Expense.getbyExpenseId(expenseId);
-//		model.addAttribute("expense", e);
-//	    return "expense";	
-//	}
-		
 	@GetMapping("/expense/new")
 	public String newExpense( @RequestParam int tripId, HttpSession session, Model model) {
 		Employee employee = getEmployee(session);
