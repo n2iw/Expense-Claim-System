@@ -16,10 +16,11 @@
 			<div class="row">
 			</div>
 			<div class="row">
+			    <!-- Trip information -->
                 <form class="form-horizontal" action="#" method="post">
                     <div class="well">
                         <fieldset>
-                            <legend>Expenses for "<%= trip.getDescription() %>"</legend>
+                            <legend>Trip Information</legend>
                             <div class="form-group">
                                 <label class="control-label col-sm-2">Description</label>
                                 <div class="col-sm-10">
@@ -45,6 +46,7 @@
                     </div>
                 </form>
 				</div>
+			<!-- Expense form -->
 			<form class="form-horizontal" action="/employee/expense" method="post" enctype="multipart/form-data">
 				<div class="well">
 					<fieldset>
@@ -70,6 +72,13 @@
 							</div>
 						</div>
 
+					 <% if(exp.getReceipt() != null && !exp.getReceipt().isEmpty()) { %>
+                        <div class="form-group">
+                            <div class="col-sm-2 col-sm-offset-2">
+                                <a class="btn btn-sm btn-info" href="/employee/expense/<%= exp.getExpenseId() %>/receipts">Receipt</a>
+                            </div>
+                        </div>
+					 <% } else { %>
                         <div class="form-group">
                             <label class="control-label col-sm-2">Upload Receipt: </label>
                             <div class="col-sm-10">
@@ -77,14 +86,8 @@
                                     value="<%= exp.getReceipt() %>">
                             </div>
                         </div>
+					<% } %>
 
-                        <div class="form-group">
-                            <div class="col-sm-2 col-sm-offset-2">
-                              <% if(exp.getReceipt() != null && !exp.getReceipt().isEmpty()) { %>
-                                <a class="btn btn-default" href="/employee/expense/<%= exp.getExpenseId() %>/receipts">View Receipt</a>
-                             <% } %>
-                            </div>
-                        </div>
 					</fieldset>
 					<input type="hidden" name="tripId" value="<%= exp.getTrip().getTripId() %>">
 					<input type="hidden" name="expenseId" value="<%= exp.getExpenseId() %>">
