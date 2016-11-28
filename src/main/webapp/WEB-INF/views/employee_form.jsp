@@ -33,7 +33,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-sm-2">Date </label>
+								<label class="control-label col-sm-2">Start Date</label>
 								<div class="col-sm-10">
 									<input readonly name="startDate" type="text"
 										class="form-control"
@@ -42,7 +42,7 @@
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-sm-2">Date </label>
+								<label class="control-label col-sm-2">End Date</label>
 								<div class="col-sm-10">
 									<input readonly name="endDate" type="text" class="form-control"
 										value="<%= trip.DateToString(trip.getEndDate()) %>">
