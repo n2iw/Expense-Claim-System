@@ -156,9 +156,7 @@ public class EmployeeController {
 			exp.setReceipt(storageService.getStoredPublicPath(file, receiptPrefix + exp.getExpenseId()));
 		}
 		exp.setdeleted(false);
-		if (exp.getStatus() == null) {
-			exp.setStatus("Saved");
-		}
+		exp.setStatus("Saved");
 		exp.save();
 		return "redirect:/employee/trip/" + trip.getTripId();
 	}
@@ -194,7 +192,7 @@ public class EmployeeController {
 
 		exp.setReceipt("");
 		exp.save();
-		return "redirect:/employee/trip/" + exp.getTrip().getTripId();	
+		return "redirect:/employee/expense/" + exp.getExpenseId() + "/edit";	
 	}
 
 	@GetMapping("/expense/{expenseId}/submit")
