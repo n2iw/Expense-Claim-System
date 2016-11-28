@@ -46,7 +46,9 @@ public class Expense {
 	private int amount ;	
 	private String status;
 	private String receipt;
-	private String comment; //added later by mili
+	private String hr_comment; //added later by mili
+	private String emp_notes;
+	
 	private boolean deleted;
 	/**
 	 * without expenseId
@@ -55,7 +57,8 @@ public class Expense {
 	 * @param amount int
 	 * @param type String
 	 * @param receipt String of file path
-	 * @param comment String 
+	 * @param hr_comment String 
+	 * @param emp_notes
 	 * @param status String, e.g. Approved, Rejected..
 	 * @param deleteit true or false
 	 */	
@@ -66,7 +69,7 @@ public Expense() {
 @Override
 public String toString() {
 	return "Expense [expenseId=" + expenseId + ", Empl=" + Empl + ", trip=" + trip + ", type=" + type + ", amount="
-			+ amount + ", status=" + status +", comment=" + comment + ", receipt=" + receipt + ", deleted=" + deleted + "]";
+			+ amount + ", status=" + status +", hr_comment=" + hr_comment + ",emp_notes=" + emp_notes + " ,receipt=" + receipt + ", deleted=" + deleted + "]";
 }
 /**
  * without expenseId
@@ -78,7 +81,7 @@ public String toString() {
  * @param status String, e.g. Approved, Rejected..
  * @param deleteit true or false
  */	
-public Expense(Employee empl, Trips trip, String type, int amount, String status, String comment,String receipt, boolean deleted) {
+public Expense(Employee empl, Trips trip, String type, int amount, String status, String hr_comment,String emp_notes,String receipt, boolean deleted) {
 	super();
 	Empl = empl;
 	this.trip = trip;
@@ -86,7 +89,8 @@ public Expense(Employee empl, Trips trip, String type, int amount, String status
 	this.amount = amount;
 	this.status = status;
 	this.receipt = receipt;
-	this.comment = comment;
+	this.hr_comment = hr_comment;
+	this.emp_notes = emp_notes;
 	this.deleted = deleted;
 }
 public String getType() {
@@ -136,12 +140,24 @@ public String getType() {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	public String getComment() {
-		return comment;
+	//Added by mili
+	public String getHr_comment() {
+		return hr_comment;
 	}
-	public void setComment(String comment ) {
-		this.comment = comment;
+	public void setHr_comment(String hr_comment ) {
+		this.hr_comment = hr_comment;
 	}
+	
+	public String getEmp_notes() {
+		return emp_notes;
+	}
+	public void setEmp_notes(String emp_notes ) {
+		this.emp_notes = emp_notes;
+	}
+	
+	
+	
+	
 	
 	public void save() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();

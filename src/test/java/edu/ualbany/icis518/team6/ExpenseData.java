@@ -69,7 +69,7 @@ public class ExpenseData {
 		Trips trip=Trips.getbyTripId(1);
 		Employee expl1=Employee.getbyEmployeeId(3);
 		Employee expl2=Employee.getbyEmployeeId(4);
-		Expense expnew1=new Expense(expl1, trip, "food", 50, "submited", "something where","Amount exceeds expense limit", false);
+		Expense expnew1=new Expense(expl1, trip, "food", 50, "submited", "something where","Amount exceeds expense limit","Two persons amount together, Check Receipt", false);
 //		Expense expnew2=new Expense(expl1, trip, "Car", 150, "submited", "something where", false);
 //		Expense expnew3=new Expense(expl1, trip, "Hotel", 500, "submited", "something where", false);
 		expnew1.save();
