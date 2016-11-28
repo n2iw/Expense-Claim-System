@@ -106,9 +106,26 @@ public class EmployeeController {
 		Expense exp = new Expense();
 		exp.setEmpl(employee);
 		exp.setTrip(trip);
+		exp.setType("Food");
 		model.addAttribute("trip", trip);
 		model.addAttribute("expense", exp);
-		return "add_expense";
+		return "expense_form";
+	}
+
+	@GetMapping("/expense/{expenseId}/edit")
+	public String editExpense( @PathVariable int expenseId, HttpSession session, Model model) {
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		Expense exp = Expense.getbyExpenseId(expenseId);
+		if (exp == null) {
+			return "redirect:/employee";	
+		}
+		Trips trip = exp.getTrip();
+		model.addAttribute("trip", trip);
+		model.addAttribute("expense", exp);
+		return "expense_form";
 	}
 	
 	@PostMapping("/expense")
