@@ -18,11 +18,12 @@
 				<h4 class="col-sm-offset-2 col-sm-8 col-sm-offset-2" align="center"></h4>
 			</div>
 			<div class="row">
+		        <!-- Trip information -->
 				<form class="form-horizontal" action="#" method="post">
 					<div class="well">
 						<fieldset>
 							<legend>
-								Expenses for "<%= trip.getDescription() %>"
+								Trip Information
 							</legend>
 							<div class="form-group">
 								<label class="control-label col-sm-2">Description</label>
@@ -63,95 +64,76 @@
 			</div>
 
 
-
+			<!-- Editable expenses -->
+			<div class="table-responsive">
+			<table class="table table-striped">
+				<caption>Current Expenses</caption>
+				<thead><tr>
+					<th>Type</th> <th>Amount</th> <th>Receipt</th> <th>Status</th> <th>Action</th> 
+				</tr></thead>
+				<tbody>
+				<% 
+				   Object temp = request.getAttribute("expenses");
+				   if (temp instanceof List) { 
+					   List<Expense> exps = (List<Expense>)temp;
+					   for (Expense e: exps) {
+				%>
+				<tr class="<%= e.getStatus().equalsIgnoreCase("declined")? "danger" : "" %>">
+					<td><%= e.getType() %></td>
+					<td><%= e.getAmount() %></td>
+					<td>
+					  <% if(e.getReceipt() != null && !e.getReceipt().isEmpty()) { %>
+						<a href="/employee/expense/<%= e.getExpenseId() %>/receipts">Receipt</a>
+					  <% } %>
+					 </td>
+					<td><%= e.getStatus() %></td>
+					<td>
+						<a href="/employee/expense/<%= e.getExpenseId() %>/edit"
+							class="btn btn-primary btn-sm">Edit</a>
+						<a href="/employee/expense/<%= e.getExpenseId() %>/delete"
+							class="btn btn-danger btn-sm">Delete</a>
+						<% if (e.getStatus().equalsIgnoreCase("saved")){ %>
+						<a href="/employee/expense/<%= e.getExpenseId() %>/submit"
+							class="btn btn-success btn-sm">Submit</a>
+						<% } %>
+					</td>
+				</tr>
+				<% } %>
+            <% } %>
+			</tbody>
+			</table>
+			</div><!-- table-responsive -->
+			
+			
+			<!-- Read only expenses -->
+			<div class="table-responsive">
+			<table class="table table-striped">
+				<caption>History Expenses</caption>
+				<thead><tr>
+					<th>Type</th> <th>Amount</th> <th>Receipt</th> <th>Status</th>
+				</tr></thead>
+			<tbody>
 			<% 
-               Object temp = request.getAttribute("expenses");
-               if (temp instanceof List) { 
-				   List<Expense> exps = (List<Expense>)temp;
+               Object readonlyExpenses = request.getAttribute("readonlyExpenses");
+               if (readonlyExpenses instanceof List) { 
+				   List<Expense> exps = (List<Expense>)readonlyExpenses;
 				   for (Expense e: exps) {
             %>
-
-			<form class="form-horizontal" action="/employee/expense"
-				method="post" enctype="multipart/form-data">
-				<div class="well">
-					<fieldset>
-					   <div class="form-group">
-                            <label class="control-label col-sm-2" for="status">Status:
-                            </label>
-                            <div class="col-sm-10">
-                               <% if (e.getdeleted()) { %>
-									<input readonly name="status" type="text" class="form-control"
-										id="status" value="Deleted">
-                               <% } else { %>
-                                <input readonly name="status" type="text" class="form-control"
-                                    id="status" value="<%= e.getStatus() %>">
-								<% } %>
-                            </div>
-                        </div>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="type">Type: </label>
-							<div class="col-sm-10">
-								<select name="type" class="form-control" id="type" name="type">
-								    <option value="<%= e.getType() %>" selected><%= e.getType() %></option>
-									<option value="Food">Food</option>
-									<option value="Travel">Travel</option>
-									<option value="Hotel">Hotel</option>
-									<option value="Misc">Misc</option>
-								</select>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="amount">Amount:
-							</label>
-							<div class="col-sm-10">
-								<input name="amount" type="text" class="form-control"
-									id="amount" value="<%= e.getAmount() %>">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label class="control-label col-sm-2">Upload Receipt: </label>
-							<div class="col-sm-10">
-								<input type="file" class="form-control" name="receipt"
-									value="<%= e.getReceipt() %>">
-							</div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-sm-2 col-sm-offset-2">
-							  <% if(e.getReceipt() != null && !e.getReceipt().isEmpty()) { %>
-								<a class="btn btn-default" href="/employee/expense/<%= e.getExpenseId() %>/receipts">View Receipt</a>
-							 <% } %>
-							</div>
-						</div>
-						<div class="form-group">
-						   <% if (e.getStatus().equalsIgnoreCase("saved")
-								   && !e.getdeleted()) { %>
-								<div class="col-sm-offset-6 col-sm-2">
-									<input class="btn btn-primary form-control" type="submit" value="Save">
-								</div>
-								<div class="col-sm-2">
-									<a href="/employee/expense/<%= e.getExpenseId() %>/delete"
-										class="btn btn-danger form-control">Delete</a>
-								</div>
-								<div class="col-sm-2">
-									<a href="/employee/expense/<%= e.getExpenseId() %>/submit"
-										class="btn btn-danger form-control">Submit</a>
-								</div>
-						   <% } %>
-						</div>
-					</fieldset>
-					<input type="hidden" name="tripId" value="<%= e.getTrip().getTripId() %>">
-					<input type="hidden" name="expenseId" value="<%= e.getExpenseId() %>">
-				</div>
-
-			</form>
-
-			<% } %>
-			<% } %>
-
-
+				<tr class="<%= e.getStatus().equalsIgnoreCase("approved")? "success" : ""  %>">
+					<td><%= e.getType() %></td>
+					<td><%= e.getAmount() %></td>
+					<td>
+					  <% if(e.getReceipt() != null && !e.getReceipt().isEmpty()) { %>
+						<a href="/employee/expense/<%= e.getExpenseId() %>/receipts">Receipt</a>
+					  <% } %>
+					 </td>
+					<td><%= e.getStatus() %></td>
+				</tr>
+				<% } %>
+            <% } %>
+			</tbody>
+			</table>
+			</div><!-- table-responsive -->
 		</div>
 	</div>
 </div>
