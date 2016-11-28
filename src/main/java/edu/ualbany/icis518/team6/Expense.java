@@ -46,6 +46,7 @@ public class Expense {
 	private int amount ;	
 	private String status;
 	private String receipt;
+	private String comment; //added later by mili
 	private boolean deleted;
 	/**
 	 * without expenseId
@@ -54,17 +55,18 @@ public class Expense {
 	 * @param amount int
 	 * @param type String
 	 * @param receipt String of file path
+	 * @param comment String 
 	 * @param status String, e.g. Approved, Rejected..
 	 * @param deleteit true or false
 	 */	
 public Expense() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 @Override
 public String toString() {
 	return "Expense [expenseId=" + expenseId + ", Empl=" + Empl + ", trip=" + trip + ", type=" + type + ", amount="
-			+ amount + ", status=" + status + ", receipt=" + receipt + ", deleted=" + deleted + "]";
+			+ amount + ", status=" + status +", comment=" + comment + ", receipt=" + receipt + ", deleted=" + deleted + "]";
 }
 /**
  * without expenseId
@@ -76,7 +78,7 @@ public String toString() {
  * @param status String, e.g. Approved, Rejected..
  * @param deleteit true or false
  */	
-public Expense(Employee empl, Trips trip, String type, int amount, String status, String receipt, boolean deleted) {
+public Expense(Employee empl, Trips trip, String type, int amount, String status, String comment,String receipt, boolean deleted) {
 	super();
 	Empl = empl;
 	this.trip = trip;
@@ -84,6 +86,7 @@ public Expense(Employee empl, Trips trip, String type, int amount, String status
 	this.amount = amount;
 	this.status = status;
 	this.receipt = receipt;
+	this.comment = comment;
 	this.deleted = deleted;
 }
 public String getType() {
@@ -122,6 +125,7 @@ public String getType() {
 	public void setReceipt(String receipt) {
 		this.receipt = receipt;
 	}
+	
 	public int getExpenseId() {
 		return expenseId;
 	}
@@ -132,9 +136,13 @@ public String getType() {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment ) {
+		this.comment = comment;
+	}
 	
-	
-
 	public void save() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();

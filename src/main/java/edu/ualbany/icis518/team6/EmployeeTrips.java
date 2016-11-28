@@ -24,6 +24,7 @@ public class EmployeeTrips {
 	private int empltripId;	
 	@ManyToOne
     @JoinColumn(name="trip_id")
+	@Id
 	private Trips etrip;
     @ManyToOne
     @JoinColumn(name="empl_id")
@@ -67,7 +68,7 @@ public class EmployeeTrips {
 	 */
 	public EmployeeTrips() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
 	public void save() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
