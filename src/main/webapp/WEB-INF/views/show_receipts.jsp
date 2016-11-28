@@ -6,14 +6,17 @@
 %>
 <div class="container">
   <div class="row">
-    <h4 class="col-sm-12">Receipt uploaded</h4>
+    <h4 class="col-sm-12">Uploaded Receipt</h4>
   </div>
     <div class="row">
       <div class="col-sm-10">
         <img class="img-thumbnail" src="<%= receipt %>">
       </div>
       <div class="col-sm-2">
-        <a class="btn btn-danger" href="/employee/expense/<%= exp.getExpenseId() %>/delete_receipt">Delete</a>
+        <% if (exp.getStatus().equalsIgnoreCase("saved")
+        		|| exp.getStatus().equalsIgnoreCase("declined")) { %>
+			<a class="btn btn-danger" href="/employee/expense/<%= exp.getExpenseId() %>/delete_receipt">Delete</a>
+        <% } %>
       </div>
     </div>
 </div>
