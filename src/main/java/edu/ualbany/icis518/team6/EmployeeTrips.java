@@ -24,13 +24,11 @@ public class EmployeeTrips {
 	private int empltripId;	
 	@ManyToOne
     @JoinColumn(name="trip_id")
-	@Id
 	private Trips etrip;
     @ManyToOne
     @JoinColumn(name="empl_id")
 	private Employee Empl;
     
-
 	public int getEmpltripId() {
 		return empltripId;
 	}
