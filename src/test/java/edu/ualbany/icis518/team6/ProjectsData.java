@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@SuppressWarnings("unused")
 public class ProjectsData {
 
 	public static void main(String[] args) {
@@ -25,13 +26,14 @@ public class ProjectsData {
 //		session.save(prj);
 //		session.getTransaction().commit();
 //		assert(true);
-/*		Employee emp = new Employee(); 
+	   /* Employee emp = new Employee(); 
 		emp=emp.getbyEmployeeId(2);
-		Projects pnew=new Projects(emp, "Sys2", 4000);
-		pnew.save();*/
+		
+		Projects pnew=new Projects(emp, "Sys2", 4000, 0);
+		pnew.save();
 		
 		Projects pro=Projects.getbyProjectId(2);
-		System.out.println(pro.getAllEmployeeOfThisProject().get(3));
+		System.out.println(pro.getAllEmployeeOfThisProject().get(3));*/
 
 //		pnew.save();
 //		pnew.setBudget(10000);

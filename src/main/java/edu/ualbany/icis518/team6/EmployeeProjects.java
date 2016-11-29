@@ -66,7 +66,7 @@ public class EmployeeProjects {
 	 */
 	public EmployeeProjects() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
 	public void save() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
@@ -113,7 +113,8 @@ public class EmployeeProjects {
 	    String hql="from EmployeeProjects where empl_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, emplin.getEmployeeId());
-	    List<EmployeeProjects> EmployeeProjectsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<EmployeeProjects> EmployeeProjectsList=query.list();
 	    
 	    for(EmployeeProjects EmployeeProjects:EmployeeProjectsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(EmployeeProjects);
@@ -138,7 +139,8 @@ public class EmployeeProjects {
 	    String hql="from EmployeeProjects where project_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, projin.getProjectId());
-	    List<EmployeeProjects> EmployeeProjectsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<EmployeeProjects> EmployeeProjectsList=query.list();
 	    
 	    for(EmployeeProjects EmployeeProjects:EmployeeProjectsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(EmployeeProjects);
@@ -157,7 +159,8 @@ public class EmployeeProjects {
 	    
 	    String hql="from EmployeeProjects";
 	    Query query=session.createQuery(hql);
-	    List<EmployeeProjects> EmployeeProjectsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<EmployeeProjects> EmployeeProjectsList=query.list();
 	    
 	    for(EmployeeProjects EmployeeProjects:EmployeeProjectsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(EmployeeProjects);

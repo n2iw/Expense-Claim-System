@@ -27,6 +27,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@SuppressWarnings("unused")
 @Entity 
 @Table (name = "Trips")
 public class Trips {
@@ -248,7 +249,8 @@ public Projects getProj() {
 	    String hql="from Trips where proj_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, projin.getProjectId());
-	    List<Trips> TripsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Trips> TripsList=query.list();
 	    
 	    for(Trips Trips:TripsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Trips);
@@ -280,7 +282,8 @@ public Projects getProj() {
 	    String hql="from Trips where proj_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, projectId);
-	    List<Trips> TripsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Trips> TripsList=query.list();
 	    
 	    for(Trips Trips:TripsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Trips);
@@ -298,7 +301,8 @@ public Projects getProj() {
 	    
 	    String hql="from Trips";
 	    Query query=session.createQuery(hql);
-	    List<Trips> TripsList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Trips> TripsList=query.list();
 	    
 	    for(Trips Trips:TripsList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Trips);
