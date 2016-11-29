@@ -50,6 +50,7 @@
 			<form class="form-horizontal" action="/employee/expense" method="post" enctype="multipart/form-data">
 				<div class="well">
 					<fieldset>
+                    <!-- type -->
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="type">Type:
 							</label>
@@ -64,6 +65,7 @@
 							</div>
 						</div>
 
+                    <!-- Amount -->
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="amount">Amount:
 							</label>
@@ -72,6 +74,7 @@
 							</div>
 						</div>
 
+					<!-- Receipt -->
 					 <% if(exp.getReceipt() != null && !exp.getReceipt().isEmpty()) { %>
                         <div class="form-group">
                             <div class="col-sm-2 col-sm-offset-2">
@@ -80,13 +83,29 @@
                         </div>
 					 <% } else { %>
                         <div class="form-group">
-                            <label class="control-label col-sm-2">Upload Receipt: </label>
+                            <label class="control-label col-sm-2" for="receipt">Upload Receipt: </label>
                             <div class="col-sm-10">
                                 <input type="file" class="form-control" name="receipt"
                                     value="<%= exp.getReceipt() %>">
                             </div>
                         </div>
 					<% } %>
+					<!-- Notes -->
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="notes">Note:
+							</label>
+							<div class="col-sm-10">
+								<textarea name ="notes" rows="4" cols="50" class="form-control" id="notes"><%= exp.getEmp_notes() == null ? "" : exp.getEmp_notes() %></textarea>
+							</div>
+						</div>
+					<!-- HR Comments -->
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="comments">HR Comment:
+							</label>
+							<div class="col-sm-10">
+								<textarea readonly name ="comments" rows="4" cols="50" class="form-control" id="notes"><%= exp.getHr_comment() == null ? "" : exp.getHr_comment() %></textarea>
+							</div>
+						</div>
 
 					</fieldset>
 					<input type="hidden" name="tripId" value="<%= exp.getTrip().getTripId() %>">

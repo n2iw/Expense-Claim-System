@@ -128,6 +128,7 @@ public class EmployeeController {
 			@RequestParam int expenseId,
 			@RequestParam int amount,
 			@RequestParam String type,
+			@RequestParam String notes,
 			@RequestPart("receipt") Part file, 
 			HttpSession session,
 			Model model) {
@@ -147,6 +148,7 @@ public class EmployeeController {
 		exp.setEmpl(employee);
 		exp.setAmount(amount);
 		exp.setType(type);
+		exp.setEmp_notes(notes);
 		exp.save(); //Save to get id
 		if (file.getSize() > 0) {
 			storageService.store(file, receiptPrefix + exp.getExpenseId());
