@@ -16,7 +16,7 @@
 		 	  <input class="form-control" id="userName" name="userName" value="${user.userName }"
 				type="text" class="input-block-level" placeholder="username...">
 			</div>
-			
+		
 			<div class="form-group">
 			<input class="form-control" id="password" name="password" value="${user.password }"
 				type="password" class="input-block-level" placeholder="password...">
