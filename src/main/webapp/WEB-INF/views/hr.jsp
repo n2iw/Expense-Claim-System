@@ -203,6 +203,5 @@
 		</div>
 	</div>
 </div>
-<
 <script src="/js/hr.js"></script>
 <%@include file="Footer.jsp"%>

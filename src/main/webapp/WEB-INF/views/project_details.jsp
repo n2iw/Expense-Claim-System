@@ -38,17 +38,41 @@
 					</fieldset>
 				</div>
 				<div class="form-group">
-					<div class="col-sm-offset-3 col-sm-3">
+					<div class="col-sm-offset-6 col-sm-2">
 					   <% if (project.getProjectId() != 0) { %>
 					    	<a class="btn btn-primary form-control" href="/trip/new?projectId=<%= project.getProjectId() %> " role="button">Add Trip</a>
 					   <% } %>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 					   <% if (project.getProjectId() != 0) { %>
-							<a class="btn btn-danger form-control" href="/project/<%= project.getProjectId() %>/delete" role="button">Delete</a>
+					   <button type="button" class="btn btn-danger form-control" id="delete_confirmation">Delete</button>
+							<!--a class="btn btn-danger form-control" href="/project/<%= project.getProjectId() %>/delete" role="button">Delete</a>-->
+							<div class="modal fade" id="secondModal" tabindex="-1"
+										role="dialog" aria-labelledby="myModalLabel">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													<h4 class="modal-title" id="myModalLabel">Alert</h4>
+												</div>
+												<div class="modal-body" id="imagecontainer">
+													<p>Are you sure that you want to delete this project?</p>
+												</div>
+												<div class="modal-footer">
+												<a class="btn btn-danger" href="/project/<%= project.getProjectId() %>/delete" role="button">Delete</a>
+						
+													<button type="button" class="btn btn-default"
+														data-dismiss="modal">Cancel</button>
+											</div>
+											</div>
+										</div>
+									</div>
 					   <% } %>
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<input type="submit" class="btn btn-primary form-control" value="Save">
 					</div>
 					
@@ -93,5 +117,6 @@
 </div>
 </div>
 </div>
+<script src="/js/project_details.js"></script>
 
 <%@include file="Footer.jsp"%>
