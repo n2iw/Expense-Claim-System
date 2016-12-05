@@ -17,6 +17,7 @@ import edu.ualbany.icis518.team6.Expense;
 import edu.ualbany.icis518.team6.Projects;
 import edu.ualbany.icis518.team6.Trips;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -104,7 +105,7 @@ public class ManagerController {
 		project.setBudget(Integer.parseInt(formData.getFirst("budget")));
 		project.setProjectName(formData.getFirst("name"));
 		project.save();
-		return "redirect:/manager";
+		return "redirect:/project/" + project.getProjectId();
 	}
 
 	@GetMapping("/project/{projectId}/delete")
@@ -167,6 +168,8 @@ public class ManagerController {
 		Trips trip = new Trips();
 		trip.setProj(project);
 		trip.setDescription("");
+		trip.setStartDate(new Date());
+		trip.setEndDate(new Date());
 		model.addAttribute("trip", trip);
 		return "trip_detail";
 	}

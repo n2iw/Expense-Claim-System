@@ -25,8 +25,13 @@ public class ValidationController {
 	private HttpSession session;
 	
 	@RequestMapping(value = "/login")
-	public String validateEmployee(@RequestParam(value="userName") int employeeId, 
+	public String validateEmployee(@RequestParam(value="userName", defaultValue = "-1") int employeeId, 
 				@RequestParam(value="password") String password, Model model) {
+		
+		if(employeeId == -1 || password == null){
+			model.addAttribute("error", "User Name or Password should not be empty!");
+			return "login";
+		}
 			
 		Employee emp = new Employee().getbyEmployeeId(employeeId);
 		//GenerateEncodedPassword encodePwd = (GenerateEncodedPassword)context.getBean(GenerateEncodedPassword.class);

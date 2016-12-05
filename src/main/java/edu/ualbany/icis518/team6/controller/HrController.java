@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ualbany.icis518.team6.Expense;
 import edu.ualbany.icis518.team6.Projects;
+import edu.ualbany.icis518.team6.Employee;
 
 @Controller
 public class HrController {
@@ -27,11 +28,16 @@ public class HrController {
 	@RequestMapping("/hr")
 	public String hrHomePage(Model model) {
 		
-		if(session.getAttribute("employee")==null){
+		Employee emp = (Employee)session.getAttribute("employee");
+		if(emp==null){
 			return "redirect:/";
+		}else if(!emp.getRole().equalsIgnoreCase("HR")){
+			if(emp.getRole().equalsIgnoreCase("manager"))
+				return "redirect:/manager";		
+			else
+				return "redirect:/" + "employee?id=" + emp.getEmployeeId();
 		}
 		
-		System.out.println(session.getAttribute("employee"));
 		Expense exp = new Expense();
 		List<Expense> submittedExpList = exp.getbyStatus("Submitted");
 		List<Expense> historyExpList = exp.getbyStatus("Approved");
@@ -47,6 +53,10 @@ public class HrController {
 	 */
 	@RequestMapping("/hr/claim")
 	public String showClaim(@RequestParam(value="id", required=true) int id, Model model) {
+		if(session.getAttribute("employee")==null){
+			return "redirect:/";
+		}
+		
 		Expense exp = new Expense().getbyExpenseId(id);
 		model.addAttribute("expense", exp);
 		return "show_claim";
@@ -58,6 +68,11 @@ public class HrController {
 	@RequestMapping("/hr/claim/approve")
 	public String processClaim(@RequestParam(value="id", required=true) int id, 
 			@RequestParam String claimAction, Model model){
+		
+		if(session.getAttribute("employee")==null){
+			return "redirect:/";
+		}
+		
 		Expense exp = new Expense().getbyExpenseId(id);	
 		Projects project = exp.getTrip().getProj();
 		switch(claimAction){
