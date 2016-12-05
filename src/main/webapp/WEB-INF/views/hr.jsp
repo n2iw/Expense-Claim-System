@@ -51,7 +51,7 @@
 													<h4 class="modal-title" id="myModalLabel">Receipt</h4>
 												</div>
 												<div class="modal-body" id="imagecontainer">
-													<img src="/receipts/receipt.jpg" />
+													<img src="<%=exp.getReceipt() %>>" />
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-default"
@@ -113,7 +113,7 @@
 													<h4 class="modal-title" id="myModalLabel">Receipt</h4>
 												</div>
 												<div class="modal-body" id="imagecontainer">
-													<img src="/receipts/receipt.jpg" />
+													<img src="<%=exp.getReceipt()%>" />
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-default"
