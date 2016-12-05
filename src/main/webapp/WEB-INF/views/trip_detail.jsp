@@ -34,14 +34,14 @@
 							<div class="form-group">
 								<label class="control-label col-sm-2">Date </label>
 								<div class="col-sm-10">
-									<input name="startDate" type="text" class="form-control" value="<%= trip.getStartDate()%>">
+									<input name="startDate" type="text" class="form-control" value="<%= trip.DateToString(trip.getStartDate()) %>">
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="control-label col-sm-2">Date </label>
 								<div class="col-sm-10">
-									<input name="endDate" type="text" class="form-control" value="<%= trip.getEndDate()%>">
+									<input name="endDate" type="text" class="form-control" value="<%= trip.DateToString(trip.getEndDate()) %>">
 								</div>
 							</div>
 							<input type="hidden" name="projectId" value="<%= trip.getProj().getProjectId() %>">
@@ -52,8 +52,9 @@
 
 					<div class="form-group">
 						<div class="col-sm-3">
-							<a class="btn btn-danger form-control"
-								href="/trip/<%= trip.getTripId() %>/delete" role="button">Delete</a>
+						   <% if ( trip.getTripId() != 0) { %>
+								<a class="btn btn-danger form-control" href="/trip/<%= trip.getTripId() %>/delete" role="button">Delete</a>
+						   <% } %>
 						</div>
 						<div class="col-sm-offset-6 col-sm-3">
 							<input type="submit" class="btn btn-primary form-control" value="Save">
