@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+<bean id="GenerateEncodedPassword" class="edu.ualbany.icis518.team6.util.GenerateEncodedPassword"/>
+</beans>
+

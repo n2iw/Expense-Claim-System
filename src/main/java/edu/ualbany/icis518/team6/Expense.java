@@ -28,6 +28,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+@SuppressWarnings("unused")
 @Entity 
 @Table (name = "Expense")
 public class Expense {
@@ -45,6 +46,9 @@ public class Expense {
 	private int amount ;	
 	private String status;
 	private String receipt;
+	private String hr_comment; //added later by mili
+	private String emp_notes;
+	
 	private boolean deleted;
 	/**
 	 * without expenseId
@@ -53,22 +57,19 @@ public class Expense {
 	 * @param amount int
 	 * @param type String
 	 * @param receipt String of file path
+	 * @param hr_comment String 
+	 * @param emp_notes
 	 * @param status String, e.g. Approved, Rejected..
 	 * @param deleteit true or false
 	 */	
 public Expense() {
 		super();
-		// TODO Auto-generated constructor stub
+	
 	}
-
-
-
-
-
 @Override
 public String toString() {
 	return "Expense [expenseId=" + expenseId + ", Empl=" + Empl + ", trip=" + trip + ", type=" + type + ", amount="
-			+ amount + ", status=" + status + ", receipt=" + receipt + ", deleted=" + deleted + "]";
+			+ amount + ", status=" + status +", hr_comment=" + hr_comment + ",emp_notes=" + emp_notes + " ,receipt=" + receipt + ", deleted=" + deleted + "]";
 }
 /**
  * without expenseId
@@ -80,7 +81,7 @@ public String toString() {
  * @param status String, e.g. Approved, Rejected..
  * @param deleteit true or false
  */	
-public Expense(Employee empl, Trips trip, String type, int amount, String status, String receipt, boolean deleted) {
+public Expense(Employee empl, Trips trip, String type, int amount, String status, String hr_comment,String emp_notes,String receipt, boolean deleted) {
 	super();
 	Empl = empl;
 	this.trip = trip;
@@ -88,6 +89,8 @@ public Expense(Employee empl, Trips trip, String type, int amount, String status
 	this.amount = amount;
 	this.status = status;
 	this.receipt = receipt;
+	this.hr_comment = hr_comment;
+	this.emp_notes = emp_notes;
 	this.deleted = deleted;
 }
 public String getType() {
@@ -126,6 +129,7 @@ public String getType() {
 	public void setReceipt(String receipt) {
 		this.receipt = receipt;
 	}
+	
 	public int getExpenseId() {
 		return expenseId;
 	}
@@ -136,9 +140,25 @@ public String getType() {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	//Added by mili
+	public String getHr_comment() {
+		return hr_comment;
+	}
+	public void setHr_comment(String hr_comment ) {
+		this.hr_comment = hr_comment;
+	}
+	
+	public String getEmp_notes() {
+		return emp_notes;
+	}
+	public void setEmp_notes(String emp_notes ) {
+		this.emp_notes = emp_notes;
+	}
 	
 	
-
+	
+	
+	
 	public void save() {
 		SessionFactory factory = new Configuration().configure().buildSessionFactory();
 		Session session = factory.openSession();
@@ -168,7 +188,8 @@ public String getType() {
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, tripin.getTripId());
 	    query.setInteger(1, emplin.getEmployeeId());
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -188,7 +209,8 @@ public String getType() {
 	    String hql="from Expense where trip_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, tripId);
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -208,7 +230,8 @@ public String getType() {
 	    String hql="from Expense where trip_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, tripin.getTripId());
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -228,7 +251,8 @@ public String getType() {
 	    String hql="from Expense where empl_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, emplId);
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -249,7 +273,8 @@ public String getType() {
 	    String hql="from Expense where empl_id=? ";
 	    Query query=session.createQuery(hql);
 	    query.setInteger(0, emplin.getEmployeeId());
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 
 		session.getTransaction().commit();
 		session.close();
@@ -290,7 +315,8 @@ public String getType() {
 	    
 	    String hql="from Expense";
 	    Query query=session.createQuery(hql);
-	    List<Expense> ExpenseList=query.list();
+	    @SuppressWarnings("unchecked")
+		List<Expense> ExpenseList=query.list();
 	    
 	    for(Expense Expense:ExpenseList){// if successfully get the Data, printout every result before return
 	    	System.out.println(Expense);
@@ -301,4 +327,26 @@ public String getType() {
 	    factory.close();
 	    return ExpenseList;// return a List of the User object 
 	}
+
+	//This method will return list of expenses based on status.
+	public static List<Expense> getbyStatus(String status){
+		SessionFactory factory = new Configuration().configure().buildSessionFactory();
+		Session session = factory.openSession();
+		session.beginTransaction();
+		
+	    String hql="from Expense where status=? ";
+	    Query query=session.createQuery(hql);
+	    query.setString(0, status);
+	    List<Expense> ExpenseList=query.list();
+	    
+	    for(Expense Expense:ExpenseList){// if successfully get the Data, printout every result before return
+	    	System.out.println(Expense);
+	    }
+
+		session.getTransaction().commit();
+		session.close();
+		factory.close();
+		return ExpenseList;// return a List of the User object 
+	}	
+	
 }
