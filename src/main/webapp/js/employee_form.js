@@ -1,3 +1,12 @@
 $(document).ready(function(){
     $("#hide").hide();
+    $("#deleteconfirmation").click(function(){
+    	$("#secondModal").modal('show');
+    });
+    $("#receiptforemployee").click(function(){
+    	$("#secondmodalforimage").modal('show');
+         });
+    $("#receiptforemployee1").click(function(){
+    	$("#secondModalForImage1").modal('show');
+         });
 });

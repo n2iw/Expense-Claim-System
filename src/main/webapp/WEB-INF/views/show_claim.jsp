@@ -21,8 +21,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-12">
-					<form action="/hr/claim/approve?id=${id}<%= exp.getExpenseId()%>"
-						method="post">
+					
 						<div class="table-responsive">
 							<table class="table table-hover table-striped table-condensed">
 								<thead>
@@ -34,6 +33,7 @@
 										<th>Amount</th>
 										<th>Status</th>
 										<th>Receipt</th>
+										<th>Comment</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -44,10 +44,43 @@
 										<td><%=exp.getType()%>
 										<td><%=exp.getAmount()%>
 										<td><%=exp.getStatus()%>
-										<td>file</td>
+										<td><a href="javascript:;" id="receipt1">Receipt</a></td>
+										<div class="modal fade" id="secondModalShowClaim" tabindex="-1"
+										role="dialog" aria-labelledby="myModalLabel">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													<h4 class="modal-title" id="myModalLabel">Receipt</h4>
+												</div>
+												<div class="modal-body" >
+													<img src="<%=exp.getReceipt()%>" style="width:500px;"/>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default"
+														data-dismiss="modal">Close</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<td><a href="javascript:;" id="addcomment">Add</a></td>	
 									</tr>
 								</tbody>
 							</table>
+					<form action="/hr/claim/approve?id=${id}<%= exp.getExpenseId()%>"
+						method="post">
+						<div class="form-group" id="commentbox">
+								<label class="control-label col-sm-2">Comment :</label>
+								<div class="col-sm-10">
+									<input type="text"
+										class="form-control" value="" name="commentcontent">
+								</div>
+							</div>
+						
+						<br/>
 							<div class="form-group">
 								<div class="col-sm-offset-6 col-sm-3">
 									<input class="btn btn-primary form-control" name="claimAction"
@@ -56,10 +89,12 @@
 								<div class="col-sm-3">
 									<input class="btn btn-primary form-control" name="claimAction"
 										value="Decline" type="submit">
+										
 								</div>
 							</div>
+							</form>
 						</div>
-					</form>
+				
 				</div>
 			</div>
 			<br>
@@ -102,4 +137,5 @@
 		</div>
 	</div>
 </div>
+<script src="/js/show_claim.js"></script>
 <%@include file="Footer.jsp" %>
