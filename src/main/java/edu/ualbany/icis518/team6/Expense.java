@@ -26,6 +26,8 @@ import javax.sql.rowset.serial.SerialException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.cfg.Configuration;
 
 @SuppressWarnings("unused")
@@ -38,9 +40,11 @@ public class Expense {
 	private int expenseId;
     @ManyToOne
     @JoinColumn(name="empl_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
 	private Employee Empl;
     @ManyToOne
     @JoinColumn(name="trip_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Trips trip; 
     private String type;
 	private int amount ;	

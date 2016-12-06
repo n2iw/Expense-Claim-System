@@ -25,6 +25,8 @@ import javax.sql.rowset.serial.SerialException;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.cfg.Configuration;
 
 @SuppressWarnings("unused")
@@ -40,6 +42,7 @@ public class Trips {
 	private Date endDate;
     @ManyToOne
     @JoinColumn(name="proj_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
 	private Projects proj;
     
 public Projects getProj() {

@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.cfg.Configuration;
 
 @Entity 
@@ -24,9 +26,11 @@ public class EmployeeTrips {
 	private int empltripId;	
 	@ManyToOne
     @JoinColumn(name="trip_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
 	private Trips etrip;
     @ManyToOne
     @JoinColumn(name="empl_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
 	private Employee Empl;
     
 	public int getEmpltripId() {

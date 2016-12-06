@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.cfg.Configuration;
 
 @SuppressWarnings("unused")
@@ -33,6 +35,7 @@ public class Projects {
 	
     @ManyToOne
     @JoinColumn(name="pm_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
 	private Employee Empl;
 	private String projectName;
 	
