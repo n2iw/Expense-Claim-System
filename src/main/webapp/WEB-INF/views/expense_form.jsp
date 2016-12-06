@@ -4,10 +4,15 @@
 <%@ page import="edu.ualbany.icis518.team6.Trips"%>
 
 <%@include file="Header.jsp"%>
+<link rel="stylesheet" href="/css/expense_style.css">
 
 <% 
    Trips trip = (Trips)request.getAttribute("trip");
    Expense exp = (Expense)request.getAttribute("expense");
+   String error = (String)request.getAttribute("error");
+   if (error == null) {
+	   error = "";
+   }
 %>
 
 <div class="container">
@@ -65,6 +70,9 @@
 						</div>
 
                     <!-- Amount -->
+						<div class = "form-group" id="expense-error">
+							<div class="col-sm-10 col-sm-offset-2"><%= error %></div>
+						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="amount">Amount:
 							</label>
