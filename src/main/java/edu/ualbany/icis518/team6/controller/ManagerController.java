@@ -129,12 +129,15 @@ public class ManagerController {
 		for (EmployeeProjects ep: EmployeeProjects.getbyProject(project)) {
 			ep.delete();
 		}
-		for (String employeeIdString: formData.get("employeeIds")) {
-			Employee emp = Employee.getbyEmployeeId(Integer.parseInt(employeeIdString));
-			if (emp == null) {
-				continue;
+		List<String> employeeIds = formData.get("employeeIds");
+		if (employeeIds != null) {
+			for (String employeeIdString: employeeIds ) {
+				Employee emp = Employee.getbyEmployeeId(Integer.parseInt(employeeIdString));
+				if (emp == null) {
+					continue;
+				}
+				project.setEmployee(emp);
 			}
-			project.setEmployee(emp);
 		}
 		return "redirect:/project/" + project.getProjectId();
 	}
@@ -220,7 +223,6 @@ public class ManagerController {
 		if (!employee.getRole().equalsIgnoreCase("manager")) {
 			return "redirect:/employee";
 		}
-//		System.out.println(formData);
 		int projectId = Integer.parseInt(formData.getFirst("projectId"));
 		Projects project = Projects.getbyProjectId(projectId);
 		if (project == null) {
@@ -240,12 +242,15 @@ public class ManagerController {
 		for (EmployeeTrips et: EmployeeTrips.getbyTrip(trip)) {
 			et.delete();
 		}
-		for (String employeeIdString: formData.get("employeeIds")) {
-			Employee emp = Employee.getbyEmployeeId(Integer.parseInt(employeeIdString));
-			if (emp == null) {
-				continue;
+		List<String> employeeIds = formData.get("employeeIds");
+		if (employeeIds != null) {
+			for (String employeeIdString: formData.get("employeeIds")) {
+				Employee emp = Employee.getbyEmployeeId(Integer.parseInt(employeeIdString));
+				if (emp == null) {
+					continue;
+				}
+				trip.setEmployee(emp);
 			}
-			trip.setEmployee(emp);
 		}
 		return "redirect:/project/" + project.getProjectId();
 	}
