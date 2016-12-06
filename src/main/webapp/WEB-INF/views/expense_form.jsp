@@ -9,7 +9,7 @@
    Trips trip = (Trips)request.getAttribute("trip");
    Expense exp = (Expense)request.getAttribute("expense");
 %>
-
+<link rel="stylesheet" href="/css/expense_form_style.css">
 <div class="container">
 	<div class="row">
 		<div class="col-sm-offset-2 col-sm-8 col-sm-offset-2">
@@ -77,10 +77,32 @@
 					 <% if(exp.getReceipt() != null && !exp.getReceipt().isEmpty()) { %>
                         <div class="form-group">
                             <div class="col-sm-2 col-sm-offset-2">
-                                <a class="btn btn-sm btn-info" href="/employee/expense/<%= exp.getExpenseId() %>/receipts" target="_blank">Receipt</a>
+                                <a class="btn btn-sm btn-info expenseformreceipt" href="javascript:;" data-selector='<%=exp.getReceipt()%>'>Receipt</a>
                             </div>
                         </div>
+                        
 					<% } %>
+					<div class="modal fade" id="expenseformmodal" tabindex="-1"
+										role="dialog" aria-labelledby="myModalLabel">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													<h4 class="modal-title" id="myModalLabel">Receipt</h4>
+												</div>
+												<div class="modal-body" id="imagecontainer">
+													<img src="" id="employeeformpagefirstimage" />
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-default"
+														data-dismiss="modal">Close</button>
+												</div>
+											</div>
+										</div>
+									</div>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="receipt">Upload Receipt: </label>
                             <div class="col-sm-10">
@@ -120,5 +142,5 @@
 		</div>
 	</div>
 </div>
-
+<script src="/js/expense_form.js"></script>
 <%@include file="Footer.jsp"%>
