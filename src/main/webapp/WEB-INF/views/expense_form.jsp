@@ -56,11 +56,10 @@
 							</label>
 							<div class="col-sm-10">
 								<select name="type" class="form-control" id="type" name="type">
-								    <option value="<%= exp.getType() %>" selected><%= exp.getType() %></option>
-									<option value="Food">Food</option>
-									<option value="Travel">Travel</option>
-									<option value="Hotel">Hotel</option>
-									<option value="Misc">Misc</option>
+									<option value="Food" <%= exp.getType().equalsIgnoreCase("Food") ? "selected" : "" %>>Food</option>
+									<option value="Travel" <%= exp.getType().equalsIgnoreCase("Travel") ? "selected" : "" %>>Travel</option>
+									<option value="Hotel" <%= exp.getType().equalsIgnoreCase("Hotel") ? "selected" : "" %>>Hotel</option>
+									<option value="Misc" <%= exp.getType().equalsIgnoreCase("Misc") ? "selected" : "" %>>Misc</option>
 								</select>
 							</div>
 						</div>
@@ -78,10 +77,10 @@
 					 <% if(exp.getReceipt() != null && !exp.getReceipt().isEmpty()) { %>
                         <div class="form-group">
                             <div class="col-sm-2 col-sm-offset-2">
-                                <a class="btn btn-sm btn-info" href="/employee/expense/<%= exp.getExpenseId() %>/receipts">Receipt</a>
+                                <a class="btn btn-sm btn-info" href="/employee/expense/<%= exp.getExpenseId() %>/receipts" target="_blank">Receipt</a>
                             </div>
                         </div>
-					 <% } else { %>
+					<% } %>
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="receipt">Upload Receipt: </label>
                             <div class="col-sm-10">
@@ -89,7 +88,6 @@
                                     value="<%= exp.getReceipt() %>">
                             </div>
                         </div>
-					<% } %>
 					<!-- Notes -->
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="notes">Note:

@@ -129,7 +129,7 @@ public class EmployeeController {
 			@RequestParam int amount,
 			@RequestParam String type,
 			@RequestParam String notes,
-			@RequestPart("receipt") Part file, 
+			@RequestPart(name="receipt", required=false) Part file, 
 			HttpSession session,
 			Model model) {
 		Employee employee = getEmployee(session);
@@ -150,11 +150,11 @@ public class EmployeeController {
 		exp.setType(type);
 		exp.setEmp_notes(notes);
 		exp.save(); //Save to get id
-		if (file.getSize() > 0) {
-			storageService.store(file, receiptPrefix + exp.getExpenseId());
+		if (file != null && file.getSize() > 0) {
 			if (exp.getReceipt() != null && !exp.getReceipt().isEmpty()) {
 				storageService.delete(exp.getReceipt());
 			}
+			storageService.store(file, receiptPrefix + exp.getExpenseId());
 			exp.setReceipt(storageService.getStoredPublicPath(file, receiptPrefix + exp.getExpenseId()));
 		}
 		exp.setdeleted(false);
