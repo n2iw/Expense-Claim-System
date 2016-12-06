@@ -1,5 +1,5 @@
 <%@ page import="edu.ualbany.icis518.team6.Projects"%>
-<%@ page import="java.util.List"%>
+<%@ page import="java.util.*"%>
 <%@ page import="edu.ualbany.icis518.team6.Expense"%>
 <%@ page import="edu.ualbany.icis518.team6.Employee"%>
 <%@ page import="edu.ualbany.icis518.team6.Trips"%>
@@ -95,15 +95,19 @@
 								</thead>
 								<% for (Trips trip: trips) {
 									List<Employee> employees = trip.getAllEmployeeOfThisTrip();
-									Employee e = new Employee();
-									    if (employees.size() > 0) {
-									        e = employees.get(0);
-									    }
+									List<String> names = new ArrayList<>();
+									for (Employee e: employees) {
+										names.add(e.getFirstName() + " " + e.getLastName());
+									}
 									%>
 								 
 									<tbody>
 										<tr>
-											<td><a href="/trip/<%= trip.getTripId() %>"><%= trip.getDescription() %></a></td><td><%= e.getFirstName() %></td><td>From: <%= trip.DateToString(trip.getStartDate()) %> to <%= trip.DateToString(trip.getEndDate()) %></td>
+											<td><a href="/trip/<%= trip.getTripId() %>"><%= trip.getDescription() %></a></td>
+											<td>
+											<%= String.join(", ", names) %>
+											</td>
+											<td>From: <%= trip.DateToString(trip.getStartDate()) %> to <%= trip.DateToString(trip.getEndDate()) %></td>
 										</tr>
 									</tbody>
 								<% } %>
