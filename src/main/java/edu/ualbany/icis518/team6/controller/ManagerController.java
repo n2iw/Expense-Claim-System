@@ -1,5 +1,6 @@
 package edu.ualbany.icis518.team6.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.MultiValueMap;
@@ -12,11 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ualbany.icis518.team6.Employee;
+import edu.ualbany.icis518.team6.EmployeeProjects;
 import edu.ualbany.icis518.team6.EmployeeTrips;
 import edu.ualbany.icis518.team6.Expense;
 import edu.ualbany.icis518.team6.Projects;
 import edu.ualbany.icis518.team6.Trips;
+import edu.ualbany.icis518.team6.util.StorageService;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,7 +28,14 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class ManagerController {
-	
+    private final StorageService storageService;
+    private final String receiptPrefix = "receipt_";
+
+   @Autowired
+	public ManagerController(StorageService storageService) {
+		this.storageService = storageService;
+	}
+
 	private Employee getEmployee(HttpSession session) {
 		Employee e = null;
 		Object obj = session.getAttribute("employee");
@@ -66,6 +77,14 @@ public class ManagerController {
 		if (project.getProjectManager().getEmployeeId() != employee.getEmployeeId()) {
 			return "redirect:/manager";
 		}
+		List<Employee> emps = Employee.getAllEmployee();
+		model.addAttribute("emps", emps);
+		List<Integer> currentEmpIds = new ArrayList<>();
+		for (Employee e : project.getAllEmployeeOfThisProject()) {
+			currentEmpIds.add(e.getEmployeeId());
+			
+		}
+		model.addAttribute("currentEmpIds", currentEmpIds);
 		model.addAttribute("project", project);
 		return "project_details";
 	}
@@ -81,13 +100,15 @@ public class ManagerController {
 		}
 		Projects project = new Projects();
 		project.setProjectName("");
+		List<Employee> emps = Employee.getAllEmployee();
 		model.addAttribute("project", project);
+		model.addAttribute("emps", emps);
+		model.addAttribute("currentEmpIds", new ArrayList<Integer>());
 		return "project_details";
-//		return "addProject";
 	}
 	
 	@PostMapping("/project")
-	public String updateProject(@RequestBody MultiValueMap<String,String> formData, HttpSession session, Model model) {
+	public String saveProject(@RequestBody MultiValueMap<String,String> formData, HttpSession session, Model model) {
 		Employee employee = getEmployee(session);
 		if (employee == null) {
 			return "redirect:/";
@@ -95,7 +116,6 @@ public class ManagerController {
 		if (!employee.getRole().equalsIgnoreCase("manager")) {
 			return "redirect:/employee";
 		}
-//		System.out.println(formData);
 		int projectId = Integer.parseInt(formData.getFirst("projectId"));
 		Projects project = Projects.getbyProjectId(projectId);
 		if ( project == null) {
@@ -105,6 +125,17 @@ public class ManagerController {
 		project.setBudget(Integer.parseInt(formData.getFirst("budget")));
 		project.setProjectName(formData.getFirst("name"));
 		project.save();
+		
+		for (EmployeeProjects ep: EmployeeProjects.getbyProject(project)) {
+			ep.delete();
+		}
+		for (String employeeIdString: formData.get("employeeIds")) {
+			Employee emp = Employee.getbyEmployeeId(Integer.parseInt(employeeIdString));
+			if (emp == null) {
+				continue;
+			}
+			project.setEmployee(emp);
+		}
 		return "redirect:/project/" + project.getProjectId();
 	}
 
@@ -119,15 +150,10 @@ public class ManagerController {
 		}
 		Projects project = Projects.getbyProjectId(projectId);
 		if (project != null) {
-			//TODO: delete all related EmployeeTrips record
 			for (Trips trip: Trips.getbyProject(project)) {
-				for (EmployeeTrips et: EmployeeTrips.getbyTrip(trip)) {
-					et.delete();
-				}
 				for (Expense exp: Expense.getbyTrip(trip)) {
-					exp.delete();
+					storageService.delete(exp.getReceipt());;
 				}
-				trip.delete();
 			}
 			project.delete();
 		}
@@ -148,7 +174,15 @@ public class ManagerController {
 			System.out.println("ManagerController: trip not found for id=" + tripId);
 			return "redirect:/manager";
 		}
+
+		List<Employee> emps = trip.getProj().getAllEmployeeOfThisProject();
+		List<Integer> currentEmpIds = new ArrayList<>();
 		model.addAttribute("trip", trip);
+		model.addAttribute("employees", emps);
+		for (Employee e : trip.getAllEmployeeOfThisTrip()) {
+			currentEmpIds.add(e.getEmployeeId());
+		}
+		model.addAttribute("currentEmpIds", currentEmpIds);
 		return "trip_detail";
 	}
 
@@ -165,17 +199,20 @@ public class ManagerController {
 		if (project == null) {
 			return "redirect:/manager";
 		}
+		List<Employee> emps = project.getAllEmployeeOfThisProject();
 		Trips trip = new Trips();
 		trip.setProj(project);
 		trip.setDescription("");
 		trip.setStartDate(new Date());
 		trip.setEndDate(new Date());
 		model.addAttribute("trip", trip);
+		model.addAttribute("employees", emps);
+		model.addAttribute("currentEmpIds", new ArrayList<Integer>());
 		return "trip_detail";
 	}
 	
 	@PostMapping("/trip")
-	public String createTrip(@RequestBody MultiValueMap<String,String> formData, HttpSession session, Model model) {
+	public String saveTrip(@RequestBody MultiValueMap<String,String> formData, HttpSession session, Model model) {
 		Employee employee = getEmployee(session);
 		if (employee == null) {
 			return "redirect:/";
@@ -199,7 +236,11 @@ public class ManagerController {
 		trip.setStartDate(trip.StringToDate(formData.getFirst("startDate")));
 		trip.setEndDate(trip.StringToDate(formData.getFirst("endDate")));
 		trip.save();
-		for (String employeeIdString: formData.get("employeeId")) {
+
+		for (EmployeeTrips et: EmployeeTrips.getbyTrip(trip)) {
+			et.delete();
+		}
+		for (String employeeIdString: formData.get("employeeIds")) {
 			Employee emp = Employee.getbyEmployeeId(Integer.parseInt(employeeIdString));
 			if (emp == null) {
 				continue;
@@ -225,14 +266,10 @@ public class ManagerController {
 		}
 		Projects project = trip.getProj();
 
-		for (EmployeeTrips et: EmployeeTrips.getbyTrip(trip)) {
-			et.delete();
+		for (Expense exp: Expense.getbyTrip(trip)) {
+			storageService.delete(exp.getReceipt());;
 		}
 		
-		for (Expense exp: Expense.getbyTrip(trip)) {
-			exp.delete();
-		}
-
 		trip.delete();
 		if (project == null) {
 			return "redirect:/manager";

@@ -10,6 +10,8 @@
 
 <% Projects project = (Projects)request.getAttribute("project");
    List<Trips> trips = Trips.getbyProject(project);
+   List<Employee> emps = (List<Employee>) request.getAttribute("emps");
+   List<Integer> currentEmpIds = (List<Integer>) request.getAttribute("currentEmpIds");
 %>
 
 <div class="container">
@@ -33,6 +35,16 @@
 							<label class="control-label col-sm-2">Budget</label>
 							<div class="col-sm-10">
 								<input name="budget" type="text" class="form-control" value="<%= project.getBudget() %>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2">Employees</label>
+							<div class="col-sm-10">
+								<select name="employeeIds" class="form-control" multiple size="10" width="100%">
+								<% for (Employee e : emps) { %>
+								<option value="<%= e.getEmployeeId() %>" <%= currentEmpIds.contains(e.getEmployeeId()) ? "selected" : "" %>><%= e.getLastName() + ", " + e.getFirstName() %></option>
+								<% } %>
+								</select>
 							</div>
 						</div>
 					</fieldset>
