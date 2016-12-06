@@ -3,11 +3,8 @@
 <%@include file="Header.jsp"%>
 <%
 	Trips trip = (Trips) request.getAttribute("trip");
-	List<Employee> employees = trip.getAllEmployeeOfThisTrip();
-	int employeeId = 0;
-	if (employees.size() > 0) {
-		employeeId = employees.get(0).getEmployeeId();
-	}
+    List<Employee> emps = (List<Employee>) request.getAttribute("employees");
+	List<Integer> currentEmpIds = (List<Integer>) request.getAttribute("currentEmpIds");
 %>
 <div class="container">
 	<div class="row">
@@ -20,26 +17,33 @@
 							<div class="form-group">
 								<label class="control-label col-sm-2">Description</label>
 								<div class="col-sm-10">
-									<input name="description" type="text" class="form-control" value="<%= trip.getDescription()%>">
+									<input name="description" type="text" class="form-control"
+										value="<%= trip.getDescription()%>">
 								</div>
 							</div>
 
 							<div class="form-group">
 								<label class="control-label col-sm-2">Employee ID </label>
 								<div class="col-sm-10">
-									<input name="employeeId" type="text" class="form-control" value="<%= employeeId %>">
+									<select multiple name="employeeIds" size="5" style="width: 100%">
+										<% for (Employee e : emps) { %>
+										<option value="<%= e.getEmployeeId() %>" <%= currentEmpIds.contains(e.getEmployeeId()) ? "selected": "" %> >
+										<%= e.getLastName() + ", " + e.getFirstName() %>
+									    </option>
+									<% } %>
+									</select>
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-sm-2">Date </label>
+								<label class="control-label col-sm-2">Start Date</label>
 								<div class="col-sm-10">
 									<input name="startDate" type="text" class="form-control" value="<%= trip.DateToString(trip.getStartDate()) %>">
 								</div>
 							</div>
 
 							<div class="form-group">
-								<label class="control-label col-sm-2">Date </label>
+								<label class="control-label col-sm-2">End Date</label>
 								<div class="col-sm-10">
 									<input name="endDate" type="text" class="form-control" value="<%= trip.DateToString(trip.getEndDate()) %>">
 								</div>
