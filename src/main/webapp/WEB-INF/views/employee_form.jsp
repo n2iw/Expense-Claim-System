@@ -207,6 +207,5 @@
 		</div>
 	</div>
 </div>
-<
 <script src="/js/employee_form.js"></script>
 <%@include file="Footer.jsp"%>
