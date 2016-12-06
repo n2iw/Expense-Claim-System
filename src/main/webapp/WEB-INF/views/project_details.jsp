@@ -7,11 +7,16 @@
 	String title = "Project Details";
 %>
 <%@include file="Header.jsp"%>
+<link rel="stylesheet" href="/css/form_error_style.css">
 
 <% Projects project = (Projects)request.getAttribute("project");
    List<Trips> trips = Trips.getbyProject(project);
    List<Employee> emps = (List<Employee>) request.getAttribute("emps");
    List<Integer> currentEmpIds = (List<Integer>) request.getAttribute("currentEmpIds");
+   String error = (String)request.getAttribute("error");
+   if (error == null) {
+       error = "";
+   }
 %>
 
 <div class="container">
@@ -30,7 +35,9 @@
 								<input name="name" type="text" class="form-control" value="<%= project.getProjectName() %>">
 							</div>
 						</div>
-						
+					   <div class = "form-group" id="form-error">
+                            <div class="col-sm-10 col-sm-offset-2"><%= error %></div>
+                        </div>	
 						<div class="form-group">
 							<label class="control-label col-sm-2">Budget</label>
 							<div class="col-sm-10">
