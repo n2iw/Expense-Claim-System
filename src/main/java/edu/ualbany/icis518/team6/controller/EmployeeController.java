@@ -154,7 +154,7 @@ public class EmployeeController {
 		try {
 			exp.setAmount(Integer.parseInt(amount));
 		} catch (NumberFormatException nfe){
-			model.addAttribute("error", "Amount must be a number!");
+			model.addAttribute("error", "Amount must be an integer!");
 			model.addAttribute("trip", trip);
 			model.addAttribute("expense", exp);
 			return "expense_form";
