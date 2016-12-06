@@ -38,8 +38,13 @@
 									<td><%=exp.getAmount()%>
 									<td><%=exp.getType()%>
 									<td><%=exp.getStatus()%>
-									<td><a href="javascript:;" id="receipt1">Receipt</a></td>
-									<div class="modal fade" id="secondModal" tabindex="-1"
+									<td><a href="javascript:;" class="receipt1" data-selector='<%=exp.getReceipt()%>'>Receipt</a></td>
+									
+								</tr>
+								<%
+									}
+								%>
+								<div class="modal fade" id="secondModal" tabindex="-1"
 										role="dialog" aria-labelledby="myModalLabel">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
@@ -50,8 +55,8 @@
 													</button>
 													<h4 class="modal-title" id="myModalLabel">Receipt</h4>
 												</div>
-												<div class="modal-body" id="imagecontainer">
-													<img src="<%=exp.getReceipt() %>>" />
+												<div class="modal-body">
+													<img src="" id="hrpagefirstimage" />
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-default"
@@ -60,10 +65,6 @@
 											</div>
 										</div>
 									</div>
-								</tr>
-								<%
-									}
-								%>
 							</tbody>
 						</table>
 					</div>
@@ -99,9 +100,12 @@
 									<td><%=exp.getAmount()%>
 									<td><%=exp.getType()%>
 									<td><%=exp.getStatus()%>
-									<td><a href="javascript:;" id="receipt">Receipt</a></td>
+									<td><a href="javascript:;" class="receipt" data-selector='<%=exp.getReceipt()%>'>Receipt</a></td>
 									<!-- Modal -->
-									<div class="modal fade" id="myModal" tabindex="-1"
+									
+								</tr>
+								<% } %>
+								<div class="modal fade" id="myModal" tabindex="-1"
 										role="dialog" aria-labelledby="myModalLabel">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
@@ -113,7 +117,7 @@
 													<h4 class="modal-title" id="myModalLabel">Receipt</h4>
 												</div>
 												<div class="modal-body" id="imagecontainer">
-													<img src="<%=exp.getReceipt()%>" />
+													<img src="" id="hrpagesecondimage" />
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-default"
@@ -122,9 +126,7 @@
 											</div>
 										</div>
 									</div>
-
-								</tr>
-								<% } %>
+								
 							</tbody>
 						</table>
 					</div>
