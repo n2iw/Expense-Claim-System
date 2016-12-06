@@ -76,6 +76,29 @@
 						</tr>
 					</thead>
 					<tbody>
+					<div class="modal fade" id="secondmodalforimage1" tabindex="-1"
+                    role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">Alert</h4>
+                            </div>
+                            <div class="modal-body" id="imagecontainer">
+                                <img alt="Receipt" src="" id="employeeformimage1"
+                                    style="width: 500px;"></img>
+                            </div>
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 						<% 
 				   Object temp = request.getAttribute("expenses");
 				   if (temp instanceof List) { 
@@ -132,29 +155,7 @@
 										</div>
 									</div>
 				
-				<div class="modal fade" id="secondmodalforimage1" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel">
-					<div class="modal-dialog" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-								<h4 class="modal-title" id="myModalLabel">Alert</h4>
-							</div>
-							<div class="modal-body" id="imagecontainer">
-								<img alt="Receipt" src="" id="employeeformimage1"
-									style="width: 500px;"></img>
-							</div>
-							<div class="modal-footer">
-
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Cancel</button>
-							</div>
-						</div>
-					</div>
-				</div>
+				
 			</div>
 			<!-- table-responsive -->
 
