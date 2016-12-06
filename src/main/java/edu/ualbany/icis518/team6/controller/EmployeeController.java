@@ -126,7 +126,7 @@ public class EmployeeController {
 	public String saveExpense(
 			@RequestParam int tripId,
 			@RequestParam int expenseId,
-			@RequestParam int amount,
+			@RequestParam String amount,
 			@RequestParam String type,
 			@RequestParam String notes,
 			@RequestPart(name="receipt", required=false) Part file, 
@@ -144,11 +144,21 @@ public class EmployeeController {
 		if (exp == null) {
 			exp = new Expense();
 		}
+		
+		exp.setdeleted(false);
+		exp.setStatus("Saved");
 		exp.setTrip(trip);
 		exp.setEmpl(employee);
-		exp.setAmount(amount);
 		exp.setType(type);
 		exp.setEmp_notes(notes);
+		try {
+			exp.setAmount(Integer.parseInt(amount));
+		} catch (NumberFormatException nfe){
+			model.addAttribute("error", "Amount must be a number!");
+			model.addAttribute("trip", trip);
+			model.addAttribute("expense", exp);
+			return "expense_form";
+		}
 		exp.save(); //Save to get id
 		if (file != null && file.getSize() > 0) {
 			if (exp.getReceipt() != null && !exp.getReceipt().isEmpty()) {
@@ -156,10 +166,8 @@ public class EmployeeController {
 			}
 			storageService.store(file, receiptPrefix + exp.getExpenseId());
 			exp.setReceipt(storageService.getStoredPublicPath(file, receiptPrefix + exp.getExpenseId()));
+			exp.save();
 		}
-		exp.setdeleted(false);
-		exp.setStatus("Saved");
-		exp.save();
 		return "redirect:/employee/trip/" + trip.getTripId();
 	}
 	
