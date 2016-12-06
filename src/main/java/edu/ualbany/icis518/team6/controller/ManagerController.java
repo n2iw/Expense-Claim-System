@@ -82,7 +82,6 @@ public class ManagerController {
 		List<Integer> currentEmpIds = new ArrayList<>();
 		for (Employee e : project.getAllEmployeeOfThisProject()) {
 			currentEmpIds.add(e.getEmployeeId());
-			
 		}
 		model.addAttribute("currentEmpIds", currentEmpIds);
 		model.addAttribute("project", project);
@@ -122,8 +121,21 @@ public class ManagerController {
 			project = new Projects();
 		}
 		project.setProjectManager(employee);
-		project.setBudget(Integer.parseInt(formData.getFirst("budget")));
 		project.setProjectName(formData.getFirst("name"));
+		try {
+			project.setBudget(Integer.parseInt(formData.getFirst("budget")));
+		} catch (NumberFormatException nfe){
+			model.addAttribute("error", "Budget must be an integer!");
+			List<Employee> emps = Employee.getAllEmployee();
+			model.addAttribute("emps", emps);
+			List<Integer> currentEmpIds = new ArrayList<>();
+			for (Employee e : project.getAllEmployeeOfThisProject()) {
+				currentEmpIds.add(e.getEmployeeId());
+			}
+			model.addAttribute("currentEmpIds", currentEmpIds);
+			model.addAttribute("project", project);
+			return "project_details";
+		}
 		project.save();
 		
 		for (EmployeeProjects ep: EmployeeProjects.getbyProject(project)) {
