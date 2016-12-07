@@ -1,6 +1,7 @@
 
 package edu.ualbany.icis518.team6.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.ualbany.icis518.team6.Employee;
 import edu.ualbany.icis518.team6.Expense;
 import edu.ualbany.icis518.team6.Projects;
+import edu.ualbany.icis518.team6.Trips;
 
 @Controller
 public class HrController {
@@ -25,7 +28,7 @@ public class HrController {
 	 * along with history expenses.
 	 */
 	@RequestMapping("/hr")
-	public String hrHomePage(Model model) {
+	public String hrHomePage(@RequestParam String project_name, @RequestParam String employee_name, @RequestParam String trip_name, Model model) {
 		
 		if(session.getAttribute("employee")==null){
 			return "redirect:/";
@@ -37,8 +40,19 @@ public class HrController {
 		List<Expense> historyExpList = exp.getbyStatus("Approved");
 		historyExpList.addAll(exp.getbyStatus("Declined"));
 		
+		Projects project = new Projects();
+		List<Projects> projectList = project.getAllProjects();
+		Employee emp = new Employee();
+		List<Employee> employeeList = emp.getAllEmployee();
+		Trips trip = new Trips();
+		List<Trips> tripList = trip.getAllTrips();
+		
 		model.addAttribute("expList", submittedExpList);
 		model.addAttribute("historyExpList", historyExpList);
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("employeeList", employeeList);
+		model.addAttribute("tripList", tripList);
+	
 		return "hr";
 	}
 	
