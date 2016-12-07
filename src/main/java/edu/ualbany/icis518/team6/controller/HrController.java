@@ -28,7 +28,7 @@ public class HrController {
 	 * along with history expenses.
 	 */
 	@RequestMapping("/hr")
-	public String hrHomePage(@RequestParam String project_name, @RequestParam String employee_name, @RequestParam String trip_name, Model model) {
+	public String hrHomePage(Model model) {
 		
 		if(session.getAttribute("employee")==null){
 			return "redirect:/";
