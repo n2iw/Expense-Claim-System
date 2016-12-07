@@ -28,6 +28,9 @@
 			<div class="well">
 				<fieldset>
 					<legend>Project</legend>
+					    <div class = "form-group" id="form-error">
+                            <div class="col-sm-10 col-sm-offset-2"><%= error %></div>
+                        </div>
 						<div class="form-group">
 						    <input type="hidden" name="projectId" value="<%= project.getProjectId() %>">
 							<label class="control-label col-sm-2">Name</label>
@@ -35,9 +38,6 @@
 								<input name="name" type="text" class="form-control" value="<%= project.getProjectName() %>">
 							</div>
 						</div>
-					   <div class = "form-group" id="form-error">
-                            <div class="col-sm-10 col-sm-offset-2"><%= error %></div>
-                        </div>	
 						<div class="form-group">
 							<label class="control-label col-sm-2">Budget</label>
 							<div class="col-sm-10">

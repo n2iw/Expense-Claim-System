@@ -151,15 +151,28 @@ public class EmployeeController {
 		exp.setEmpl(employee);
 		exp.setType(type);
 		exp.setEmp_notes(notes);
+
+		List<String> errors = new ArrayList<String>();
+		//Validate Amount
 		try {
 			exp.setAmount(Integer.parseInt(amount));
+			if (exp.getAmount() <= 0) {
+				errors.add("Amount must be greater than 0!");
+			}
 		} catch (NumberFormatException nfe){
-			model.addAttribute("error", "Amount must be an integer!");
+			errors.add("Amount must be an integer!");
+		}
+
+
+		//Validation failed
+		if (!errors.isEmpty()) {
+			model.addAttribute("error", String.join("<br>", errors));
 			model.addAttribute("trip", trip);
 			model.addAttribute("expense", exp);
 			return "expense_form";
 		}
-		exp.save(); //Save to get id
+		exp.save();
+		//Save uploaded files
 		if (file != null && file.getSize() > 0) {
 			if (exp.getReceipt() != null && !exp.getReceipt().isEmpty()) {
 				storageService.delete(exp.getReceipt());

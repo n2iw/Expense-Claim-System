@@ -20,6 +20,8 @@ import edu.ualbany.icis518.team6.Projects;
 import edu.ualbany.icis518.team6.Trips;
 import edu.ualbany.icis518.team6.util.StorageService;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -122,22 +124,40 @@ public class ManagerController {
 		}
 		project.setProjectManager(employee);
 		project.setProjectName(formData.getFirst("name"));
+		
+		List<String> errors = new ArrayList<String>();
+		//Validate Budget
 		try {
 			project.setBudget(Integer.parseInt(formData.getFirst("budget")));
+			if (project.getBudget() <= 0) {
+				errors.add("Budget must be greater than 0!");
+			}
 		} catch (NumberFormatException nfe){
-			model.addAttribute("error", "Budget must be an integer!");
-			List<Employee> emps = Employee.getAllEmployee();
-			model.addAttribute("emps", emps);
+			errors.add("Budget must be an integer!");
+		}
+		//Validate Name
+		if (project.getProjectName() == null || project.getProjectName().isEmpty()) {
+			errors.add("Project Name can't be empty!");
+		}
+
+
+		//Validation failed
+		if (!errors.isEmpty()) {
 			List<Integer> currentEmpIds = new ArrayList<>();
 			for (Employee e : project.getAllEmployeeOfThisProject()) {
 				currentEmpIds.add(e.getEmployeeId());
 			}
-			model.addAttribute("currentEmpIds", currentEmpIds);
+			List<Employee> emps = Employee.getAllEmployee();
+			model.addAttribute("error", String.join("<br>", errors));
 			model.addAttribute("project", project);
+			model.addAttribute("currentEmpIds", currentEmpIds);
+			model.addAttribute("emps", emps);
 			return "project_details";
 		}
+		
 		project.save();
 		
+		//Update employee project relationship
 		for (EmployeeProjects ep: EmployeeProjects.getbyProject(project)) {
 			ep.delete();
 		}
@@ -247,10 +267,51 @@ public class ManagerController {
 		}
 		trip.setProj(project);
 		trip.setDescription(formData.getFirst("description"));
-		trip.setStartDate(trip.StringToDate(formData.getFirst("startDate")));
-		trip.setEndDate(trip.StringToDate(formData.getFirst("endDate")));
+	    SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-yyyy"); 
+
+		List<String> errors = new ArrayList<String>();
+		//Validate Dates
+		try {
+			trip.setStartDate(sdf.parse(formData.getFirst("startDate")));
+		} catch (ParseException e) {
+			errors.add("Wrong date format for startDate! Please use format mm-dd-yyyy");
+			trip.setStartDate(new Date());
+		} catch (NullPointerException ne)  {
+			errors.add("Start date is required!");
+			trip.setStartDate(new Date());
+		}
+		try {
+			trip.setEndDate(sdf.parse(formData.getFirst("endDate")));
+		} catch (ParseException e) {
+			errors.add("Wrong date format for endDate! Please use format mm-dd-yyyy");
+			trip.setEndDate(new Date());
+		} catch (NullPointerException ne)  {
+			errors.add("End date is required!");
+			trip.setEndDate(new Date());
+		}
+
+		//Validate Description
+		if (trip.getDescription() == null || trip.getDescription().isEmpty()) {
+			errors.add("Trip Description can't be empty!");
+		}
+
+		//Validation failed
+		if (!errors.isEmpty()) {
+			List<Employee> emps = trip.getProj().getAllEmployeeOfThisProject();
+			List<Integer> currentEmpIds = new ArrayList<>();
+			model.addAttribute("trip", trip);
+			model.addAttribute("employees", emps);
+			for (Employee e : trip.getAllEmployeeOfThisTrip()) {
+				currentEmpIds.add(e.getEmployeeId());
+			}
+			model.addAttribute("currentEmpIds", currentEmpIds);
+			model.addAttribute("error", String.join("<br>", errors));
+			return "trip_detail";
+		}
+
 		trip.save();
 
+		//Update employee trip relationship
 		for (EmployeeTrips et: EmployeeTrips.getbyTrip(trip)) {
 			et.delete();
 		}
