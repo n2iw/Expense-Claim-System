@@ -85,7 +85,7 @@
                                     aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                <h4 class="modal-title" id="myModalLabel">Alert</h4>
+                                <h4 class="modal-title" id="myModalLabel">Receipt</h4>
                             </div>
                             <div class="modal-body" id="imagecontainer">
                                 <img alt="Receipt" src="" id="employeeformimage1"
@@ -205,7 +205,7 @@
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
-								<h4 class="modal-title" id="myModalLabel">Alert</h4>
+								<h4 class="modal-title" id="myModalLabel">Receipt</h4>
 							</div>
 							<div class="modal-body" id="imagecontainer">
 								<img alt="Receipt" src="" id="employeeformimage2"

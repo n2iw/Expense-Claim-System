@@ -13,7 +13,7 @@ $(document).ready(function(){
     $(".receiptforemployee1").click(function(){
     
     	var src = $(this).data('selector');
-    	$("#employeeformimage1").attr("src",src);
+    	$("#employeeformimage2").attr("src",src);
     	$("#secondmodalforimage").modal('show');
          });
 });
