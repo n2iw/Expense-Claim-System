@@ -66,21 +66,30 @@
 											</div>
 										</div>
 									</div>
-									<td><a href="javascript:;" id="addcomment">Add</a></td>	
+									<td><a href="javascript:;" id="addcomment">Show</a></td>	
 									</tr>
 								</tbody>
 							</table>
 					<form action="/hr/claim/approve?id=${id}<%= exp.getExpenseId()%>"
 						method="post">
-						<div class="form-group" id="commentbox">
-								<label class="control-label col-sm-2">Comment :</label>
-								<div class="col-sm-10">
-									<input type="text"
-										class="form-control" value="" name="commentcontent">
+							<div class="form-group" id="commentbox">
+								<div class="row">
+									<label class="control-label col-sm-2">Employee's Note :</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control"
+											value="<%=exp.getEmp_notes()%>" readonly>
+									</div>
+								</div>
+								<div class="row">
+									<label class="control-label col-sm-2">Comment :</label>
+									<div class="col-sm-10">
+										<input type="text" class="form-control" value=""
+											name="commentcontent">
+									</div>
 								</div>
 							</div>
-						
-						<br/>
+
+							<br/>
 							<div class="form-group">
 								<div class="col-sm-offset-6 col-sm-2">
 									<input class="btn btn-primary form-control" name="claimAction"
