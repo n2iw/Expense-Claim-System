@@ -4,16 +4,20 @@ package edu.ualbany.icis518.team6.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 
 import edu.ualbany.icis518.team6.Expense;
 import edu.ualbany.icis518.team6.Projects;
 import edu.ualbany.icis518.team6.Trips;
+import edu.ualbany.icis518.team6.util.StorageService;
 import edu.ualbany.icis518.team6.Employee;
 import edu.ualbany.icis518.team6.EmployeeTrips;
 
@@ -22,6 +26,14 @@ public class HrController {
 	
 	@Autowired
 	private HttpSession session;
+	
+	private final StorageService storageService;
+    private final String receiptPrefix = "receipt_";
+
+   @Autowired
+	public HrController(StorageService storageService) {
+		this.storageService = storageService;
+	}
 	
 	/*
 	 * This method returns list of expenses with Submitted status
@@ -108,5 +120,54 @@ public class HrController {
 		}
 		return "redirect:/hr";
 	}
+	
+	
+	@PostMapping("/hr")
+	public String saveExpense(
+			@RequestParam String project_name,
+			@RequestParam String trip_name,
+			@RequestParam String employee_name,
+			@RequestParam String description,
+			@RequestPart("receipt") Part file, 
+			HttpSession session,
+			Model model) {
+		
+		
+		System.out.println(project_name);
+		System.out.println(trip_name);
+		System.out.println(employee_name);
+		System.out.println(description);
+		/*
+		Employee employee = getEmployee(session);
+		if (employee == null) {
+			return "redirect:/";
+		}
+		Trips trip = Trips.getbyTripId(tripId);
+		if ( trip == null) {
+			return "redirect:/employee";
+		}
+		Expense exp = Expense.getbyExpenseId(expenseId);
+		if (exp == null) {
+			exp = new Expense();
+		}
+		exp.setTrip(trip);
+		exp.setEmpl(employee);
+		exp.setAmount(amount);
+		exp.setType(type);
+		exp.setEmp_notes(notes);
+		exp.save(); //Save to get id
+		if (file.getSize() > 0) {
+			storageService.store(file, receiptPrefix + exp.getExpenseId());
+			if (exp.getReceipt() != null && !exp.getReceipt().isEmpty()) {
+				storageService.delete(exp.getReceipt());
+			}
+			exp.setReceipt(storageService.getStoredPublicPath(file, receiptPrefix + exp.getExpenseId()));
+		}
+		exp.setdeleted(false);
+		exp.setStatus("Saved");
+		exp.save();*/
+		return "redirect:/";
+	}
+	
 }
 

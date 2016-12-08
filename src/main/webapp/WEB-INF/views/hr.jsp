@@ -1,4 +1,9 @@
 <%@ page import="edu.ualbany.icis518.team6.Expense"%>
+<%@ page import="edu.ualbany.icis518.team6.EmployeeTrips" %>
+
+<%@ page import="edu.ualbany.icis518.team6.Projects" %>
+
+<%@ page import="edu.ualbany.icis518.team6.Trips" %>
 <%@ page import="java.util.List"%>
 
 <%
@@ -38,8 +43,13 @@
 									<td><%=exp.getAmount()%>
 									<td><%=exp.getType()%>
 									<td><%=exp.getStatus()%>
-									<td><a href="javascript:;" id="receipt1">Receipt</a></td>
-									<div class="modal fade" id="secondModal" tabindex="-1"
+									<td><a href="javascript:;" class="receipt1" data-selector='<%=exp.getReceipt()%>'>Receipt</a></td>
+									
+								</tr>
+								<%
+									}
+								%>
+								<div class="modal fade" id="secondModal" tabindex="-1"
 										role="dialog" aria-labelledby="myModalLabel">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
@@ -50,8 +60,8 @@
 													</button>
 													<h4 class="modal-title" id="myModalLabel">Receipt</h4>
 												</div>
-												<div class="modal-body" id="imagecontainer">
-													<img src="/receipts/receipt.jpg" />
+												<div class="modal-body">
+													<img src="" id="hrpagefirstimage" />
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-default"
@@ -60,10 +70,6 @@
 											</div>
 										</div>
 									</div>
-								</tr>
-								<%
-									}
-								%>
 							</tbody>
 						</table>
 					</div>
@@ -99,9 +105,12 @@
 									<td><%=exp.getAmount()%>
 									<td><%=exp.getType()%>
 									<td><%=exp.getStatus()%>
-									<td><a href="javascript:;" id="receipt">Receipt</a></td>
+									<td><a href="javascript:;" class="receipt" data-selector='<%=exp.getReceipt()%>'>Receipt</a></td>
 									<!-- Modal -->
-									<div class="modal fade" id="myModal" tabindex="-1"
+									
+								</tr>
+								<% } %>
+								<div class="modal fade" id="myModal" tabindex="-1"
 										role="dialog" aria-labelledby="myModalLabel">
 										<div class="modal-dialog" role="document">
 											<div class="modal-content">
@@ -113,7 +122,7 @@
 													<h4 class="modal-title" id="myModalLabel">Receipt</h4>
 												</div>
 												<div class="modal-body" id="imagecontainer">
-													<img src="/receipts/receipt.jpg" />
+													<img src="" id="hrpagesecondimage" />
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-default"
@@ -122,9 +131,7 @@
 											</div>
 										</div>
 									</div>
-
-								</tr>
-								<% } %>
+								
 							</tbody>
 						</table>
 					</div>
@@ -136,42 +143,49 @@
                     <div class="well">
                         <fieldset>
                             <legend>Advanced Reservations</legend>
-                            <div class="form-group">
-							<label class="control-label col-sm-2" for="type">Employee :
-							</label>
-							<div class="col-sm-10">
-								<select name="employee_name" class="form-control" id="type" name="type">
-								    <option value="" selected>--Select Employee--</option>
-									<option value="a">a</option>
-									<option value="b">b</option>
-									<option value="c">c</option>
-									<option value="d">d</option>
-								</select>
-							</div>
-						</div>
-						<div class="form-group">
+                            
+						<div class="form-group" id="projectlist">
 							<label class="control-label col-sm-2" for="type">Project :
 							</label>
 							<div class="col-sm-10">
-								<select name="project_name" class="form-control" id="type" name="type">
+								<select name="project_name" class="form-control" id="projectselect">
 								    <option value="" selected>--Select Project--</option>
-									<option value="a">a</option>
-									<option value="b">b</option>
-									<option value="c">c</option>
-									<option value="d">d</option>
+									<% 
+									for(Projects exp : (List<Projects>) request.getAttribute("projectList") ){
+								     %>
+									<option value="tripclassname<%=exp.getProjectId()%>"><%=exp.getProjectName()%></option>
+									<%}
+									%>
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						
+						<div class="form-group" id="triplist">
 							<label class="control-label col-sm-2" for="type">Trip :
 							</label>
 							<div class="col-sm-10">
-								<select name="trip_name" class="form-control" id="type" name="type">
-								    <option value="" selected>--Select Trip--</option>
-									<option value="a">a</option>
-									<option value="b">b</option>
-									<option value="c">c</option>
-									<option value="d">d</option>
+								<select name="trip_name" class="form-control" id="tripselect">
+								<option value="" selected>--Select Trip--</option>
+								<%
+								for(Trips exp : (List<Trips>) request.getAttribute("tripList")){
+								%>
+								    
+									<option class="tripclassname<%=exp.getProj().getProjectId() %>" value="employeeclassname<%=exp.getTripId()%>"><%=exp.getDescription() %></option>
+									
+								<%} %>
+								</select>
+							</div>
+						</div>
+						<div class="form-group" id="employeelist">
+							<label class="control-label col-sm-2" for="type" >Employee :
+							</label>
+							<div class="col-sm-10">
+								<select name="employee_name" class="form-control" id="employeeselect">
+								    <option value="" selected>--Select Employee--</option>
+								    
+								    <%for(EmployeeTrips exp : (List<EmployeeTrips>) request.getAttribute("empTripList")){ %>
+									<option class="employeeclassname<%=exp.getTrip().getTripId()%>" value="<%=exp.getEmpl().getFirstName()%>"><%=exp.getEmpl().getFirstName()%></option>
+								<%} %>
 								</select>
 							</div>
 						</div>
