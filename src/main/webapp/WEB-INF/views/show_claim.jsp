@@ -49,11 +49,15 @@
 								</tbody>
 							</table>
 							<div class="form-group">
-								<div class="col-sm-offset-6 col-sm-3">
+								<div class="col-sm-offset-6 col-sm-2">
+									<input class="btn btn-primary form-control" name="claimAction"
+										value="Save" type="submit">
+								</div>
+								<div class="col-sm-2">
 									<input class="btn btn-primary form-control" name="claimAction"
 										value="Approve" type="submit">
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-2">
 									<input class="btn btn-primary form-control" name="claimAction"
 										value="Decline" type="submit">
 								</div>

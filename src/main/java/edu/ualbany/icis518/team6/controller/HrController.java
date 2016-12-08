@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.ualbany.icis518.team6.Expense;
 import edu.ualbany.icis518.team6.Projects;
+import edu.ualbany.icis518.team6.Trips;
 import edu.ualbany.icis518.team6.Employee;
+import edu.ualbany.icis518.team6.EmployeeTrips;
 
 @Controller
 public class HrController {
@@ -39,12 +41,24 @@ public class HrController {
 		}
 		
 		Expense exp = new Expense();
-		List<Expense> submittedExpList = exp.getbyStatus("Submitted");
+		List<Expense> submittedExpList = exp.getbyStatus("In Progress");
+		submittedExpList.addAll(exp.getbyStatus("Submitted"));
 		List<Expense> historyExpList = exp.getbyStatus("Approved");
 		historyExpList.addAll(exp.getbyStatus("Declined"));
 		
+		Projects project = new Projects();
+		List<Projects> projectList = project.getAllProjects();
+		EmployeeTrips empTrips = new EmployeeTrips();
+		List<EmployeeTrips> empTripList = empTrips.getAllEmployeeTrips();
+		Trips trip = new Trips();
+		List<Trips> tripList = trip.getAllTrips();
+		
 		model.addAttribute("expList", submittedExpList);
 		model.addAttribute("historyExpList", historyExpList);
+		model.addAttribute("projectList", projectList);
+		model.addAttribute("empTripList", empTripList);
+		model.addAttribute("tripList", tripList);
+		
 		return "hr";
 	}
 	
@@ -85,6 +99,10 @@ public class HrController {
 				break;
 			case "Decline":
 				exp.setStatus("Declined");
+				exp.save();
+				break;
+			case "Save":
+				exp.setStatus("In Progress");
 				exp.save();
 				break;
 		}
