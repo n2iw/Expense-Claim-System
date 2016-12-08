@@ -122,40 +122,30 @@ public class HrController {
 	}
 	
 	
-	@PostMapping("/hr")
+	@RequestMapping("/hr/booking")
 	public String saveExpense(
 			@RequestParam String project_name,
 			@RequestParam String trip_name,
 			@RequestParam String employee_name,
+			@RequestParam String amount,
 			@RequestParam String description,
 			@RequestPart("receipt") Part file, 
 			HttpSession session,
 			Model model) {
 		
-		
-		System.out.println(project_name);
-		System.out.println(trip_name);
-		System.out.println(employee_name);
-		System.out.println(description);
-		/*
-		Employee employee = getEmployee(session);
-		if (employee == null) {
-			return "redirect:/";
-		}
-		Trips trip = Trips.getbyTripId(tripId);
-		if ( trip == null) {
-			return "redirect:/employee";
-		}
-		Expense exp = Expense.getbyExpenseId(expenseId);
-		if (exp == null) {
-			exp = new Expense();
-		}
-		exp.setTrip(trip);
+		String[] projectId = project_name.split("tripclassname");
+		String[] tripId = trip_name.split("employeeclassname");
+	
+		Employee emp = new Employee();
+		Expense exp = new Expense();
+		exp.setAmount(Integer.parseInt(amount));
+		Employee employee = emp.getbyEmployeeId(Integer.parseInt(employee_name));
 		exp.setEmpl(employee);
-		exp.setAmount(amount);
-		exp.setType(type);
-		exp.setEmp_notes(notes);
-		exp.save(); //Save to get id
+		exp.setHr_comment(description);
+		Trips trips = new Trips();
+		Trips trip = trips.getbyTripId(Integer.parseInt(tripId[1]));
+		exp.setTrip(trip);
+		
 		if (file.getSize() > 0) {
 			storageService.store(file, receiptPrefix + exp.getExpenseId());
 			if (exp.getReceipt() != null && !exp.getReceipt().isEmpty()) {
@@ -165,8 +155,8 @@ public class HrController {
 		}
 		exp.setdeleted(false);
 		exp.setStatus("Saved");
-		exp.save();*/
-		return "redirect:/";
+		exp.save();
+		return "redirect:/hr";
 	}
 	
 }

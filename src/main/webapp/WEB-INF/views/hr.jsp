@@ -139,7 +139,7 @@
 			</div>
 		<div class="row">
 		<div class="col-sm-12">
-		                <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+		                <form class="form-horizontal" action="hr/booking" method="post" enctype="multipart/form-data">
                     <div class="well">
                         <fieldset>
                             <legend>Advanced Reservations</legend>
@@ -148,7 +148,7 @@
 							<label class="control-label col-sm-2" for="type">Project :
 							</label>
 							<div class="col-sm-10">
-								<select name="project_name" class="form-control" id="projectselect">
+								<select name="project_name" class="form-control" id="projectselect" name="type">
 								    <option value="" selected>--Select Project--</option>
 									<% 
 									for(Projects exp : (List<Projects>) request.getAttribute("projectList") ){
@@ -164,7 +164,7 @@
 							<label class="control-label col-sm-2" for="type">Trip :
 							</label>
 							<div class="col-sm-10">
-								<select name="trip_name" class="form-control" id="tripselect">
+								<select name="trip_name" class="form-control" id="tripselect" name="type">
 								<option value="" selected>--Select Trip--</option>
 								<%
 								for(Trips exp : (List<Trips>) request.getAttribute("tripList")){
@@ -180,11 +180,11 @@
 							<label class="control-label col-sm-2" for="type" >Employee :
 							</label>
 							<div class="col-sm-10">
-								<select name="employee_name" class="form-control" id="employeeselect">
+								<select name="employee_name" class="form-control" id="employeeselect" name="type">
 								    <option value="" selected>--Select Employee--</option>
 								    
 								    <%for(EmployeeTrips exp : (List<EmployeeTrips>) request.getAttribute("empTripList")){ %>
-									<option class="employeeclassname<%=exp.getTrip().getTripId()%>" value="<%=exp.getEmpl().getFirstName()%>"><%=exp.getEmpl().getFirstName()%></option>
+									<option class="employeeclassname<%=exp.getTrip().getTripId()%>" value="<%=exp.getEmpl().getEmployeeId()%>"><%=exp.getEmpl().getFirstName()%></option>
 								<%} %>
 								</select>
 							</div>
@@ -193,6 +193,12 @@
                                 <label class="control-label col-sm-2">Description: </label>
                                 <div class="col-sm-10">
                                     <input name="description" type="text" class="form-control" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-2">Amount: </label>
+                                <div class="col-sm-10">
+                                    <input name="amount" type="text" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="form-group">
