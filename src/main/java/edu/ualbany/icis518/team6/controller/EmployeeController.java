@@ -73,6 +73,7 @@ public class EmployeeController {
 				exps.add(exp);
 				break;
 			case "submitted":
+			case "in progress":
 			case "approved":
 				readonlyExps.add(exp);
 				break;
