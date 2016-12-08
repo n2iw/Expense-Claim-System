@@ -129,6 +129,7 @@ public class HrController {
 			@RequestParam String employee_name,
 			@RequestParam String amount,
 			@RequestParam String description,
+			@RequestParam String expensetype,
 			@RequestPart("receipt") Part file, 
 			HttpSession session,
 			Model model) {
@@ -145,6 +146,10 @@ public class HrController {
 		Trips trips = new Trips();
 		Trips trip = trips.getbyTripId(Integer.parseInt(tripId[1]));
 		exp.setTrip(trip);
+		exp.setType(expensetype);
+		exp.setdeleted(false);
+		exp.setStatus("Saved");
+		exp.save();
 		
 		if (file.getSize() > 0) {
 			storageService.store(file, receiptPrefix + exp.getExpenseId());
@@ -152,10 +157,9 @@ public class HrController {
 				storageService.delete(exp.getReceipt());
 			}
 			exp.setReceipt(storageService.getStoredPublicPath(file, receiptPrefix + exp.getExpenseId()));
+			exp.save();
 		}
-		exp.setdeleted(false);
-		exp.setStatus("Saved");
-		exp.save();
+			
 		return "redirect:/hr";
 	}
 	
