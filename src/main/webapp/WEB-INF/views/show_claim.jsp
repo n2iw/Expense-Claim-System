@@ -49,6 +49,13 @@
 								</tbody>
 							</table>
 							<div class="form-group">
+								<label class="control-label col-sm-2">Comment : </label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" name="hrComment">
+								</div>
+							</div>
+							<br><br><br>
+							<div class="form-group">
 								<div class="col-sm-offset-6 col-sm-2">
 									<input class="btn btn-primary form-control" name="claimAction"
 										value="Save" type="submit">

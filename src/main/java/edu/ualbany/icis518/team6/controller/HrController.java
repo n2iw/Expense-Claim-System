@@ -93,7 +93,7 @@ public class HrController {
 	 */
 	@RequestMapping("/hr/claim/approve")
 	public String processClaim(@RequestParam(value="id", required=true) int id, 
-			@RequestParam String claimAction, Model model){
+			@RequestParam String claimAction, @RequestParam String hrComment, Model model){
 		
 		if(session.getAttribute("employee")==null){
 			return "redirect:/";
@@ -101,6 +101,7 @@ public class HrController {
 		
 		Expense exp = new Expense().getbyExpenseId(id);	
 		Projects project = exp.getTrip().getProj();
+		exp.setHr_comment(hrComment);
 		switch(claimAction){
 			case "Approve":
 				exp.setStatus("Approved");
