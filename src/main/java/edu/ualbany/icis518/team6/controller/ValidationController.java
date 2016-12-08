@@ -43,9 +43,9 @@ public class ValidationController {
 			model.addAttribute("error", "Invalid User Name");
 			return "login";
 		}else if(encodedPassword.trim().equals(emp.getPassword())){
-			if(emp.getRole().equals("Manager"))
+			if(emp.getRole().equalsIgnoreCase("manager"))
 				view += "manager";
-			else if(emp.getRole().equals("HR"))
+			else if(emp.getRole().equalsIgnoreCase("HR"))
 				view += "hr";
 			else
 				view += "employee?id=" + emp.getEmployeeId();

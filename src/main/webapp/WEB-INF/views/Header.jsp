@@ -22,7 +22,6 @@
 <!-- <div class="container-fluid">
 <div class="row">
 <div class="col-sm-12">
-
 <div id="header">
   <p id="header-title" class="text-center">Expense Claim System</p>
 </div>

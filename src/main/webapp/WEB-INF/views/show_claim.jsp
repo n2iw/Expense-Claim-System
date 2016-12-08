@@ -82,11 +82,15 @@
 						
 						<br/>
 							<div class="form-group">
-								<div class="col-sm-offset-6 col-sm-3">
+								<div class="col-sm-offset-6 col-sm-2">
+									<input class="btn btn-primary form-control" name="claimAction"
+										value="Save" type="submit">
+								</div>
+								<div class="col-sm-2">
 									<input class="btn btn-primary form-control" name="claimAction"
 										value="Approve" type="submit">
 								</div>
-								<div class="col-sm-3">
+								<div class="col-sm-2">
 									<input class="btn btn-primary form-control" name="claimAction"
 										value="Decline" type="submit">
 										
@@ -119,6 +123,7 @@
 									<th>Project Name</th>
 									<th>Manager Name</th>
 									<th>Budget</th>
+									<th>Available Budget</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -128,6 +133,7 @@
 									<td><%=exp.getTrip().getProj().getProjectManager().getFirstName() + " "
 					+ exp.getTrip().getProj().getProjectManager().getLastName()%></td>
 									<td><%=exp.getTrip().getProj().getBudget()%>
+									<td><%=exp.getTrip().getProj().getCurrentBudget() %>
 								</tr>
 							</tbody>
 						</table>
