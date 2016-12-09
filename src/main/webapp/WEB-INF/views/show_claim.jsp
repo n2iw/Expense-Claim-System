@@ -44,7 +44,7 @@
 										<td><%=exp.getType()%>
 										<td><%=exp.getAmount()%>
 										<td><%=exp.getStatus()%>
-										<td>file</td>
+										<td><a href="javascript:;" class="receipt1" data-selector='<%=exp.getReceipt()%>'>Receipt</a></td>
 									</tr>
 								</tbody>
 							</table>
@@ -115,4 +115,5 @@
 		</div>
 	</div>
 </div>
+<script src="/js/hr.js"></script>
 <%@include file="Footer.jsp" %>

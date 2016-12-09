@@ -190,6 +190,18 @@
 							</div>
 						</div>
 						<div class="form-group">
+                                <label class="control-label col-sm-2">Type: </label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" id="type" name="expensetype">
+								    
+									<option value="Food">Food</option>
+									<option value="Travel">Travel</option>
+									<option value="Hotel">Hotel</option>
+									<option value="Misc">miscellaneous</option>
+								</select>
+                                </div>
+                            </div>
+						<div class="form-group">
                                 <label class="control-label col-sm-2">Description: </label>
                                 <div class="col-sm-10">
                                     <input name="description" type="text" class="form-control" value="">
