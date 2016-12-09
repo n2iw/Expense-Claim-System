@@ -128,7 +128,9 @@ public class ManagerController {
 		List<String> errors = new ArrayList<String>();
 		//Validate Budget
 		try {
+			int expense = project.getBudget() - project.getCurrentBudget();
 			project.setBudget(Integer.parseInt(formData.getFirst("budget")));
+			project.setCurrentBudget(project.getBudget() - expense);
 			if (project.getBudget() <= 0) {
 				errors.add("Budget must be greater than 0!");
 			}
